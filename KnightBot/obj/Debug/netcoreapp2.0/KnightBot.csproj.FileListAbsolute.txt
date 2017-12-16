@@ -1,0 +1,11 @@
+c:\users\blckn\source\repos\KnightBot\KnightBot\bin\Debug\netcoreapp2.0\KnightBot.deps.json
+c:\users\blckn\source\repos\KnightBot\KnightBot\bin\Debug\netcoreapp2.0\KnightBot.runtimeconfig.json
+c:\users\blckn\source\repos\KnightBot\KnightBot\bin\Debug\netcoreapp2.0\KnightBot.runtimeconfig.dev.json
+c:\users\blckn\source\repos\KnightBot\KnightBot\bin\Debug\netcoreapp2.0\KnightBot.dll
+c:\users\blckn\source\repos\KnightBot\KnightBot\obj\Debug\netcoreapp2.0\KnightBot.csprojResolveAssemblyReference.cache
+c:\users\blckn\source\repos\KnightBot\KnightBot\obj\Debug\netcoreapp2.0\KnightBot.csproj.CoreCompileInputs.cache
+c:\users\blckn\source\repos\KnightBot\KnightBot\obj\Debug\netcoreapp2.0\KnightBot.AssemblyInfoInputs.cache
+c:\users\blckn\source\repos\KnightBot\KnightBot\obj\Debug\netcoreapp2.0\KnightBot.AssemblyInfo.cs
+c:\users\blckn\source\repos\KnightBot\KnightBot\bin\Debug\netcoreapp2.0\KnightBot.pdb
+c:\users\blckn\source\repos\KnightBot\KnightBot\obj\Debug\netcoreapp2.0\KnightBot.dll
+c:\users\blckn\source\repos\KnightBot\KnightBot\obj\Debug\netcoreapp2.0\KnightBot.pdb
