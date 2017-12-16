@@ -10,10 +10,10 @@ namespace KnightBot
     public class Database
     {
         private string Table { get; set; }
-        private const string server = "31.220.105.14";
-        private const string database = "blupr729_discordbot";
-        private const string username = "blupr729_max";
-        private const string password = "blcknght";
+        private const string server = "ip to server";
+        private const string database = "database";
+        private const string username = "username";
+        private const string password = "password";
         private MySqlConnection dbConnection;
 
         public Database(string table)
