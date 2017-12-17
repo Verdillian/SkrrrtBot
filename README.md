@@ -1,6 +1,8 @@
 # KnightBot
 
 This discord bot is going to include some cool things.
+
+
 Things that are currently implemented:
   - Music Bot
     - !play <youtubeURL> - Plays a song from youtube, if it is not a direct link to the song it will break (working on finding a solution.)
