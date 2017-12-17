@@ -31,7 +31,7 @@ Things that are currently implemented:
     - !kick <user> <reason> - Kicks a user from the discord server.
     - !ban <user> <reason> - Bans a user from the discord server.
     - !addrole <user> <role> - Adds a role to a user.
-    - !delrole <user> <role> - Deletes a role from a user.
+    - !remorole <user> <role> - Deletes a role from a user.
     
 Things that are planned to be implemented:
   - Volume command for music bot.
