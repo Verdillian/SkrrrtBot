@@ -11,10 +11,6 @@ Things that are currently implemented:
     - !fight <@(usersname)> - Allows you to have a sword fight with a user.
     - !giveup - Gives up the fight...
     - !slash - Slash your oponent with a sword!
-  - Connection To Database (allows you to be able to give people tokens / eventually will gain tokens from talking in the discord.)
-    - Current token system commands:
-      - !status - Tells you how many tokens you have.
-      - !status <@(username)> - Tells you how many tokens another user has. (slightly buggy but still works)
   - Clear Chat
     - !clear, !c - Clears the messages in  a text channel up to 100
   - Auction System (not real auction for the tokens, just for fun.)
@@ -32,7 +28,7 @@ Things that are currently implemented:
   - Administrative Commands:
     - !kick <user> <reason> - Kicks a user from the discord server.
     - !ban <user> <reason> - Bans a user from the discord server.
-    - !addrole <user> <role> - Adds a role to a user.
+    - !setrole <user> <role> - Adds a role to a user.
     - !remorole <user> <role> - Deletes a role from a user.
     
 Things that are planned to be implemented:
