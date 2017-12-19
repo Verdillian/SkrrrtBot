@@ -13,18 +13,17 @@ Things that are currently implemented:
     - !slash - Slash your oponent with a sword!
   - Clear Chat
     - !clear, !c - Clears the messages in  a text channel up to 100
-  - Auction System (not real auction for the tokens, just for fun.)
-    - Auction Commands (Kind of buggy and doesnt always work...):
-      - !auction <startingBid> <amountOfItem> <item> - Starts a auction. Ex: !auction 5 1 :skull:
-      - !bid <bidAmount>
-      - !auctionend - Ends a auction if one is going.
-      - !auctioncheck - Checks to see if a auction is currently going.
+  - Money System
+    - !bank - Opens a new bank account for the user.
+    - !money - Checks money in bank account.
+    - !roll - Rolls the dice to earn money.
   - DM creator of bot
     - !dm <msg> - DM's the creater of the bot what ever the message is.
-  - Set the bots current game
-    - !setgame <text> - Sets the bots game to what ever the text is.
   - Random eightball
     - !8ball <text> - The bot gives you a random message telling you what it thinks will happen according to what you put in.
+  - Random Commands
+    - !cat - Generates a random cat image.
+    - !doggo - Generates a random dog image.
   - Administrative Commands:
     - !kick <user> <reason> - Kicks a user from the discord server.
     - !ban <user> <reason> - Bans a user from the discord server.
