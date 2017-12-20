@@ -1,2 +1,5 @@
 .vs/*
 KnightBot/obj/*
+KnightBot/bin/*
+KnightBot/Properties/*
+packages/*
