@@ -130,21 +130,23 @@ namespace KnightBot.Modules.Admin
 
             if (!userName.Roles.Contains(moneyrole) || !userName.Roles.Contains(moneyrole1) || !userName.Roles.Contains(moneyrole2))
             {
-                /**Database.updMoney(user, money);
+                Database.updMoney(user, money);
                 var embed = new EmbedBuilder()
                 {
                     Color = new Color(0, 175, 240)
                 };
                 embed.Description = (Context.User.Mention + ", Has Gotton :moneybag: " + money + " Coins!");
-                await ReplyAsync("", false, embed.Build());**/
+                await ReplyAsync("", false, embed.Build());
 
+            }
+            else
+            {
                 var embed = new EmbedBuilder()
                 {
                     Color = new Color(0, 175, 240)
                 };
-                embed.Description = (Context.User.Mention + ", It fkin worked bitches!");
+                embed.Description = (Context.User.Mention + ", you do not have the permissions required to give people dosh!");
                 await ReplyAsync("", false, embed.Build());
-
             }
         }
 
