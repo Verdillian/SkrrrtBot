@@ -123,28 +123,28 @@ namespace KnightBot.Modules.Admin
         public async Task Addmoney(IGuildUser user, [Remainder] int money)
         {
             var config = new BotConfig();
+            var userName = Context.User as SocketGuildUser;
             var moneyrole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole);
             var moneyrole1 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole1);
             var moneyrole2 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole2);
 
-            if (9 + 10 == 21)
+            if (!userName.Roles.Contains(moneyrole) || !userName.Roles.Contains(moneyrole1) || !userName.Roles.Contains(moneyrole2))
             {
-                Database.updMoney(user, money);
+                /**Database.updMoney(user, money);
                 var embed = new EmbedBuilder()
                 {
                     Color = new Color(0, 175, 240)
                 };
                 embed.Description = (Context.User.Mention + ", Has Gotton :moneybag: " + money + " Coins!");
-                await ReplyAsync("", false, embed.Build());
-            }
-            else
-            {
+                await ReplyAsync("", false, embed.Build());**/
+
                 var embed = new EmbedBuilder()
                 {
                     Color = new Color(0, 175, 240)
                 };
-                embed.Description = (Context.User.Mention + ", wtf does 9+10 equal?");
+                embed.Description = (Context.User.Mention + ", It fkin worked bitches!");
                 await ReplyAsync("", false, embed.Build());
+
             }
         }
 
