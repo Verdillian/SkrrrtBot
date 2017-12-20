@@ -10,10 +10,10 @@ namespace KnightBot
     public class Database
     {
         private string Table { get; set; }
-        private const string server = "ip";
-        private const string database = "db";
-        private const string username = "db username";
-        private const string password = "password";
+        private const string server = "31.220.105.14";
+        private const string database = "blupr729_discordbot";
+        private const string username = "blupr729_max";
+        private const string password = "blcknght";
         private MySqlConnection dbConnection;
 
         public Database(string table)
@@ -46,8 +46,8 @@ namespace KnightBot
         public static List<String> CheckExistingUser(IUser user)
         {
             var result = new List<String>();
-            var database = new Database("db");
-            var str = string.Format("SELECT * FROM " + "tokens" + " WHERE user_id = '{0}'", user.Id);
+            var database = new Database("blupr729_discordbot");
+            var str = string.Format("SELECT * FROM " + "econ" + " WHERE user_id = '{0}'", user.Id);
             var tableName = database.FireCommand(str);
 
             while (tableName.Read())
@@ -61,7 +61,7 @@ namespace KnightBot
 
         public static string EnterUser(IUser user)
         {
-            var database = new Database("db");
+            var database = new Database("blupr729_discordbot");
             var str = string.Format("INSERT INTO tokens (user_id, username, tokens) VALUES ('{0}', '{1}', '100')", user.Id, user.Username);
             var table = database.FireCommand(str);
             database.CloseConnection();
@@ -72,7 +72,7 @@ namespace KnightBot
         {
             var result = new List<tableName>();
 
-            var database = new Database("db");
+            var database = new Database("blupr729_discordbot");
 
             var str = string.Format("SELECT * FROM tokens WHERE user_id = '{0}'", user.Id);
             var tableName = database.FireCommand(str);
@@ -97,7 +97,7 @@ namespace KnightBot
 
         public static void ChangeTokens(IUser user, int tokens)
         {
-            var database = new Database("db");
+            var database = new Database("blupr729_discordbot");
 
             try
             {
@@ -116,9 +116,9 @@ namespace KnightBot
 
         public static string Cbank(IUser user)
         {
-            var database = new Database("db");
+            var database = new Database("blupr729_discordbot");
 
-            var str = string.Format("INSERT INTO econ(user_id, username, money ) VALUES ('{0}', '{1}' ,'100')", user.Id, username);
+            var str = string.Format("INSERT INTO econ(user_id, username, money ) VALUES ('{0}', '{1}' ,'100')", user.Id, user.Username);
             var table = database.FireCommand(str);
 
             database.CloseConnection();
@@ -129,7 +129,7 @@ namespace KnightBot
         public static List<Econ> GetUserMoney(IUser user)
         {
             var result = new List<Econ>();
-            var database = new Database("db");
+            var database = new Database("blupr729_discordbot");
 
             var str = string.Format("SELECT * FROM econ WHERE user_id = '{0}'", user.Id);
             var econ = database.FireCommand(str);
@@ -152,7 +152,7 @@ namespace KnightBot
 
         public static void updMoney(IUser user, int money)
         {
-            var database = new Database("db");
+            var database = new Database("blupr729_discordbot");
 
             try
             {
