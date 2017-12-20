@@ -3,3 +3,8 @@ KnightBot/obj/*
 KnightBot/bin/*
 KnightBot/Properties/*
 packages/*
+KnightBot/obj/project.assets.json
+KnightBot/Database/Database.cs
+KnightBot/obj/KnightBot.csproj.nuget.cache
+KnightBot/obj/KnightBot.csproj.nuget.g.targets
+KnightBot/obj/KnightBot.csproj.nuget.g.props

@@ -93,6 +93,15 @@ namespace KnightBot
                 Console.WriteLine("New Member Role: ");
                 config.NewMemberRank = Console.ReadLine();
 
+                Console.WriteLine("Money Role: ");
+                config.MoneyRole = Console.ReadLine();
+
+                Console.WriteLine("Second Money Role: ");
+                config.MoneyRole1 = Console.ReadLine();
+
+                Console.WriteLine("Third Money Role: ");
+                config.MoneyRole2 = Console.ReadLine();
+
                 config.Save();                                  // Save the new configuration object to file.
             }
             Console.WriteLine("Configuration has been loaded");

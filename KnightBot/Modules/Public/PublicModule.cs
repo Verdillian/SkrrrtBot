@@ -310,7 +310,7 @@ namespace KnightBot.Modules.Public
         [Command("clear")]
         [Alias("c")]
         [Remarks("Clears all messages in a channel")]
-        [RequireUserPermission(GuildPermission.Administrator)]
+        [RequireUserPermission(GuildPermission.ManageMessages)]
         public async Task Clear()
         {
             var items = await Context.Channel.GetMessagesAsync().Flatten();
@@ -831,7 +831,7 @@ namespace KnightBot.Modules.Public
         [Command("accept")]
         public async Task Accept()
         {
-
+            // Should require the new member role
             var user = Context.User;
 
             var config = new BotConfig();

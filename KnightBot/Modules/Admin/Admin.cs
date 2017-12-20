@@ -122,35 +122,31 @@ namespace KnightBot.Modules.Admin
         [Command("addmoney")]
         public async Task Addmoney(IGuildUser user, [Remainder] int money)
         {
-            if (Context.User.Id == 146377960360902656)
+            var config = new BotConfig();
+            var moneyrole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole);
+            var moneyrole1 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole1);
+            var moneyrole2 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole2);
+
+            if (9 + 10 == 21)
             {
                 Database.updMoney(user, money);
-
-
                 var embed = new EmbedBuilder()
                 {
                     Color = new Color(0, 175, 240)
                 };
                 embed.Description = (Context.User.Mention + ", Has Gotton :moneybag: " + money + " Coins!");
                 await ReplyAsync("", false, embed.Build());
-
             }
             else
             {
-
                 var embed = new EmbedBuilder()
                 {
                     Color = new Color(0, 175, 240)
                 };
-                embed.Description = (Context.User.Mention + ", You Do Not Have Permission To Give People Money");
+                embed.Description = (Context.User.Mention + ", wtf does 9+10 equal?");
                 await ReplyAsync("", false, embed.Build());
-
-                return;
             }
-
         }
-
-
 
         // End Money
 
