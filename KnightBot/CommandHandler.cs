@@ -6,12 +6,12 @@ using Discord;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
-using System.Diagnostics;
+using KnightBot.Config;
 using KnightBot.Modules.Public;
 
 namespace KnightBot
 {
-    public class CommandHandler
+    public class CommandHandler : ModuleBase
     {
         private CommandService commands;
         private DiscordSocketClient bot;
@@ -23,54 +23,57 @@ namespace KnightBot
             bot = map.GetService<DiscordSocketClient>();
             bot.UserJoined += AnnounceUserJoined;
             bot.UserLeft += AnnounceLeftUser;
+            bot.Ready += SetGame;
             //Send user message to get handled
             bot.MessageReceived += HandleCommand;
             commands = map.GetService<CommandService>();
-
+            bot.MessageReceived += addMoney;
+            
             
 
         }
+
+        public async Task addMoney(SocketMessage msg)
+        {
+            var user = msg.Author;
+            var result = Database.CheckExistingUser(user);
+            if(result.Count <=0 && user.IsBot != true)
+            {
+                Database.EnterUser(user);
+            }
+
+            Database.updMoney(user, 2);
+
+        }
+
+
+
         public async Task AnnounceLeftUser(SocketGuildUser user)
         {
-            var thumbnailurl = user.GetAvatarUrl();
-            var embed = new EmbedBuilder();
-            embed.WithColor(new Color(0, 71, 171));
-
-            {
-                var channel = bot.GetChannel(000000000000) as SocketTextChannel;
-                {
-                    embed.ThumbnailUrl = user.GetAvatarUrl();
-                    embed.Title = $"**{user.Username} Left The Server:**";
-                    embed.Description = $"**User:** {user.Mention}\n **Time**: {DateTime.UtcNow}: \n **Server:** {user.Guild.Name}";
-                    await channel.SendMessageAsync("", false, embed);
-                }
-            }
 
         }
 
         public async Task AnnounceUserJoined(SocketGuildUser user)
         {
-            var channel = bot.GetChannel(000000000000) as SocketTextChannel;
-            var embed = new EmbedBuilder();
-            embed.ThumbnailUrl = user.GetAvatarUrl();
-            embed.WithColor(new Color(0x13ef42));
-            embed.Title = $"**{user.Username} Joined The Server:**";
-            embed.Description = ($" **User:** {user.Mention} \n **Time**: {DateTime.UtcNow}: \n **Server:** {user.Guild.Name}");
-            await channel.SendMessageAsync("", false, embed: embed);
 
-            var role = user.Guild.Roles.Where(has => has.Name.ToUpper() == "member".ToUpper());
-            await user.AddRolesAsync(role);
+            var newmemrole = new BotConfig();
+
+            var role = user.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == newmemrole.NewMemberRank);
+            await (user as IGuildUser).AddRoleAsync(role);
 
 
-            var result = Database.CheckExistingUser(user);
-            if(result.Count() <= 0)
-            {
-                Database.EnterUser(user);
-            }
+            //var result = Database.CheckExistingUser(user);
+            //if(result.Count() <= 0)
+            //{
+            //    Database.EnterUser(user);
+            //}
 
         }
 
-
+        public async Task SetGame()
+        {
+            await bot.SetGameAsync("KnightBot.xyz");
+        }
 
 
 
@@ -78,6 +81,9 @@ namespace KnightBot
         public async Task ConfigureAsync()
         {
             await commands.AddModulesAsync(Assembly.GetEntryAssembly());
+
+            
+
         }
 
         public async Task HandleCommand(SocketMessage pMsg)
@@ -94,7 +100,7 @@ namespace KnightBot
             //Mark where the prefix ends and the command begins
             int argPos = 0;
             //Determine if the message has a valid prefix, adjust argPos
-            if (message.HasStringPrefix("~", ref argPos))
+            if (message.HasStringPrefix(BotConfig.Load().Prefix, ref argPos))
             {
                 if (message.Author.IsBot)
                     return;

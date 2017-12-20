@@ -10,10 +10,10 @@ namespace KnightBot
     public class Database
     {
         private string Table { get; set; }
-        private const string server = "ip to server";
-        private const string database = "database";
-        private const string username = "username";
-        private const string password = "password";
+        private const string server = "31.220.105.14";
+        private const string database = "blupr729_discordbot";
+        private const string username = "blupr729_max";
+        private const string password = "blcknght";
         private MySqlConnection dbConnection;
 
         public Database(string table)
@@ -113,6 +113,65 @@ namespace KnightBot
                 return;
             }
         }
+
+        public static string Cbank(IUser user)
+        {
+            var database = new Database("blupr729_discordbot");
+
+            var str = string.Format("INSERT INTO econ(user_id, username, money ) VALUES ('{0}', '{1}' ,'100')", user.Id, username);
+            var table = database.FireCommand(str);
+
+            database.CloseConnection();
+
+            return null;
+        }
+
+        public static List<Econ> GetUserMoney(IUser user)
+        {
+            var result = new List<Econ>();
+            var database = new Database("blupr729_discordbot");
+
+            var str = string.Format("SELECT * FROM econ WHERE user_id = '{0}'", user.Id);
+            var econ = database.FireCommand(str);
+
+            while (econ.Read())
+            {
+                var userId = (string)econ["user_id"];
+                var money = (int)econ["money"];
+
+                result.Add(new Econ
+                {
+                    UserId = userId,
+                    Money = money
+                });
+            }
+            database.CloseConnection();
+            return result;
+
+        }
+
+        public static void updMoney(IUser user, int money)
+        {
+            var database = new Database("blupr729_discordbot");
+
+            try
+            {
+                var strings = string.Format("UPDATE econ SET money = money + '{1}' WHERE user_id = {0}", user.Id, money);
+                var reader = database.FireCommand(strings);
+                reader.Close();
+                database.CloseConnection();
+                return;
+            }
+            catch (Exception e)
+            {
+                database.CloseConnection();
+                return;
+            }
+        }
+
+        
+
+
 
         public void CloseConnection()
         {

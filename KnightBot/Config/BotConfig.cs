@@ -11,10 +11,14 @@ namespace KnightBot.Config
 
         public string Prefix { get; set; }
         public string Token { get; set; }
+        public string NewMemberRank { get; set; }
+        public string AcceptedMemberRole { get; set; }
         public BotConfig()
         {
-            Prefix = "!";
+            Prefix = "";
             Token = "";
+            NewMemberRank = "New Member";
+            AcceptedMemberRole = "Member";
         }
 
         public void Save(string dir = "configuration/config.json")

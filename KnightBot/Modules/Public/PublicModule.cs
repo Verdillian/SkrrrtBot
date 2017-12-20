@@ -12,59 +12,29 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using KnightBot.Config;
 using KnightBot;
+using System.Net.Http;
+using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace KnightBot.Modules.Public
 {
     public class PublicModule : ModuleBase
     {
 
-
-
-        [Command("test")] //Command Name
-        [Remarks("Tests your bot to see if it worked ;)")] //Summary for your command. it will not add anything.
-        public async Task Test()
-        {
-            try // Try the following code, if failed - move to "catch"
-            {
-                await ReplyAsync("Test Command Successful"); //makes the bot reply back!      
-            }
-            catch (Exception e) // catch exception error, reply with the error in string format
-            {
-                await ReplyAsync(e.ToString());
-            }
-        }
-
-        [Command("ping")]
-        [Remarks("Play ping pong with the bot")]
-        public async Task Ping()
-        {
-            try
-            {
-                await ReplyAsync("Pong!");
-            }
-            catch (Exception e)
-            {
-                await ReplyAsync(e.ToString());
-            }
-        }
-
-
+        private ImageSharp.Image image = null;
+        private string randomString = "";
 
         [Command("setgame")]
         [Remarks("Sets the game the bot is currently playing")]
-        public async Task Setgame([Remainder] string game)
+        [RequireUserPermission(GuildPermission.Administrator)]
+        public async Task Setgame()
         {
-            var GuildUser = await Context.Guild.GetUserAsync(Context.User.Id);
-            if (!(GuildUser.Id == 146377960360902656))
-            {
-                await Context.Channel.SendMessageAsync("You Cannot Change What Game I Play!");
-            }
-            else
-            {
-                await (Context.Client as DiscordSocketClient).SetGameAsync(game);
-                await Context.Channel.SendMessageAsync($"Successfully Set The Game To *{game}*");
-                Console.WriteLine($"{DateTime.Now} : Game was changed to {game}");
-            }
+            await (Context.Client as DiscordSocketClient).SetGameAsync("KnightBot.xyz");
+
+
+            await Context.Message.DeleteAsync();
+
+
         }
 
         string[] predictionTexts = new string[]
@@ -84,7 +54,19 @@ namespace KnightBot.Modules.Public
         {
             int randomIndex = rand.Next(predictionTexts.Length);
             string text = predictionTexts[randomIndex];
-            await ReplyAsync(Context.User.Mention + ", " + text);
+
+            var embed = new EmbedBuilder()
+            {
+                Color = new Color(0, 175, 240)
+            };
+
+            embed.Title = "**╋━━━━━━◥◣ Magic 8 Ball ◢◤━━━━━━╋**";
+            embed.Description = Environment.NewLine + Context.User.Mention + ", " + text;
+
+            await Context.Channel.SendMessageAsync("", false, embed);
+
+            await Context.Message.DeleteAsync();
+
         }
 
         static string player1;
@@ -127,12 +109,28 @@ namespace KnightBot.Modules.Public
                     whoWaits = Context.User.Mention;
                 }
 
-                await ReplyAsync("Fight started between " + Context.User.Mention + " and " + user.Mention + "!\n\n" + player1 + " you have " + health1 + " health!\n" + player2 + " you have " + health2 + " health!\n\n" + text + " your turn!");
+                var embed = new EmbedBuilder()
+                {
+                    Color = new Color(0, 175, 240)
+                };
+                embed.Description = ("Fight started between " + Context.User.Mention + " and " + user.Mention + "!\n\n" + player1 + " you have " + health1 + " health!\n" + player2 + " you have " + health2 + " health!\n\n" + text + " your turn!");
+                await ReplyAsync("", false, embed.Build());
+
             }
             else
             {
-                await ReplyAsync(Context.User.Mention + " Sorry but there is already a fight going on, or  you simply tried to fight yourself.");
+
+                var embed = new EmbedBuilder()
+                {
+                    Color = new Color(0, 175, 240)
+                };
+                embed.Description = (Context.User.Mention + " Sorry but there is already a fight going on, or  you simply tried to fight yourself.");
+                await ReplyAsync("", false, embed.Build());
+
             }
+
+            await Context.Message.DeleteAsync();
+
         }
 
         [Command("giveup")]
@@ -142,15 +140,32 @@ namespace KnightBot.Modules.Public
         {
             if (SwitchCaseString == "fight_p1")
             {
-                await ReplyAsync("The Fight Has Stopped!");
+
+                var embed = new EmbedBuilder()
+                {
+                    Color = new Color(0, 175, 240)
+                };
+                embed.Description = ("The Fight Has Stopped!");
+                await ReplyAsync("", false, embed.Build());
+
                 SwitchCaseString = "nofight";
                 health1 = 100;
                 health2 = 100;
             }
             else
             {
-                await ReplyAsync("There is no fight to stop.");
+
+                var embed = new EmbedBuilder()
+                {
+                    Color = new Color(0, 175, 240)
+                };
+                embed.Description = (Context.User.Mention  + ", There is no fight to stop.");
+                await ReplyAsync("", false, embed.Build());
+
             }
+
+            await Context.Message.DeleteAsync();
+
         }
 
         [Command("slash")]
@@ -179,11 +194,26 @@ namespace KnightBot.Modules.Public
                                 placeHolder = whosTurn;
                                 whosTurn = whoWaits;
                                 whoWaits = placeHolder;
-                                await ReplyAsync(Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " has " + health1 + " health left!\n" + player2 + " has " + health2 + " health left!\n" + whosTurn + " its your turn!");
+
+
+                                var embed = new EmbedBuilder()
+                                {
+                                    Color = new Color(0, 175, 240)
+                                };
+                                embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " has " + health1 + " health left!\n" + player2 + " has " + health2 + " health left!\n" + whosTurn + " its your turn!");
+                                await ReplyAsync("", false, embed.Build());
+
                             }
                             else
                             {
-                                await ReplyAsync(Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " died. " + player2 + " won!");
+
+                                var embed = new EmbedBuilder()
+                                {
+                                    Color = new Color(0, 175, 240)
+                                };
+                                embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " died. " + player2 + " won!");
+                                await ReplyAsync("", false, embed.Build());
+
                                 SwitchCaseString = "nofight;";
                                 health1 = 100;
                                 health2 = 100;
@@ -197,12 +227,27 @@ namespace KnightBot.Modules.Public
                                 placeHolder = whosTurn;
                                 whosTurn = whoWaits;
                                 whoWaits = placeHolder;
-                                await ReplyAsync(Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " has " + health1 + " health left!\n" + player2 + " has " + health2 + " health left!\n" + whosTurn + " its your turn!");
+
+
+                                var embed = new EmbedBuilder()
+                                {
+                                    Color = new Color(0, 175, 240)
+                                };
+                                embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " has " + health1 + " health left!\n" + player2 + " has " + health2 + " health left!\n" + whosTurn + " its your turn!");
+                                await ReplyAsync("", false, embed.Build());
 
                             }
                             else
                             {
-                                await ReplyAsync(Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player2 + " died. " + player1 + " won!");
+
+                                var embed = new EmbedBuilder()
+                                {
+                                    Color = new Color(0, 175, 240)
+                                };
+                                embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player2 + " died. " + player1 + " won!");
+                                await ReplyAsync("", false, embed.Build());
+
+
                                 SwitchCaseString = "nofight";
                                 health1 = 100;
                                 health2 = 100;
@@ -210,7 +255,14 @@ namespace KnightBot.Modules.Public
                         }
                         else
                         {
-                            await ReplyAsync("Sorry it seems like something went wrong! Please type !giveup");
+
+                            var embed = new EmbedBuilder()
+                            {
+                                Color = new Color(0, 175, 240)
+                            };
+                            embed.Description = ("Sorry it seems like something went wrong! Please type " + BotConfig.Load().Prefix + "giveup");
+                            await ReplyAsync("", false, embed.Build());
+
                         }
                     }
                     else
@@ -219,140 +271,176 @@ namespace KnightBot.Modules.Public
                         whosTurn = whoWaits;
                         whoWaits = placeHolder;
 
-                        await ReplyAsync(Context.User.Mention + " sorry you missed!\n" + whosTurn + " your turn!");
+
+                        var embed = new EmbedBuilder()
+                        {
+                            Color = new Color(0, 175, 240)
+                        };
+                        embed.Description = (Context.User.Mention + ", sorry you missed!\n" + whosTurn + " your turn!");
+                        await ReplyAsync("", false, embed.Build());
+
                     }
                 }
                 else
                 {
-                    await ReplyAsync(Context.User.Mention + " it is not your turn!");
+                    var embed = new EmbedBuilder()
+                    {
+                        Color = new Color(0, 175, 240)
+                    };
+                    embed.Description = (Context.User.Mention + ", It Is Not Your Turn!");
+                    await ReplyAsync("", false, embed.Build());
                 }
             }
             else
             {
-                await ReplyAsync("There is no fight at the moment. Sorry :/");
+
+                var embed = new EmbedBuilder()
+                {
+                    Color = new Color(0, 175, 240)
+                };
+                embed.Description = (Context.User.Mention + ", There is no fight at the moment. Sorry :/");
+                await ReplyAsync("", false, embed.Build());
+
             }
+
+            await Context.Message.DeleteAsync();
+
         }
 
         [Command("clear")]
         [Alias("c")]
         [Remarks("Clears all messages in a channel")]
+        [RequireUserPermission(GuildPermission.Administrator)]
         public async Task Clear()
         {
             var items = await Context.Channel.GetMessagesAsync().Flatten();
             await Context.Channel.DeleteMessagesAsync(items);
         }
 
-        private Process CreateStream(string url)
+        [Command("bank")]
+        public async Task bankc()
         {
-            Process currentsong = new Process();
+            var application = await Context.Client.GetApplicationInfoAsync();
+            var auth = new EmbedAuthorBuilder();
 
-            currentsong.StartInfo = new ProcessStartInfo
+
+
+            var result = Database.CheckExistingUser(Context.User);
+            if (result.Count().Equals(0))
             {
-                FileName = "cmd.exe",
-                Arguments = $"/C youtube-dl.exe -o - {url} | ffmpeg -i pipe:0 -ac 2 -f s16le -ar 48000 pipe:1",
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                CreateNoWindow = true
-            };
-
-            currentsong.Start();
-            return currentsong;
-
-        }
+                Database.Cbank(Context.User);
 
 
+                var embed = new EmbedBuilder()
 
-        
-
-
-
-
-        [Command("play", RunMode = RunMode.Async)]
-        public async Task play(string url)
-        {
-            var embed = new EmbedBuilder()
-            {
-                Color = new Color(0, 175, 240)
-            };
-            embed.Description = (Context.User.Mention + ", Has decided to listen to music!");
-
-            await Context.Channel.SendMessageAsync("", false, embed);
-
-            await SendLinkAsync(Context.Guild, url);
-
-        }
+                {
+                    Color = new Color(29, 140, 209),
+                    Author = auth
+                };
 
 
-        public async Task SendLinkAsync(IGuild guild, string url)
-        {
-
-            IVoiceChannel channel = (Context.User as IVoiceState).VoiceChannel;
-            IAudioClient client = await channel.ConnectAsync();
-
-            var output = CreateStream(url).StandardOutput.BaseStream;
-            var stream = client.CreatePCMStream(AudioApplication.Music, 128 * 1024);
-            await output.CopyToAsync(stream);
-            await stream.FlushAsync().ConfigureAwait(false);
-        }
-
-        [Command("stop", RunMode = RunMode.Async)]
-        public async Task StopCmd()
-        {
-            await StopAudio(Context.Guild);
-        }
-
-
-        public async Task StopAudio(IGuild guild)
-        {
-            IVoiceChannel channel = (Context.User as IVoiceState).VoiceChannel;
-            IAudioClient client = await channel.ConnectAsync();
-
-            await client.StopAsync();
-            return;
-        }
-
-
-        [Command("status")]
-        public async Task Status([Remainder] IUser user = null)
-        {
-            var embed = new EmbedBuilder()
-            {
-                Color = new Color(0, 175, 240)
-            };
-            if (user == null)
-            {
-                user = Context.User;
+                embed.Title = $"{Context.User.Username} Has Opened A Bank Account!";
+                embed.Description = $"\n:money_with_wings: **Welcome To The Bank!** :\n\n:moneybag: **Bank : 100DollaBill**\n";
+                await ReplyAsync("", false, embed.Build());
             }
-
-            var result = Database.CheckExistingUser(user);
-
-            if (result.Count() <= 0)
+            else
             {
-                Database.EnterUser(user);
+                var embed = new EmbedBuilder()
+
+                {
+                    Color = new Color(29, 140, 209),
+                    Author = auth
+                };
+
+
+                embed.Description = $":x: **{Context.User.Username} Already Has A Bank Account!**";
+                await ReplyAsync("", false, embed.Build());
             }
-
-            var tableName = Database.GetUserStatus(user);
-
-            embed.Description = (Context.User.Mention + "'s current status is as follows: \n" + ":small_blue_diamond:" + "UserID: " + tableName.FirstOrDefault().UserId + "\n" + ":small_blue_diamond:" + tableName.FirstOrDefault().Tokens + " to spend!");
-
-            await Context.Channel.SendMessageAsync("", false, embed);
         }
 
-        [Command("award")]
-        [RequireUserPermission(GuildPermission.Administrator)]
-        public async Task Award(SocketGuildUser user, [Remainder] int tokens)
+        [Command("money")]
+        public async Task moneyol()
         {
+            var application = await Context.Client.GetApplicationInfoAsync();
+            var auth = new EmbedAuthorBuilder();
+
+            var econ = Database.GetUserMoney(Context.User);
 
             var embed = new EmbedBuilder()
             {
-                Color = new Color(0, 175, 240)
+                Color = new Color(0, 175, 240),
+                Author = auth
             };
 
-            Database.ChangeTokens(user, tokens);
-            embed.Description = (user.Mention + ", was awarded " + tokens + " tokens!");
-
-            await Context.Channel.SendMessageAsync("", false, embed);
+            embed.Title = $"{Context.User.Username}'s Balance";
+            embed.Description = $"\n:money_with_wings: **Balance** :\n\n:moneybag: **{econ.FirstOrDefault().Money}**\n";
+            await ReplyAsync("", false, embed.Build());
         }
+
+        [Command("roll")]
+        public async Task betcmd( int bet)
+        {
+            var econ = Database.GetUserMoney(Context.User);
+
+            if (econ.FirstOrDefault().Money < bet)
+            {
+                var embed = new EmbedBuilder()
+                {
+                    Color = new Color(0, 175, 240)
+                };
+                embed.Description = (Context.User.Mention + ", you do not have enough money to roll the dice!");
+                await ReplyAsync("", false, embed.Build());
+            }
+            else
+            {
+                Random rand = new Random();
+                Random rand2 = new Random();
+
+                int userRoll = rand2.Next(1, 6);
+                int rolled = rand.Next(1, 9);
+
+                Console.WriteLine("User Rolled : " + userRoll);
+                Console.WriteLine("Bot Rolled : " + rolled);
+
+                if (userRoll.Equals(rolled))
+                {
+
+
+                    var embed = new EmbedBuilder()
+                    {
+                        Color = new Color(0, 175, 240),
+                    };
+
+                    embed.Title = $"Congrats {Context.User.Username}!";
+                    embed.Description = $"You Have Made ${bet}!\n\n {Context.User.Mention} You Rolled **{userRoll}** and I rolled **{rolled}**";
+                    await ReplyAsync("", false, embed.Build());
+
+                    Database.updMoney(Context.User, bet);
+                }
+                else
+                {
+
+                    int betremove = -bet;
+
+                    var embed = new EmbedBuilder()
+                    {
+                        Color = new Color(0, 175, 240),
+                    };
+
+                    embed.Title = $"Sorry **{Context.User.Username}**!";
+                    embed.Description = $"You Have Lost ${bet}!\n\n {Context.User.Mention} You Rolled **{userRoll}** and I rolled **{rolled}**";
+                    await ReplyAsync("", false, embed.Build());
+
+                    Database.updMoney(Context.User, betremove);
+                }
+
+
+            }
+        }
+
+
+
+
 
         private static IUser ThisIsMe;
 
@@ -390,9 +478,181 @@ namespace KnightBot.Modules.Public
 
             await Context.Channel.SendMessageAsync("", false, embed);
 
+            await Context.Message.DeleteAsync();
+
+
         }
 
 
+        // Start help
+
+        [Command("help")]
+        [Remarks("This shows what commands you can use with the bot")]
+        public async Task Help()
+        {
+            var embed = new EmbedBuilder()
+            {
+                Color = new Color(0, 175, 240)
+            };
+
+
+            embed.Title = ("**╋━━━━━━◥◣ Help ◢◤━━━━━━╋**");
+            embed.Description = ("**\n!dm** : Send a DM to the server owner.\n**!fight** : Start a fight with someone. \n**   - !slash** : Slash your enemy whilst fighting! \n**   - !giveup** : Give up the fight... \n**!status** : See how many coins you have!\n**!play** : Lets you play music in a voice channel!\n\n**╋━━━━━━◥◣ Help ◢◤━━━━━━╋**");
+
+            await Context.Channel.SendMessageAsync("", false, embed);
+            await Context.Message.DeleteAsync();
+
+        }
+
+        // End help
+
+        //Start Music Bot
+
+        private Process CreateStream(string url)
+        {
+            Process currentsong = new Process();
+
+            currentsong.StartInfo = new ProcessStartInfo
+            {
+                FileName = "cmd.exe",
+                Arguments = $"/C youtube-dl.exe -o - {url} | ffmpeg -i pipe:0 -ac 2 -f s16le -ar 48000 pipe:1",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = true
+            };
+
+            currentsong.Start();
+            return currentsong;
+
+        }
+
+
+
+        public async Task SendLinkAsync(IGuild guild, string url)
+        {
+
+            IVoiceChannel channel = (Context.User as IVoiceState).VoiceChannel;
+            IAudioClient client = await channel.ConnectAsync();
+
+            var output = CreateStream(url).StandardOutput.BaseStream;
+            var stream = client.CreatePCMStream(AudioApplication.Music, 128 * 1024);
+            await output.CopyToAsync(stream);
+            await stream.FlushAsync().ConfigureAwait(false);
+        }
+
+
+
+
+        public async Task StopAudio(IGuild guild)
+        {
+            IVoiceChannel channel = (Context.User as IVoiceState).VoiceChannel;
+            IAudioClient client = await channel.ConnectAsync();
+
+            await client.StopAsync();
+            return;
+        }
+
+
+
+        [Command("play", RunMode = RunMode.Async)]
+        public async Task play(string url)
+        {
+            var embed = new EmbedBuilder()
+            {
+                Color = new Color(0, 175, 240)
+            };
+            embed.Description = (Context.User.Mention + ", Has decided to listen to music!");
+
+            await Context.Channel.SendMessageAsync("", false, embed);
+
+            await SendLinkAsync(Context.Guild, url);
+
+            await Context.Message.DeleteAsync();
+
+        }
+
+        [Command("stop", RunMode = RunMode.Async)]
+        public async Task StopCmd()
+        {
+            await StopAudio(Context.Guild);
+
+            await Context.Message.DeleteAsync();
+
+        }
+
+        // End Music Bot
+
+
+
+
+        [Command("doggo")]
+        [Summary("Posts random doggo pictures!")]
+        public async Task Dog()
+        {
+            Console.WriteLine("Making API Call...");
+            using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+            {
+                string websiteurl = "https://random.dog/woof.json";
+                client.BaseAddress = new Uri(websiteurl);
+                HttpResponseMessage response = client.GetAsync("").Result;
+                response.EnsureSuccessStatusCode();
+                string result = await response.Content.ReadAsStringAsync();
+                var json = JObject.Parse(result);
+
+
+                Random randal;
+                string[] doggers;
+                randal = new Random();
+                doggers = new string[]
+                {
+                        "doggers/dog1.jpeg",
+                        "doggers/dog2.jpg",
+                        "doggers/dog3.jpg",
+                        "doggers/dog4.jpg",
+                        "doggers/dog5.jpg",
+                        "doggers/dog6.jpg",
+                        "doggers/dog7.jpg",
+                        "doggers/dog8.jpg",
+                        "doggers/dog9.jpg",
+                        "doggers/dog10.jpg",
+                };
+                string DogImage = json["url"].ToString();
+                if (DogImage.Contains("mp4"))
+                {
+                    int RandomDoggoIndex = randal.Next(doggers.Length);
+                    string DoggerToPost = doggers[RandomDoggoIndex];
+                    await Context.Channel.SendFileAsync(DoggerToPost);
+                }
+                else
+                {
+                    await ReplyAsync(DogImage);
+                }
+            }
+
+            await Context.Message.DeleteAsync();
+
+        }
+
+        [Command("cat")]
+        [Summary("Posts random cat pictures!")]
+        public async Task Cat()
+        {
+            Console.WriteLine("Making API Call...");
+            using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+            {
+                string websiteurl = "http://random.cat/meow";
+                client.BaseAddress = new Uri(websiteurl);
+                HttpResponseMessage response = client.GetAsync("").Result;
+                response.EnsureSuccessStatusCode();
+                string result = await response.Content.ReadAsStringAsync();
+                var json = JObject.Parse(result);
+                string CatImage = json["file"].ToString();
+                await ReplyAsync(CatImage);
+            }
+
+            await Context.Message.DeleteAsync();
+
+        }
 
         // Start Auction System
 
@@ -529,8 +789,7 @@ namespace KnightBot.Modules.Public
                 await UpDateHighBidder(Context.Message as SocketUserMessage, bid);
 
                 var message2 = await ReplyAsync($"The current highest bidder is {highBidder.Mention} with a bid of {hightBid} :moneybag: ");
-                await DelayDeleteMessage(Context.Message, 10);
-                await DelayDeleteMessage(message2, 10);
+
             }
         }
 
@@ -569,38 +828,25 @@ namespace KnightBot.Modules.Public
         // End Auction System
 
 
-
-
-        // Start help
-
-        [Command("help")]
-        [Remarks("This shows what commands you can use with the bot")]
-        public async Task Help()
+        [Command("accept")]
+        public async Task Accept()
         {
-            var embed = new EmbedBuilder()
-            {
-                Color = new Color(0, 175, 240)
-            };
 
+            var user = Context.User;
 
-            embed.Title = ("**╋━━━━━━◥◣ Help ◢◤━━━━━━╋**");
-            embed.Description = ("**\n!dm** : Send a DM to the server owner.\n**!fight** : Start a fight with someone. \n**   - !slash** : Slash your enemy whilst fighting! \n**   - !giveup** : Give up the fight... \n**!status** : See how many coins you have!\n**!play** : Lets you play music in a voice channel!\n\n**╋━━━━━━◥◣ Help ◢◤━━━━━━╋**");
+            var config = new BotConfig();
+            var role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.AcceptedMemberRole);
 
-            await Context.Channel.SendMessageAsync("", false, embed);
+            var remrole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.NewMemberRank);
 
+            await (user as IGuildUser).AddRoleAsync(role);
+            await (user as IGuildUser).RemoveRoleAsync(remrole);
+
+            var message = await ReplyAsync("You Have Accepted The Rules! Enjoy Being A Full Member!");
+            await DelayDeleteMessage(message, 10);
+
+            await Context.Message.DeleteAsync();
         }
-
-        // End help
-
-
-        
-
-
-
-
-
-
-
 
 
 

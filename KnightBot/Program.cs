@@ -90,6 +90,9 @@ namespace KnightBot
                 Console.Write("Bot Prefix: ");
                 config.Prefix = Console.ReadLine();              // Read the bot prefix from console.
 
+                Console.WriteLine("New Member Role: ");
+                config.NewMemberRank = Console.ReadLine();
+
                 config.Save();                                  // Save the new configuration object to file.
             }
             Console.WriteLine("Configuration has been loaded");
