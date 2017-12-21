@@ -23,5 +23,18 @@ namespace KnightBot.util
             Console.WriteLine("Error message was sent to the user.");
 
         }
+
+        public async Task sendError(IMessageChannel channel, string error, Color color)
+        {
+            Console.WriteLine("ERROR: " + error);
+
+            var embed = new EmbedBuilder() { Color = color };
+            embed.Title = ("ERROR");
+            embed.Description = (error);
+            await channel.SendMessageAsync("", false, embed);
+
+            Console.WriteLine("Error message was sent to the user.");
+
+        }
     }
 }

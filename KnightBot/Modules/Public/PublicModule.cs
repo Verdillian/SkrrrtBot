@@ -86,8 +86,9 @@ namespace KnightBot.Modules.Public
             {
                 var embed = new EmbedBuilder() { Color = Colours.moneyCol };
                 var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
-                var bankField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bank", Value = "Opens a bank account in your name." };
-                var moneyField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "money", Value = "Displays your bank balance." };
+                var bankField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bank open", Value = "Opens a bank account in your name." };
+                var moneyField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bank balance", Value = "Displays your bank balance." };
+                var transferField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bank transfer <user> <amount>", Value = "Transfer money to another player." };
 
                 embed.Title = $"Bank Help";
                 embed.Description = "All of the bank commands.";
@@ -95,6 +96,7 @@ namespace KnightBot.Modules.Public
                 embed.WithCurrentTimestamp();
                 embed.AddField(bankField);
                 embed.AddField(moneyField);
+                embed.AddField(transferField);
 
                 await Context.Channel.SendMessageAsync("", false, embed);
             }
@@ -437,63 +439,94 @@ namespace KnightBot.Modules.Public
         }
 
         [Command("bank")]
-        public async Task bankc()
+        public async Task Bank(string type = null, IGuildUser user = null, int amt = 0)
         {
-            var application = await Context.Client.GetApplicationInfoAsync();
-            var auth = new EmbedAuthorBuilder();
-
-
-
-            var result = Database.CheckExistingUser(Context.User);
-            if (result.Count().Equals(0))
+            Errors errors = new Errors();
+            var chan = Context.Channel;
+            if (type.Equals("open"))
             {
-                Database.Cbank(Context.User);
+                var application = await Context.Client.GetApplicationInfoAsync();
+                var auth = new EmbedAuthorBuilder();
 
+                var result = Database.CheckExistingUser(Context.User);
+                if (result.Count().Equals(0))
+                {
+                    Database.Cbank(Context.User);
+
+
+                    var embed = new EmbedBuilder()
+
+                    {
+                        Color = Colours.moneyCol,
+                        Author = auth
+                    };
+
+
+                    embed.Title = $"{Context.User.Username} Has Opened A Bank Account!";
+                    embed.Description = $"\n:money_with_wings: **Welcome To The Bank!** :\n\n:moneybag: **Bank : 100DollaBill**\n";
+                    await ReplyAsync("", false, embed.Build());
+                }
+                else
+                {
+                    var embed = new EmbedBuilder()
+
+                    {
+                        Color = Colours.moneyCol,
+                        Author = auth
+                    };
+
+
+                    embed.Description = $":x: **{Context.User.Username} Already Has A Bank Account!**";
+                    await ReplyAsync("", false, embed.Build());
+                }
+            }
+            else if (type.Equals("balance"))
+            {
+                var application = await Context.Client.GetApplicationInfoAsync();
+                var auth = new EmbedAuthorBuilder();
+
+                var econ = Database.GetUserMoney(Context.User);
 
                 var embed = new EmbedBuilder()
-
                 {
                     Color = Colours.moneyCol,
                     Author = auth
                 };
 
-
-                embed.Title = $"{Context.User.Username} Has Opened A Bank Account!";
-                embed.Description = $"\n:money_with_wings: **Welcome To The Bank!** :\n\n:moneybag: **Bank : 100DollaBill**\n";
+                embed.Title = $"{Context.User.Username}'s Balance";
+                embed.Description = $"\n:money_with_wings: **Balance** :\n\n:moneybag: **{econ.FirstOrDefault().Money}**\n";
                 await ReplyAsync("", false, embed.Build());
+            }
+            else if (type.Equals("transfer"))
+            {
+                var balance = Database.GetUserMoney(Context.User).FirstOrDefault().Money;
+                if (amt <= balance)
+                {
+                    Database.updMoney(Context.User, -amt);
+                    Database.updMoney(user, amt);
+
+                    balance = Database.GetUserMoney(Context.User).FirstOrDefault().Money;
+                    var balance1 = Database.GetUserMoney(user).FirstOrDefault().Money;
+                    var embed = new EmbedBuilder() { Color = Colours.moneyCol };
+                    var fromField = new EmbedFieldBuilder() { Name = Context.User.Username + "'s new balance:", Value = "$" + balance };
+                    var toField = new EmbedFieldBuilder() { Name = user.Username + "'s new balance:", Value = "$" + balance1 };
+
+                    embed.Title = ("Bank Transfer");
+                    embed.Description = ("Successfully transferred money!");
+                    embed.AddField(fromField);
+                    embed.AddField(toField);
+
+                    await Context.Channel.SendMessageAsync("", false, embed);
+                }
+                else
+                {
+                    await errors.sendError(chan, "You do not have enough money to do this.", Colours.moneyCol);
+                }
             }
             else
             {
-                var embed = new EmbedBuilder()
-
-                {
-                    Color = Colours.moneyCol,
-                    Author = auth
-                };
-
-
-                embed.Description = $":x: **{Context.User.Username} Already Has A Bank Account!**";
-                await ReplyAsync("", false, embed.Build());
+                await errors.sendError(chan, "This bank command doesn't exist.", Colours.moneyCol);
             }
-        }
-
-        [Command("money")]
-        public async Task moneyol()
-        {
-            var application = await Context.Client.GetApplicationInfoAsync();
-            var auth = new EmbedAuthorBuilder();
-
-            var econ = Database.GetUserMoney(Context.User);
-
-            var embed = new EmbedBuilder()
-            {
-                Color = Colours.moneyCol,
-                Author = auth
-            };
-
-            embed.Title = $"{Context.User.Username}'s Balance";
-            embed.Description = $"\n:money_with_wings: **Balance** :\n\n:moneybag: **{econ.FirstOrDefault().Money}**\n";
-            await ReplyAsync("", false, embed.Build());
         }
 
         [Command("roll")]
