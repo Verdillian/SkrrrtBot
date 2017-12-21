@@ -128,16 +128,28 @@ namespace KnightBot.Modules.Admin
             var moneyrole1 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole1);
             var moneyrole2 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole2);
 
-            if (userName.Roles.Contains(moneyrole) || userName.Roles.Contains(moneyrole1) || userName.Roles.Contains(moneyrole2))
+            if (moneyrole != null && moneyrole1 != null && moneyrole2 != null)
             {
-                Database.updMoney(user, money);
-                var embed = new EmbedBuilder()
+                if (userName.Roles.Contains(moneyrole) || userName.Roles.Contains(moneyrole1) || userName.Roles.Contains(moneyrole2))
                 {
-                    Color = new Color(0, 175, 240)
-                };
-                embed.Description = (Context.User.Mention + ", Has Gotton :moneybag: " + money + " Coins!");
-                await ReplyAsync("", false, embed.Build());
+                    Database.updMoney(user, money);
+                    var embed = new EmbedBuilder()
+                    {
+                        Color = new Color(0, 175, 240)
+                    };
+                    embed.Description = (Context.User.Mention + ", Has Gotton :moneybag: " + money + " Coins!");
+                    await ReplyAsync("", false, embed.Build());
 
+                }
+                else
+                {
+                    var embed = new EmbedBuilder()
+                    {
+                        Color = new Color(0, 175, 240)
+                    };
+                    embed.Description = (Context.User.Mention + ", you do not have the permissions required to give people dosh!");
+                    await ReplyAsync("", false, embed.Build());
+                }
             }
             else
             {
@@ -145,7 +157,7 @@ namespace KnightBot.Modules.Admin
                 {
                     Color = new Color(0, 175, 240)
                 };
-                embed.Description = (Context.User.Mention + ", you do not have the permissions required to give people dosh!");
+                embed.Description = (Context.User.Mention + ", seems like the config isn't set up right. Money manager roles are returning null!");
                 await ReplyAsync("", false, embed.Build());
             }
         }

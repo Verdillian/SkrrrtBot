@@ -22,9 +22,9 @@ namespace KnightBot.Config
             Token = "";
             NewMemberRank = "New Member";
             AcceptedMemberRole = "Member";
-            MoneyRole = "Money Role";
-            MoneyRole1 = "Second Money Role";
-            MoneyRole2 = "Third Money Role";
+            MoneyRole = "Admin";
+            MoneyRole1 = "Owner";
+            MoneyRole2 = "Bot";
         }
 
         public void Save(string dir = "configuration/config.json")
