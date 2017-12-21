@@ -12,5 +12,8 @@ namespace KnightBot
         public static Color auctionCol = new Color(221, 231, 62);
         public static Color adminCol = new Color(0, 230, 0);
         public static Color nsfwCol = new Color(230, 0, 0);
+        public static Color ballCol = new Color(0, 0, 0);
+        public static Color fightCol = new Color(94, 36, 10);
+        public static Color musicCol = new Color(18, 196, 30);
     }
 }

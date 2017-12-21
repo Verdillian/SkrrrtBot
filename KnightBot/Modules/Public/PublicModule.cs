@@ -38,6 +38,7 @@ namespace KnightBot.Modules.Public
                 };
                 embed.Title = $"Knight Help";
                 embed.Description = config.Prefix.ToString() + "help general\n" +
+                                    config.Prefix.ToString() + "help music\n" +
                                     config.Prefix.ToString() + "help bank\n" +
                                     config.Prefix.ToString() + "help auction\n" +
                                     config.Prefix.ToString() + "help admin\n" +
@@ -53,7 +54,20 @@ namespace KnightBot.Modules.Public
                 };
                 embed.Title = $"General Help";
                 embed.Description = config.Prefix.ToString() + "doggo\n" +
-                                    config.Prefix.ToString() + "cat\n" + 
+                                    config.Prefix.ToString() + "cat\n" +
+                                    config.Prefix.ToString() + "commands to be added to help.";
+                await Context.Channel.SendMessageAsync("", false, embed);
+            }
+            //
+            else if (type.Equals("music") || type.Equals("songs"))
+            {
+                var embed = new EmbedBuilder()
+                {
+                    Color = Colours.musicCol
+                };
+                embed.Title = $"Music Help";
+                embed.Description = config.Prefix.ToString() + "play\n" +
+                                    config.Prefix.ToString() + "stop\n" +
                                     config.Prefix.ToString() + "commands to be added to help.";
                 await Context.Channel.SendMessageAsync("", false, embed);
             }
@@ -139,7 +153,7 @@ namespace KnightBot.Modules.Public
 
             var embed = new EmbedBuilder()
             {
-                Color = new Color(0, 175, 240)
+                Color = Colours.ballCol
             };
 
             embed.Title = "**╋━━━━━━◥◣ Magic 8 Ball ◢◤━━━━━━╋**";
@@ -192,7 +206,7 @@ namespace KnightBot.Modules.Public
 
                 var embed = new EmbedBuilder()
                 {
-                    Color = new Color(0, 175, 240)
+                    Color = Colours.fightCol
                 };
                 embed.Description = ("Fight started between " + Context.User.Mention + " and " + user.Mention + "!\n\n" + player1 + " you have " + health1 + " health!\n" + player2 + " you have " + health2 + " health!\n\n" + text + " your turn!");
                 await ReplyAsync("", false, embed.Build());
@@ -203,7 +217,7 @@ namespace KnightBot.Modules.Public
 
                 var embed = new EmbedBuilder()
                 {
-                    Color = new Color(0, 175, 240)
+                    Color = Colours.fightCol
                 };
                 embed.Description = (Context.User.Mention + " Sorry but there is already a fight going on, or  you simply tried to fight yourself.");
                 await ReplyAsync("", false, embed.Build());
@@ -220,7 +234,7 @@ namespace KnightBot.Modules.Public
             {
                 var embed = new EmbedBuilder()
                 {
-                    Color = new Color(0, 175, 240)
+                    Color = Colours.fightCol
                 };
                 embed.Description = ("The Fight Has Stopped!");
                 await ReplyAsync("", false, embed.Build());
@@ -233,7 +247,7 @@ namespace KnightBot.Modules.Public
             {
                 var embed = new EmbedBuilder()
                 {
-                    Color = new Color(0, 175, 240)
+                    Color = Colours.fightCol
                 };
                 embed.Description = (Context.User.Mention  + ", There is no fight to stop.");
                 await ReplyAsync("", false, embed.Build());
@@ -271,7 +285,7 @@ namespace KnightBot.Modules.Public
 
                                 var embed = new EmbedBuilder()
                                 {
-                                    Color = new Color(0, 175, 240)
+                                    Color = Colours.fightCol
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " has " + health1 + " health left!\n" + player2 + " has " + health2 + " health left!\n" + whosTurn + " its your turn!");
                                 await ReplyAsync("", false, embed.Build());
@@ -282,7 +296,7 @@ namespace KnightBot.Modules.Public
 
                                 var embed = new EmbedBuilder()
                                 {
-                                    Color = new Color(0, 175, 240)
+                                    Color = Colours.fightCol
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " died. " + player2 + " won!");
                                 await ReplyAsync("", false, embed.Build());
@@ -304,7 +318,7 @@ namespace KnightBot.Modules.Public
 
                                 var embed = new EmbedBuilder()
                                 {
-                                    Color = new Color(0, 175, 240)
+                                    Color = Colours.fightCol
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " has " + health1 + " health left!\n" + player2 + " has " + health2 + " health left!\n" + whosTurn + " its your turn!");
                                 await ReplyAsync("", false, embed.Build());
@@ -314,7 +328,7 @@ namespace KnightBot.Modules.Public
 
                                 var embed = new EmbedBuilder()
                                 {
-                                    Color = new Color(0, 175, 240)
+                                    Color = Colours.fightCol
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player2 + " died. " + player1 + " won!");
                                 await ReplyAsync("", false, embed.Build());
@@ -329,7 +343,7 @@ namespace KnightBot.Modules.Public
                         {
                             var embed = new EmbedBuilder()
                             {
-                                Color = new Color(0, 175, 240)
+                                Color = Colours.fightCol
                             };
                             embed.Description = ("Sorry it seems like something went wrong! Please type " + BotConfig.Load().Prefix + "giveup");
                             await ReplyAsync("", false, embed.Build());
@@ -344,7 +358,7 @@ namespace KnightBot.Modules.Public
 
                         var embed = new EmbedBuilder()
                         {
-                            Color = new Color(0, 175, 240)
+                            Color = Colours.fightCol
                         };
                         embed.Description = (Context.User.Mention + ", sorry you missed!\n" + whosTurn + " your turn!");
                         await ReplyAsync("", false, embed.Build());
@@ -354,7 +368,7 @@ namespace KnightBot.Modules.Public
                 {
                     var embed = new EmbedBuilder()
                     {
-                        Color = new Color(0, 175, 240)
+                        Color = Colours.fightCol
                     };
                     embed.Description = (Context.User.Mention + ", It Is Not Your Turn!");
                     await ReplyAsync("", false, embed.Build());
@@ -364,7 +378,7 @@ namespace KnightBot.Modules.Public
             {
                 var embed = new EmbedBuilder()
                 {
-                    Color = new Color(0, 175, 240)
+                    Color = Colours.fightCol
                 };
                 embed.Description = (Context.User.Mention + ", There is no fight at the moment. Sorry :/");
                 await ReplyAsync("", false, embed.Build());
@@ -399,7 +413,7 @@ namespace KnightBot.Modules.Public
                 var embed = new EmbedBuilder()
 
                 {
-                    Color = new Color(29, 140, 209),
+                    Color = Colours.moneyCol,
                     Author = auth
                 };
 
@@ -413,7 +427,7 @@ namespace KnightBot.Modules.Public
                 var embed = new EmbedBuilder()
 
                 {
-                    Color = new Color(29, 140, 209),
+                    Color = Colours.moneyCol,
                     Author = auth
                 };
 
@@ -433,7 +447,7 @@ namespace KnightBot.Modules.Public
 
             var embed = new EmbedBuilder()
             {
-                Color = new Color(0, 175, 240),
+                Color = Colours.moneyCol,
                 Author = auth
             };
 
@@ -451,7 +465,7 @@ namespace KnightBot.Modules.Public
             {
                 var embed = new EmbedBuilder()
                 {
-                    Color = new Color(0, 175, 240)
+                    Color = Colours.moneyCol
                 };
                 embed.Description = (Context.User.Mention + ", you do not have enough money to roll the dice!");
                 await ReplyAsync("", false, embed.Build());
@@ -473,7 +487,7 @@ namespace KnightBot.Modules.Public
 
                     var embed = new EmbedBuilder()
                     {
-                        Color = new Color(0, 175, 240),
+                        Color = Colours.moneyCol,
                     };
 
                     embed.Title = $"Congrats {Context.User.Username}!";
@@ -489,7 +503,7 @@ namespace KnightBot.Modules.Public
 
                     var embed = new EmbedBuilder()
                     {
-                        Color = new Color(0, 175, 240),
+                        Color = Colours.moneyCol,
                     };
 
                     embed.Title = $"Sorry **{Context.User.Username}**!";
@@ -530,7 +544,7 @@ namespace KnightBot.Modules.Public
  
             var embed = new EmbedBuilder()
             {
-                Color = new Color(0, 175, 240)
+                Color = Colours.adminCol
             };
 
             embed.Description = $"{dm}";
@@ -618,7 +632,7 @@ namespace KnightBot.Modules.Public
         {
             var embed = new EmbedBuilder()
             {
-                Color = new Color(0, 175, 240)
+                Color = Colours.musicCol
             };
             embed.Description = (Context.User.Mention + ", Has decided to listen to music!");
 
