@@ -124,9 +124,13 @@ namespace KnightBot.Modules.Admin
         {
             var config = new BotConfig();
             var userName = Context.User as SocketGuildUser;
-            var moneyrole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole);
-            var moneyrole1 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole1);
-            var moneyrole2 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole2);
+            //var moneyrole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole);
+            //var moneyrole1 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole1);
+            //var moneyrole2 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole2);
+
+            var moneyrole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == "Admin");
+            var moneyrole1 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == "Owner");
+            var moneyrole2 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == "Bot");
 
             if (moneyrole != null && moneyrole1 != null && moneyrole2 != null)
             {
