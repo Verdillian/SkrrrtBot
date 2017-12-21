@@ -18,6 +18,7 @@ namespace KnightBot.Modules.Admin
 {
     public class Admin : ModuleBase<SocketCommandContext>
     {
+        
         [Command("setprefix")]
         [RequireBotPermission(GuildPermission.Administrator)]
         [RequireUserPermission(GuildPermission.Administrator)]
@@ -37,6 +38,7 @@ namespace KnightBot.Modules.Admin
                 embed.Description = ("Prefix has been set to " + prefix + " successfully!");
                 await ReplyAsync("", false, embed.Build());
             }
+        }
     
 
         [Command("ban")]
