@@ -6,6 +6,7 @@ using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
 using KnightBot.Config;
+using System.Linq;
 
 namespace KnightBot.Modules.Public
 {
@@ -17,12 +18,24 @@ namespace KnightBot.Modules.Public
         public async Task Nsfw(string type = null)
         {
             var chan = Context.Channel;
+            var config = new BotConfig();
+            var userName = Context.User as SocketGuildUser;
 
-            if (chan.IsNsfw)
+            if (type.Equals("join"))
             {
-            if (type == null) throw new ArgumentException("Please use the command as follows ( " + "nsfw <butt/boobs> )");
+                var nsfwRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.NSFWRole);
+                if (nsfwRole != null)
+                {
+                    if (!userName.Roles.Contains(nsfwRole)) await (Context.User as IGuildUser).AddRoleAsync(nsfwRole);
+                    else if (userName.Roles.Contains(nsfwRole)) throw new ArgumentException("You already have the nsfw role.");
+                }
+                else throw new ArgumentException("The NSFW Role doesn't exist.");
+            }
+            else if (chan.IsNsfw)
+            {
+                if (type == null) throw new ArgumentException("Need to display help.");
 
-            type = type.ToLower();
+                type = type.ToLower();
 
                 if (type.Equals("butt"))
                 {
@@ -33,6 +46,15 @@ namespace KnightBot.Modules.Public
                 {
                     //Display a random boobs pic
                     await Context.Channel.SendMessageAsync("**No boob pics can be found :(** \n Enjoy this to pass time: " + placeholderGif);
+                }
+                else if (type.Equals("create"))
+                {
+                    if (userName.Id == 211938243535568896)
+                    {
+                        await Context.Guild.CreateRoleAsync(config.NSFWRole.ToString(), null, Color.Red, false, null);
+                        throw new ArgumentException("Role created with name " + config.NSFWRole.ToString() + ".");
+                    }
+                    else throw new ArgumentException("Only Blurr can do this.");
                 }
                 else
                 {
