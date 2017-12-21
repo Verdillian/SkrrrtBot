@@ -49,14 +49,17 @@ namespace KnightBot.Modules.Public
             //
             else if (type.Equals("general") || type.Equals("gen"))
             {
-                var embed = new EmbedBuilder()
-                {
-                    Color = Colours.generalCol
-                };
+                var embed = new EmbedBuilder() { Color = Colours.generalCol };
+                var helpField = new EmbedFieldBuilder() { Name = config.Prefix + "help", Value = "Help for using KnightBot." };
+                var doggoField = new EmbedFieldBuilder() { Name = config.Prefix + "doggo", Value = "Displays a random image of a dog." };
+                var catField = new EmbedFieldBuilder() { Name = config.Prefix + "cat", Value = "Displays a random image of a cat." };
+
                 embed.Title = $"General Help";
-                embed.Description = config.Prefix.ToString() + "doggo\n" +
-                                    config.Prefix.ToString() + "cat\n" +
-                                    config.Prefix.ToString() + "commands to be added to help.";
+                embed.Description = "More commands to be added to this list soon!";
+                embed.AddField(helpField);
+                embed.AddField(doggoField);
+                embed.AddField(catField);
+
                 await Context.Channel.SendMessageAsync("", false, embed);
             }
             //
@@ -108,15 +111,20 @@ namespace KnightBot.Modules.Public
             //
             else if (type.Equals("nsfw") || type.Equals("18"))
             {
-                var embed = new EmbedBuilder()
-                {
-                    Color = Colours.nsfwCol
-                };
+                var embed = new EmbedBuilder() { Color = Colours.nsfwCol };
+                var joinField = new EmbedFieldBuilder() { Name = config.Prefix + "nsfw join", Value = "Adds the nsfw role to you." };
+                var leaveField = new EmbedFieldBuilder() { Name = config.Prefix + "nsfw leave", Value = "Removes the nsfw role from you." };
+                var buttField = new EmbedFieldBuilder() { Name = config.Prefix + "nsfw butt", Value = "Perfect for any butt lovers." };
+                var boobsField = new EmbedFieldBuilder() { Name = config.Prefix + "nsfw boobs", Value = "Perfect for any boobs lovers." };
+                var gifField = new EmbedFieldBuilder() { Name = config.Prefix + "nsfw gif", Value = "Sends a random gif ;)" };
+
                 embed.Title = $"NSFW Help";
-                embed.Description = config.Prefix.ToString() + "nsfw join        -  Join the NSFW Role to view NSFW channels.\n" +
-                                    config.Prefix.ToString() + "nsfw butt       -  Displays a random butt pic.\n" +
-                                    config.Prefix.ToString() + "nsfw boobs   -  Displays a random boobs pic.\n" +
-                                    config.Prefix.ToString() + "nsfw gif          -  Displays a random sexy gif.\n";
+                embed.Description = "Help for all the nsfw commands.";
+                embed.AddField(joinField);
+                embed.AddField(leaveField);
+                embed.AddField(buttField);
+                embed.AddField(boobsField);
+                embed.AddField(gifField);
                 await Context.Channel.SendMessageAsync("", false, embed);
             }
 
