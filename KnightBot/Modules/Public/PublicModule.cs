@@ -11,6 +11,7 @@ using System.IO;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using KnightBot.Config;
+using KnightBot.util;
 using KnightBot;
 using System.Net.Http;
 using System.Net;

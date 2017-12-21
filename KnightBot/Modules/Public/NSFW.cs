@@ -7,6 +7,7 @@ using Discord.WebSocket;
 using Discord.Commands;
 using KnightBot.Config;
 using System.Linq;
+using KnightBot.util;
 
 namespace KnightBot.Modules.Public
 {
@@ -17,6 +18,7 @@ namespace KnightBot.Modules.Public
         [Command("nsfw")]
         public async Task Nsfw(string type = null)
         {
+            Errors errors = new Errors();
             var chan = Context.Channel;
             var config = new BotConfig();
             var userName = Context.User as SocketGuildUser;
@@ -33,7 +35,7 @@ namespace KnightBot.Modules.Public
             }
             else if (chan.IsNsfw)
             {
-                if (type == null) throw new ArgumentException("Need to display help.");
+                if (type == null) await errors.sendError(chan, "The parameter entered is not used. Try the help command to see all possible parameters.", Colours.nsfwCol);
 
                 type = type.ToLower();
 
@@ -58,13 +60,7 @@ namespace KnightBot.Modules.Public
                 }
                 else
                 {
-                    var embed = new EmbedBuilder()
-                    {
-                        Color = new Color(0, 175, 240)
-                    };
-                    embed.Description = (Context.User.Mention + ", try " + config.Prefix.ToString() + "nsfw help");
-                    await ReplyAsync("", false, embed.Build());
-
+                    await errors.sendError(chan, "The parameter entered is not used. Try the help command to see all possible parameters.", Colours.nsfwCol);
                     await Context.Message.DeleteAsync();
                 }
             }

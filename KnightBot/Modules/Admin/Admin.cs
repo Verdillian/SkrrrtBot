@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using KnightBot.Config;
 using KnightBot;
+using KnightBot.util;
 
 namespace KnightBot.Modules.Admin
 {
@@ -28,7 +29,7 @@ namespace KnightBot.Modules.Admin
             var gld = Context.Guild as SocketGuild;
             var embed = new EmbedBuilder()
             {
-                Color = new Color(0, 175, 240)
+                Color = Colours.adminCol
             };
 
             embed.Title = $"**{user.Username}** has been banned!";
@@ -51,7 +52,7 @@ namespace KnightBot.Modules.Admin
             var gld = Context.Guild as SocketGuild;
             var embed = new EmbedBuilder()
             {
-                Color = new Color(0, 175, 240)
+                Color = Colours.adminCol
             };
 
             embed.Title = $"**{user.Username}** has been kicked from **{user.Guild.Name}**!";
@@ -76,7 +77,7 @@ namespace KnightBot.Modules.Admin
 
             var embed = new EmbedBuilder()
             {
-                Color = new Color(0, 175, 240)
+                Color = Colours.adminCol
             };
             embed.Description = (Context.User.Mention + ", had " + roleToBe + " added!");
             await ReplyAsync("", false, embed.Build());
@@ -98,7 +99,7 @@ namespace KnightBot.Modules.Admin
 
             var embed = new EmbedBuilder()
             {
-                Color = new Color(0, 175, 240)
+                Color = Colours.adminCol
             };
             embed.Description = (Context.User.Mention + ", had " + roleToRemove + " removed!");
             await ReplyAsync("", false, embed.Build());
@@ -126,7 +127,7 @@ namespace KnightBot.Modules.Admin
                     Database.updMoney(user, money);
                     var embed = new EmbedBuilder()
                     {
-                        Color = new Color(0, 175, 240)
+                        Color = Colours.adminCol
                     };
                     embed.Description = (Context.User.Mention + ", Has Gotton :moneybag: " + money + " Coins!");
                     await ReplyAsync("", false, embed.Build());
@@ -135,7 +136,7 @@ namespace KnightBot.Modules.Admin
                 {
                     var embed = new EmbedBuilder()
                     {
-                        Color = new Color(0, 175, 240)
+                        Color = Colours.adminCol
                     };
                     embed.Description = (Context.User.Mention + ", you do not have the permissions required to give people dosh!");
                     await ReplyAsync("", false, embed.Build());
@@ -145,7 +146,7 @@ namespace KnightBot.Modules.Admin
             {
                 var embed = new EmbedBuilder()
                 {
-                    Color = new Color(0, 175, 240)
+                    Color = Colours.adminCol
                 };
                 embed.Description = (Context.User.Mention + ", seems like the config isn't set up right. Money manager roles are returning null!");
                 await ReplyAsync("", false, embed.Build());
@@ -162,7 +163,7 @@ namespace KnightBot.Modules.Admin
 
             var embed = new EmbedBuilder()
             {
-                Color = new Color(0, 175, 240)
+                Color = Colours.adminCol
             };
             embed.Description = ("**Rules: **\n\n**1. **No Racial Slurs!\n**2. **Do Not Be Rude To Others!\n**3. **Do Not Spam Random Links / Messages!\n**4. **Don't Be An Asshat!\n\n**" + BotConfig.Load().Prefix + "accept** To Accept The Rules!");
             await ReplyAsync("", false, embed.Build());
