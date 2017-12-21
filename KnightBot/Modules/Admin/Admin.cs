@@ -17,7 +17,6 @@ namespace KnightBot.Modules.Admin
 {
     public class Admin : ModuleBase<SocketCommandContext>
     {
-
         [Command("ban")]
         [RequireBotPermission(GuildPermission.BanMembers)]
         [RequireUserPermission(GuildPermission.BanMembers)]
@@ -39,7 +38,6 @@ namespace KnightBot.Modules.Admin
             await Context.Channel.SendMessageAsync("", false, embed);
 
             await Context.Message.DeleteAsync();
-
         }
 
         [Command("kick")]
@@ -63,8 +61,6 @@ namespace KnightBot.Modules.Admin
             await Context.Channel.SendMessageAsync("", false, embed);
 
             await Context.Message.DeleteAsync();
-
-
         }
 
         [Command("setrole")]
@@ -87,8 +83,6 @@ namespace KnightBot.Modules.Admin
 
 
             await Context.Message.DeleteAsync();
-
-
         }
 
         [Command("remrole")]
@@ -110,9 +104,6 @@ namespace KnightBot.Modules.Admin
             await ReplyAsync("", false, embed.Build());
 
             await Context.Message.DeleteAsync();
-
-
-
         }
 
 
@@ -143,7 +134,6 @@ namespace KnightBot.Modules.Admin
                     };
                     embed.Description = (Context.User.Mention + ", Has Gotton :moneybag: " + money + " Coins!");
                     await ReplyAsync("", false, embed.Build());
-
                 }
                 else
                 {
@@ -182,12 +172,6 @@ namespace KnightBot.Modules.Admin
             await ReplyAsync("", false, embed.Build());
 
             await Context.Message.DeleteAsync();
-
-
-
         }
-
-
-
     }
 }

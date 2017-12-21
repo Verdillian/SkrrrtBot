@@ -20,7 +20,6 @@ namespace KnightBot.Modules.Public
 {
     public class PublicModule : ModuleBase
     {
-
         private ImageSharp.Image image = null;
         private string randomString = "";
 
@@ -33,8 +32,6 @@ namespace KnightBot.Modules.Public
 
 
             await Context.Message.DeleteAsync();
-
-
         }
 
         string[] predictionTexts = new string[]
@@ -66,7 +63,6 @@ namespace KnightBot.Modules.Public
             await Context.Channel.SendMessageAsync("", false, embed);
 
             await Context.Message.DeleteAsync();
-
         }
 
         static string player1;
@@ -126,11 +122,8 @@ namespace KnightBot.Modules.Public
                 };
                 embed.Description = (Context.User.Mention + " Sorry but there is already a fight going on, or  you simply tried to fight yourself.");
                 await ReplyAsync("", false, embed.Build());
-
             }
-
             await Context.Message.DeleteAsync();
-
         }
 
         [Command("giveup")]
@@ -140,7 +133,6 @@ namespace KnightBot.Modules.Public
         {
             if (SwitchCaseString == "fight_p1")
             {
-
                 var embed = new EmbedBuilder()
                 {
                     Color = new Color(0, 175, 240)
@@ -154,18 +146,14 @@ namespace KnightBot.Modules.Public
             }
             else
             {
-
                 var embed = new EmbedBuilder()
                 {
                     Color = new Color(0, 175, 240)
                 };
                 embed.Description = (Context.User.Mention  + ", There is no fight to stop.");
                 await ReplyAsync("", false, embed.Build());
-
             }
-
             await Context.Message.DeleteAsync();
-
         }
 
         [Command("slash")]
@@ -235,7 +223,6 @@ namespace KnightBot.Modules.Public
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " has " + health1 + " health left!\n" + player2 + " has " + health2 + " health left!\n" + whosTurn + " its your turn!");
                                 await ReplyAsync("", false, embed.Build());
-
                             }
                             else
                             {
@@ -255,14 +242,12 @@ namespace KnightBot.Modules.Public
                         }
                         else
                         {
-
                             var embed = new EmbedBuilder()
                             {
                                 Color = new Color(0, 175, 240)
                             };
                             embed.Description = ("Sorry it seems like something went wrong! Please type " + BotConfig.Load().Prefix + "giveup");
                             await ReplyAsync("", false, embed.Build());
-
                         }
                     }
                     else
@@ -278,7 +263,6 @@ namespace KnightBot.Modules.Public
                         };
                         embed.Description = (Context.User.Mention + ", sorry you missed!\n" + whosTurn + " your turn!");
                         await ReplyAsync("", false, embed.Build());
-
                     }
                 }
                 else
@@ -293,18 +277,14 @@ namespace KnightBot.Modules.Public
             }
             else
             {
-
                 var embed = new EmbedBuilder()
                 {
                     Color = new Color(0, 175, 240)
                 };
                 embed.Description = (Context.User.Mention + ", There is no fight at the moment. Sorry :/");
                 await ReplyAsync("", false, embed.Build());
-
             }
-
             await Context.Message.DeleteAsync();
-
         }
 
         [Command("clear")]
@@ -433,8 +413,6 @@ namespace KnightBot.Modules.Public
 
                     Database.updMoney(Context.User, betremove);
                 }
-
-
             }
         }
 
@@ -479,8 +457,6 @@ namespace KnightBot.Modules.Public
             await Context.Channel.SendMessageAsync("", false, embed);
 
             await Context.Message.DeleteAsync();
-
-
         }
 
 
@@ -501,7 +477,6 @@ namespace KnightBot.Modules.Public
 
             await Context.Channel.SendMessageAsync("", false, embed);
             await Context.Message.DeleteAsync();
-
         }
 
         // End help
@@ -523,7 +498,6 @@ namespace KnightBot.Modules.Public
 
             currentsong.Start();
             return currentsong;
-
         }
 
 
@@ -568,7 +542,6 @@ namespace KnightBot.Modules.Public
             await SendLinkAsync(Context.Guild, url);
 
             await Context.Message.DeleteAsync();
-
         }
 
         [Command("stop", RunMode = RunMode.Async)]
@@ -577,7 +550,6 @@ namespace KnightBot.Modules.Public
             await StopAudio(Context.Guild);
 
             await Context.Message.DeleteAsync();
-
         }
 
         // End Music Bot
@@ -628,9 +600,7 @@ namespace KnightBot.Modules.Public
                     await ReplyAsync(DogImage);
                 }
             }
-
             await Context.Message.DeleteAsync();
-
         }
 
         [Command("cat")]
@@ -649,9 +619,7 @@ namespace KnightBot.Modules.Public
                 string CatImage = json["file"].ToString();
                 await ReplyAsync(CatImage);
             }
-
             await Context.Message.DeleteAsync();
-
         }
 
         // Start Auction System
@@ -665,14 +633,12 @@ namespace KnightBot.Modules.Public
         [Command("auction")]
         public async Task Auction(int startingBid, int amount, string item, [Remainder]string info = null)
         {
-
             if (auctionCheck.Equals("live"))
             {
                 await ReplyAsync("A auction is currently live!");
             }
             else
             {
-
                 if (auctionCheck.Equals("") || auctionCheck.Equals("over")) auctionCheck.Equals("Live");
                 else if (auctionCheck == "live")
                 {

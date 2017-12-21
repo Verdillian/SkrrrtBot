@@ -15,13 +15,8 @@ namespace KnightBot
 
 
         public static List<ulong> modRoleID = new List<ulong>();
-
         public static ulong[] modRoleIDs;
-
-
-        public static void Main(string[] args) =>
-            new Program().Start().GetAwaiter().GetResult();
-
+        public static void Main(string[] args) => new Program().Start().GetAwaiter().GetResult();
         private DiscordSocketClient client;
         private CommandHandler handler;
 
@@ -41,7 +36,6 @@ namespace KnightBot
             var serviceProvider = ConfigureServices();
             handler = new CommandHandler(serviceProvider);
             await handler.ConfigureAsync();
-
 
             //Block this program untill it is closed
             await Task.Delay(-1);
@@ -108,18 +102,12 @@ namespace KnightBot
         }
         public IServiceProvider ConfigureServices()
         {
-
             var services = new ServiceCollection()
                 .AddSingleton(client)
                  .AddSingleton(new CommandService(new CommandServiceConfig { CaseSensitiveCommands = false }));
             var provider = new DefaultServiceProviderFactory().CreateServiceProvider(services);
-
-
-
-
+            
             return provider;
         }
-
-
     }
 }

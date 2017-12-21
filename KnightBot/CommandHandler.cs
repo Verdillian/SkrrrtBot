@@ -28,9 +28,6 @@ namespace KnightBot
             bot.MessageReceived += HandleCommand;
             commands = map.GetService<CommandService>();
             bot.MessageReceived += addMoney;
-            
-            
-
         }
 
         public async Task addMoney(SocketMessage msg)
@@ -48,26 +45,20 @@ namespace KnightBot
 
 
 
-        public async Task AnnounceLeftUser(SocketGuildUser user)
-        {
-
-        }
+        public async Task AnnounceLeftUser(SocketGuildUser user) {}
 
         public async Task AnnounceUserJoined(SocketGuildUser user)
         {
-
             var newmemrole = new BotConfig();
 
             var role = user.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == newmemrole.NewMemberRank);
             await (user as IGuildUser).AddRoleAsync(role);
-
-
+            
             //var result = Database.CheckExistingUser(user);
             //if(result.Count() <= 0)
             //{
             //    Database.EnterUser(user);
             //}
-
         }
 
         public async Task SetGame()
@@ -81,16 +72,10 @@ namespace KnightBot
         public async Task ConfigureAsync()
         {
             await commands.AddModulesAsync(Assembly.GetEntryAssembly());
-
-            
-
         }
 
         public async Task HandleCommand(SocketMessage pMsg)
         {
-
-            
-
             //Don't handle the command if it is a system message
             var message = pMsg as SocketUserMessage;
             if (message == null)
@@ -112,13 +97,6 @@ namespace KnightBot
 
                     await message.Channel.SendMessageAsync($"**Error:** {result.ErrorReason}");
             }
-
-
-            
-
         }
-
-
-
     }
 }
