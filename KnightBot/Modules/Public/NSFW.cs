@@ -28,10 +28,34 @@ namespace KnightBot.Modules.Public
                 var nsfwRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.NSFWRole);
                 if (nsfwRole != null)
                 {
-                    if (!userName.Roles.Contains(nsfwRole)) await (Context.User as IGuildUser).AddRoleAsync(nsfwRole);
-                    else if (userName.Roles.Contains(nsfwRole)) throw new ArgumentException("You already have the nsfw role.");
+                    if (!userName.Roles.Contains(nsfwRole))
+                    {
+                        await (Context.User as IGuildUser).AddRoleAsync(nsfwRole);
+                        var embed = new EmbedBuilder() { Color = Colours.nsfwCol };
+                        embed.Title = ("NSFW Join");
+                        embed.Description = ("You have been given the nsfw role!");
+                        await Context.Channel.SendMessageAsync("", false, embed);
+                    }
+                    else if (userName.Roles.Contains(nsfwRole)) await errors.sendError(chan, "You already have the nsfw role.", Colours.nsfwCol);
                 }
-                else throw new ArgumentException("The NSFW Role doesn't exist.");
+                else await errors.sendError(chan, "The nsfw role does not exist.", Colours.nsfwCol);
+            }
+            if (type.Equals("leave"))
+            {
+                var nsfwRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.NSFWRole);
+                if (nsfwRole != null)
+                {
+                    if (userName.Roles.Contains(nsfwRole))
+                    {
+                        await (Context.User as IGuildUser).RemoveRoleAsync(nsfwRole);
+                        var embed = new EmbedBuilder() { Color = Colours.nsfwCol };
+                        embed.Title = ("NSFW Leave");
+                        embed.Description = ("You have been removed from the nsfw role!");
+                        await Context.Channel.SendMessageAsync("", false, embed);
+                    }
+                    else if (!userName.Roles.Contains(nsfwRole)) await errors.sendError(chan, "You do not have the nsfw role already.", Colours.nsfwCol);
+                }
+                else await errors.sendError(chan, "The nsfw role does not exist.", Colours.nsfwCol);
             }
             else if (chan.IsNsfw)
             {
@@ -54,9 +78,12 @@ namespace KnightBot.Modules.Public
                     if (userName.Id == 211938243535568896)
                     {
                         await Context.Guild.CreateRoleAsync(config.NSFWRole.ToString(), null, Color.Red, false, null);
-                        throw new ArgumentException("Role created with name " + config.NSFWRole.ToString() + ".");
+                        var embed = new EmbedBuilder() { Color = Colours.nsfwCol };
+                        embed.Title = ("NSFW Create");
+                        embed.Description = ("You have created the nsfw role!");
+                        await Context.Channel.SendMessageAsync("", false, embed);
                     }
-                    else throw new ArgumentException("Only Blurr can do this.");
+                    else await errors.sendError(chan, "Only Blurr can do this command.", Colours.nsfwCol);
                 }
                 else
                 {
