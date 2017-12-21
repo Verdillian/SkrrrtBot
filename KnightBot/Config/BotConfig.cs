@@ -19,7 +19,7 @@ namespace KnightBot.Config
         public string NSFWRole { get; set; }
         public BotConfig()
         {
-            Prefix = "";
+            Prefix = "--";
             Token = "";
             NewMemberRank = "New Member";
             AcceptedMemberRole = "Member";

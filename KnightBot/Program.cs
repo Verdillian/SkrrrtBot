@@ -19,7 +19,7 @@ namespace KnightBot
         public static void Main(string[] args) => new Program().Start().GetAwaiter().GetResult();
         private DiscordSocketClient client;
         private CommandHandler handler;
-
+        
         public async Task Start()
         {
             EnsureBotConfigExists(); // Ensure that the bot configuration json file has been created.

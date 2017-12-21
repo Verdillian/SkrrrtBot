@@ -23,6 +23,91 @@ namespace KnightBot.Modules.Public
         private ImageSharp.Image image = null;
         private string randomString = "";
 
+        [Command("help")]
+        public async Task Help(string type = null)
+        {
+            var chan = Context.Channel;
+            var config = new BotConfig();
+            var userName = Context.User as SocketGuildUser;
+
+            if (type == null)
+            {
+                var embed = new EmbedBuilder()
+                {
+                    Color = new Color(0, 0, 230)
+                };
+                embed.Title = $"Knight Help";
+                embed.Description = config.Prefix.ToString() + "help general\n" +
+                                    config.Prefix.ToString() + "help bank\n" +
+                                    config.Prefix.ToString() + "help auction\n" +
+                                    config.Prefix.ToString() + "help admin\n" +
+                                    config.Prefix.ToString() + "help nsfw\n";
+                await Context.Channel.SendMessageAsync("", false, embed);
+            }
+            //
+            else if (type.Equals("general") || type.Equals("gen"))
+            {
+                var embed = new EmbedBuilder()
+                {
+                    Color = Colours.generalCol
+                };
+                embed.Title = $"General Help";
+                embed.Description = config.Prefix.ToString() + "doggo\n" +
+                                    config.Prefix.ToString() + "cat\n" + 
+                                    config.Prefix.ToString() + "commands to be added to help.";
+                await Context.Channel.SendMessageAsync("", false, embed);
+            }
+            //
+            else if (type.Equals("bank") || type.Equals("money"))
+            {
+                var embed = new EmbedBuilder()
+                {
+                    Color = Colours.moneyCol
+                };
+                embed.Title = $"Bank Help";
+                embed.Description = config.Prefix.ToString() + "commands to be added to help.";
+                await Context.Channel.SendMessageAsync("", false, embed);
+            }
+            //
+            else if (type.Equals("auction") || type.Equals("bids"))
+            {
+                var embed = new EmbedBuilder()
+                {
+                    Color = Colours.moneyCol
+                };
+                embed.Title = $"Auction Help";
+                embed.Description = config.Prefix.ToString() + "commands to be added to help.";
+                await Context.Channel.SendMessageAsync("", false, embed);
+            }
+            //
+            else if (type.Equals("admin") || type.Equals("administrative"))
+            {
+                var embed = new EmbedBuilder()
+                {
+                    Color = Colours.adminCol
+                };
+                embed.Title = $"Admin Help";
+                embed.Description = config.Prefix.ToString() + "commands to be added to help.";
+                await Context.Channel.SendMessageAsync("", false, embed);
+            }
+            //
+            else if (type.Equals("nsfw") || type.Equals("18"))
+            {
+                var embed = new EmbedBuilder()
+                {
+                    Color = Colours.nsfwCol
+                };
+                embed.Title = $"NSFW Help";
+                embed.Description = config.Prefix.ToString() + "nsfw join        -  Join the NSFW Role to view NSFW channels.\n" +
+                                    config.Prefix.ToString() + "nsfw butt       -  Displays a random butt pic.\n" +
+                                    config.Prefix.ToString() + "nsfw boobs   -  Displays a random boobs pic.\n" +
+                                    config.Prefix.ToString() + "nsfw gif          -  Displays a random sexy gif.\n";
+                await Context.Channel.SendMessageAsync("", false, embed);
+            }
+
+        }
+
+
         [Command("setgame")]
         [Remarks("Sets the game the bot is currently playing")]
         [RequireUserPermission(GuildPermission.Administrator)]
@@ -460,7 +545,7 @@ namespace KnightBot.Modules.Public
         }
 
 
-        // Start help
+        /** Start help
 
         [Command("help")]
         [Remarks("This shows what commands you can use with the bot")]
@@ -479,7 +564,7 @@ namespace KnightBot.Modules.Public
             await Context.Message.DeleteAsync();
         }
 
-        // End help
+         End help**/
 
         //Start Music Bot
 
