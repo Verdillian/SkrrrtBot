@@ -128,7 +128,7 @@ namespace KnightBot.Modules.Admin
             var moneyrole1 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole1);
             var moneyrole2 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.MoneyRole2);
 
-            if (!userName.Roles.Contains(moneyrole) || !userName.Roles.Contains(moneyrole1) || !userName.Roles.Contains(moneyrole2))
+            if (userName.Roles.Contains(moneyrole) || userName.Roles.Contains(moneyrole1) || userName.Roles.Contains(moneyrole2))
             {
                 Database.updMoney(user, money);
                 var embed = new EmbedBuilder()
