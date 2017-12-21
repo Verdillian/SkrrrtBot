@@ -18,6 +18,27 @@ namespace KnightBot.Modules.Admin
 {
     public class Admin : ModuleBase<SocketCommandContext>
     {
+        [Command("setprefix")]
+        [RequireBotPermission(GuildPermission.Administrator)]
+        [RequireUserPermission(GuildPermission.Administrator)]
+        public async Task AddRole(string prefix)
+        {
+            Errors errors = new Errors();
+            var config = new BotConfig();
+
+            if (prefix.Equals(null)) await errors.sendError(Context.Channel, "You need to enter the prefix you want to use!", Colours.adminCol);
+            else
+            {
+                config.Prefix = prefix;
+                config.Save();
+
+                var embed = new EmbedBuilder() { Color = Colours.adminCol };
+                embed.Title = ("Set Prefix");
+                embed.Description = ("Prefix has been set to " + prefix + " successfully!");
+                await ReplyAsync("", false, embed.Build());
+            }
+    
+
         [Command("ban")]
         [RequireBotPermission(GuildPermission.BanMembers)]
         [RequireUserPermission(GuildPermission.BanMembers)]
@@ -50,10 +71,7 @@ namespace KnightBot.Modules.Admin
             if (string.IsNullOrWhiteSpace(reason)) throw new ArgumentException("You Must Provide A Reason!");
 
             var gld = Context.Guild as SocketGuild;
-            var embed = new EmbedBuilder()
-            {
-                Color = Colours.adminCol
-            };
+            var embed = new EmbedBuilder() { Color = Colours.adminCol };
 
             embed.Title = $"**{user.Username}** has been kicked from **{user.Guild.Name}**!";
             embed.Description = $"**Username: **{user.Username}\n**Guild name: **{user.Guild.Name}\n**Kicked By: **{Context.User.Mention}\n**Reason: **{reason}";
