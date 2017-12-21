@@ -19,14 +19,14 @@ namespace KnightBot.Config
         public string NSFWRole { get; set; }
         public BotConfig()
         {
-            Prefix = "--";
+            Prefix = "";
             Token = "";
-            NewMemberRank = "New Member";
-            AcceptedMemberRole = "Member";
-            MoneyRole = "Admin";
-            MoneyRole1 = "Owner";
-            MoneyRole2 = "Bot";
-            NSFWRole = "18+";
+            NewMemberRank = "";
+            AcceptedMemberRole = "";
+            MoneyRole = "";
+            MoneyRole1 = "";
+            MoneyRole2 = "";
+            NSFWRole = "";
         }
 
         public void Save(string dir = "configuration/config.json")

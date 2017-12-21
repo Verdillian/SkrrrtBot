@@ -20,12 +20,11 @@ namespace KnightBot.Modules.Public
         {
             Errors errors = new Errors();
             var chan = Context.Channel;
-            var config = new BotConfig();
             var userName = Context.User as SocketGuildUser;
 
             if (type.Equals("join"))
             {
-                var nsfwRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.NSFWRole);
+                var nsfwRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().NSFWRole);
                 if (nsfwRole != null)
                 {
                     if (!userName.Roles.Contains(nsfwRole))
@@ -42,7 +41,7 @@ namespace KnightBot.Modules.Public
             }
             if (type.Equals("leave"))
             {
-                var nsfwRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == config.NSFWRole);
+                var nsfwRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().NSFWRole);
                 if (nsfwRole != null)
                 {
                     if (userName.Roles.Contains(nsfwRole))
@@ -77,7 +76,7 @@ namespace KnightBot.Modules.Public
                 {
                     if (userName.Id == 211938243535568896)
                     {
-                        await Context.Guild.CreateRoleAsync(config.NSFWRole.ToString(), null, Color.Red, false, null);
+                        await Context.Guild.CreateRoleAsync(BotConfig.Load().NSFWRole.ToString(), null, Color.Red, false, null);
                         var embed = new EmbedBuilder() { Color = Colours.nsfwCol };
                         embed.Title = ("NSFW Create");
                         embed.Description = ("You have created the nsfw role!");

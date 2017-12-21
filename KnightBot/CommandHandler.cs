@@ -49,9 +49,9 @@ namespace KnightBot
 
         public async Task AnnounceUserJoined(SocketGuildUser user)
         {
-            var newmemrole = new BotConfig();
+            var newmemrole = BotConfig.Load().Prefix;
 
-            var role = user.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == newmemrole.NewMemberRank);
+            var role = user.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == newmemrole);
             await (user as IGuildUser).AddRoleAsync(role);
             
             //var result = Database.CheckExistingUser(user);
