@@ -31,6 +31,19 @@ namespace KnightBot.Modules.Public
                 }
                 else throw new ArgumentException("The NSFW Role doesn't exist.");
             }
+            else if (type.Equals("help") || type.Equals("commands"))
+            {
+                var embed = new EmbedBuilder()
+                {
+                    Color = new Color(0, 175, 240)
+                };
+                embed.Title = $"NSFW Help";
+                embed.Description = config.Prefix.ToString() + "nsfw join  - Join the NSFW Role to view NSFW channels.\n" +
+                                    config.Prefix.ToString() + "nsfw butt  - Displays a random butt pic.\n" +
+                                    config.Prefix.ToString() + "nsfw boobs - Displays a random boobs pic.\n" +
+                                    config.Prefix.ToString() + "nsfw gif   - Displays a random sexy gif.\n";
+                await Context.Channel.SendMessageAsync("", false, embed);
+            }
             else if (chan.IsNsfw)
             {
                 if (type == null) throw new ArgumentException("Need to display help.");
@@ -62,7 +75,7 @@ namespace KnightBot.Modules.Public
                     {
                         Color = new Color(0, 175, 240)
                     };
-                    embed.Description = (Context.User.Mention + ", I do not recognise that parameter. Try Butt or Boobs!");
+                    embed.Description = (Context.User.Mention + ", try " + config.Prefix.ToString() + "nsfw help");
                     await ReplyAsync("", false, embed.Build());
 
                     await Context.Message.DeleteAsync();
