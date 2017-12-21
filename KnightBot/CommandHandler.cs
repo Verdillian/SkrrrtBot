@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using KnightBot.Config;
 using KnightBot.Modules.Public;
+using KnightBot.util;
 
 namespace KnightBot
 {
@@ -32,15 +33,34 @@ namespace KnightBot
 
         public async Task addMoney(SocketMessage msg)
         {
+            Errors errors = new Errors();
+
             var user = msg.Author;
             var result = Database.CheckExistingUser(user);
             if(result.Count <=0 && user.IsBot != true)
             {
                 Database.EnterUser(user);
             }
+            
+            Random rand = new Random();
+            int maxChance = 10, maxAmt = 5;
 
-            Database.updMoney(user, 2);
+            int randNumber = rand.Next(1, maxChance);
+            int randChance = rand.Next(1, maxChance);
+            int randAmt = rand.Next(1, maxAmt);
 
+            if (randChance == randNumber)
+            {
+                Database.updMoney(user, randAmt);
+            }
+            
+            if (msg.Content.ToLower().Contains("eva"))
+            {
+                var embed = new EmbedBuilder() { Color = Colours.moneyCol };
+                embed.Title = "Eww!";
+                embed.Description = "Ewwwwww!";
+                await msg.Channel.SendMessageAsync("", false, embed);
+            }
         }
 
 
