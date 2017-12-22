@@ -13,7 +13,7 @@ namespace KnightBot.util
     {
         public async Task sendError(ISocketMessageChannel channel, string error, Color color)
         {
-            Console.WriteLine("ERROR: " + error);
+            //Console.WriteLine("ERROR: " + error);
 
             var embed = new EmbedBuilder() { Color = color };
             embed.Title = ("ERROR");
@@ -26,7 +26,7 @@ namespace KnightBot.util
 
         public async Task sendError(IMessageChannel channel, string error, Color color)
         {
-            Console.WriteLine("ERROR: " + error);
+            //Console.WriteLine("ERROR: " + error);
 
             var embed = new EmbedBuilder() { Color = color };
             embed.Title = ("ERROR");
