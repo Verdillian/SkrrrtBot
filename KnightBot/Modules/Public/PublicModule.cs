@@ -211,12 +211,14 @@ namespace KnightBot.Modules.Public
         static string whosTurn;
         static string whoWaits;
         static string placeHolder;
-        static int health1 = 100;
-        static int health2 = 100;
+        static int maxHealth = 100;
+        static int minDamage = 2, maxDamage = 30;
+        static int health1 = maxHealth;
+        static int health2 = maxHealth;
         static string SwitchCaseString = "nofight";
 
         [Command("fight")]
-        [Remarks("Starts a fight with the @mention user (example: !fight knight")]
+        [Remarks("Starts a fight with the @mention user (example: !fight @Knight#1234")]
         public async Task Fight(IUser user)
         {
             if (Context.User.Mention != user.Mention && SwitchCaseString == "nofight")
@@ -282,8 +284,8 @@ namespace KnightBot.Modules.Public
                 await ReplyAsync("", false, embed.Build());
 
                 SwitchCaseString = "nofight";
-                health1 = 100;
-                health2 = 100;
+                health1 = maxHealth;
+                health2 = maxHealth;
             }
             else
             {
@@ -313,7 +315,7 @@ namespace KnightBot.Modules.Public
                     {
                         Random rand2 = new Random();
 
-                        int randomIndex2 = rand2.Next(7, 15);
+                        int randomIndex2 = rand2.Next(minDamage, maxDamage);
 
                         if (Context.User.Mention != player1)
                         {
@@ -345,8 +347,8 @@ namespace KnightBot.Modules.Public
                                 await ReplyAsync("", false, embed.Build());
 
                                 SwitchCaseString = "nofight;";
-                                health1 = 100;
-                                health2 = 100;
+                                health1 = maxHealth;
+                                health2 = maxHealth;
                             }
                         }
                         else if (Context.User.Mention == player1)
@@ -379,8 +381,8 @@ namespace KnightBot.Modules.Public
 
 
                                 SwitchCaseString = "nofight";
-                                health1 = 100;
-                                health2 = 100;
+                                health1 = maxHealth;
+                                health2 = maxHealth;
                             }
                         }
                         else
