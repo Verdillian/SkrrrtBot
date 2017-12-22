@@ -9,7 +9,8 @@ namespace KnightBot
     public class Econ
     {
         public string UserId { get; set; }
-        public int Money { get; set; }
         public string Username { get; set; }
+        public int Money { get; set; }
+        public int Points { get; set; }
     }
 }

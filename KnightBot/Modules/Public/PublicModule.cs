@@ -341,6 +341,7 @@ namespace KnightBot.Modules.Public
                                     Color = Colours.fightCol
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " died. " + player2 + " won!");
+                                Database.updPoints(Context.User, 3);
                                 await ReplyAsync("", false, embed.Build());
 
                                 SwitchCaseString = "nofight;";
@@ -373,6 +374,7 @@ namespace KnightBot.Modules.Public
                                     Color = Colours.fightCol
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player2 + " died. " + player1 + " won!");
+                                Database.updPoints(Context.User, 3);
                                 await ReplyAsync("", false, embed.Build());
 
 
@@ -428,6 +430,22 @@ namespace KnightBot.Modules.Public
             await Context.Message.DeleteAsync();
         }
 
+        [Command("points")]
+        public async Task Points()
+        {
+            var points = Database.GetUserPoints(Context.User).FirstOrDefault().Points;
+            Errors errors = new Errors();
+            if (points >= 0)
+            {
+                var embed = new EmbedBuilder() { Color = Colours.fightCol };
+
+                embed.Title = $"{Context.User.Username}'s Points";
+                embed.Description = $"You have " + points + " points from your fights!";
+                await ReplyAsync("", false, embed.Build());
+            }
+            else await errors.sendError(Context.Channel, "You appear to have negative points, contact a developer.", Colours.fightCol);
+        }
+
         [Command("clear")]
         [Alias("c")]
         [Remarks("Clears all messages in a channel")]
@@ -466,19 +484,7 @@ namespace KnightBot.Modules.Public
                     embed.Description = $"\n:money_with_wings: **Welcome To The Bank!** :\n\n:moneybag: **Bank : 100DollaBill**\n";
                     await ReplyAsync("", false, embed.Build());
                 }
-                else
-                {
-                    var embed = new EmbedBuilder()
-
-                    {
-                        Color = Colours.moneyCol,
-                        Author = auth
-                    };
-
-
-                    embed.Description = $":x: **{Context.User.Username} Already Has A Bank Account!**";
-                    await ReplyAsync("", false, embed.Build());
-                }
+                else await errors.sendError(chan, "User already has a bank account", Colours.moneyCol);
             }
             else if (type.Equals("balance"))
             {

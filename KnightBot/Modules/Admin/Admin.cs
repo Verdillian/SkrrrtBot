@@ -19,7 +19,7 @@ namespace KnightBot.Modules.Admin
     public class Admin : ModuleBase<SocketCommandContext>
     {
         Errors errors = new Errors();
-        var config = new BotConfig();
+        BotConfig config = new BotConfig();
 
         [Command("setprefix")]
         [RequireBotPermission(GuildPermission.Administrator)]

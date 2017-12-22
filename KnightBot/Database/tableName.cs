@@ -7,5 +7,6 @@ namespace KnightBot
         public string UserId { get; set; }
         public string Username { get; set; }
         public int Tokens { get; set; }
+        public int Points { get; set; }
     }
 }
