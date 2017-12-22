@@ -15,13 +15,14 @@ Things that are currently implemented:
   - Clear Chat
     - [prefix]clear, [prefix]c - Clears the messages in  a text channel up to 100
   - Money System
-    - [prefix]bank - Opens a new bank account for the user.
-    - [prefix]money - Checks money in bank account.
-    - [prefix]roll - Rolls the dice to earn money.
+    - [prefix]bank open - Opens a new bank account for the user.
+    - [prefix]bank balance - Checks money in bank account.
+	- [prefix]bank transfer <user> <amount> - Transfers money to user from your account.
   - DM creator of bot
     - [prefix]dm <msg> - DM's the creater of the bot what ever the message is.
-  - Random eightball
+  - Random games
     - [prefix]8ball <text> - The bot gives you a random message telling you what it thinks will happen according to what you put in.
+	- [prefix]roll - Rolls the dice to earn money.
   - Random Commands
     - [prefix]cat - Generates a random cat image.
     - [prefix]doggo - Generates a random dog image.

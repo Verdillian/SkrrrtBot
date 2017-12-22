@@ -18,14 +18,14 @@ namespace KnightBot.Modules.Admin
 {
     public class Admin : ModuleBase<SocketCommandContext>
     {
+        Errors errors = new Errors();
+        var config = new BotConfig();
+
         [Command("setprefix")]
         [RequireBotPermission(GuildPermission.Administrator)]
         [RequireUserPermission(GuildPermission.Administrator)]
         public async Task AddRole(string prefix)
         {
-            Errors errors = new Errors();
-            var config = new BotConfig();
-
             if (prefix.Equals(null)) await errors.sendError(Context.Channel, "You need to enter the prefix you want to use!", Colours.adminCol);
             else
             {
@@ -45,8 +45,8 @@ namespace KnightBot.Modules.Admin
         [RequireUserPermission(GuildPermission.BanMembers)]
         public async Task Ban(SocketGuildUser user = null, [Remainder] string reason = null)
         {
-            if (user == null) throw new ArgumentException("You Must Mention A User!");
-            if (string.IsNullOrWhiteSpace(reason)) throw new ArgumentException("You Must Provide A Reason!");
+            if (user == null) await errors.sendError(Context.Channel, "You must enter a user!", Colours.adminCol);
+            if (string.IsNullOrWhiteSpace(reason)) await errors.sendError(Context.Channel, "You must enter a reason!", Colours.adminCol);
 
             var gld = Context.Guild as SocketGuild;
             var embed = new EmbedBuilder()
@@ -68,8 +68,8 @@ namespace KnightBot.Modules.Admin
         [RequireUserPermission(GuildPermission.KickMembers)]
         public async Task Kick(SocketGuildUser user = null, [Remainder] string reason = null)
         {
-            if (user == null) throw new ArgumentException("You Must Mention A User!");
-            if (string.IsNullOrWhiteSpace(reason)) throw new ArgumentException("You Must Provide A Reason!");
+            if (user == null) await errors.sendError(Context.Channel, "You must enter the user!", Colours.adminCol);
+            if (string.IsNullOrWhiteSpace(reason)) await errors.sendError(Context.Channel, "You must enter a reason!", Colours.adminCol);
 
             var gld = Context.Guild as SocketGuild;
             var embed = new EmbedBuilder() { Color = Colours.adminCol };
@@ -88,8 +88,8 @@ namespace KnightBot.Modules.Admin
         [RequireUserPermission(GuildPermission.ManageRoles)]
         public async Task AddRole(IGuildUser user, [Remainder] string roleToBe)
         {
-            if (user.Equals(null)) throw new ArgumentException("You Must Mention A User!");
-            if (string.IsNullOrWhiteSpace(roleToBe)) throw new ArgumentException("You Must Provide A Role!");
+            if (user.Equals(null)) await errors.sendError(Context.Channel, "You must enter the user!", Colours.adminCol);
+            if (string.IsNullOrWhiteSpace(roleToBe)) await errors.sendError(Context.Channel, "You must enter a role!", Colours.adminCol);
 
             var role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == roleToBe);
             await (user as IGuildUser).AddRoleAsync(role);
@@ -110,8 +110,8 @@ namespace KnightBot.Modules.Admin
         [RequireUserPermission(GuildPermission.ManageRoles)]
         public async Task RemoveRole(IGuildUser user, [Remainder] string roleToRemove)
         {
-            if (user.Equals(null)) throw new ArgumentException("You Must Mention A User!");
-            if (string.IsNullOrWhiteSpace(roleToRemove)) throw new ArgumentException("You Must Provide A Role!");
+            if (user.Equals(null)) await errors.sendError(Context.Channel, "You must enter the user!", Colours.adminCol);
+            if (string.IsNullOrWhiteSpace(roleToRemove)) await errors.sendError(Context.Channel, "You must enter a role!", Colours.adminCol);
 
             var role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == roleToRemove);
             await (user as IGuildUser).RemoveRoleAsync(role);
@@ -151,25 +151,9 @@ namespace KnightBot.Modules.Admin
                     embed.Description = (Context.User.Mention + ", Has Gotton :moneybag: " + money + " Coins!");
                     await ReplyAsync("", false, embed.Build());
                 }
-                else
-                {
-                    var embed = new EmbedBuilder()
-                    {
-                        Color = Colours.adminCol
-                    };
-                    embed.Description = (Context.User.Mention + ", you do not have the permissions required to give people dosh!");
-                    await ReplyAsync("", false, embed.Build());
-                }
+                else await errors.sendError(Context.Channel, "You do not have permission to give people dosh!", Colours.adminCol);
             }
-            else
-            {
-                var embed = new EmbedBuilder()
-                {
-                    Color = Colours.adminCol
-                };
-                embed.Description = (Context.User.Mention + ", seems like the config isn't set up right. Money manager roles are returning null!");
-                await ReplyAsync("", false, embed.Build());
-            }
+            else await errors.sendError(Context.Channel, "Appears money roles are not set up correctly, they are returning null!", Colours.adminCol);
         }
 
         // End Money
