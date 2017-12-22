@@ -18,27 +18,6 @@ namespace KnightBot.Modules.Public
 
         private ImageSharp.Image image = null;
         private string randomString = "";
-        
-        [Command("setgame")]
-        [Remarks("Sets the game the bot is currently playing")]
-        [RequireUserPermission(GuildPermission.Administrator)]
-        public async Task Setgame()
-        {
-            await (Context.Client as DiscordSocketClient).SetGameAsync("KnightBot.xyz");
-
-
-            await Context.Message.DeleteAsync();
-        }
-
-        [Command("clear")]
-        [Alias("c")]
-        [Remarks("Clears all messages in a channel")]
-        [RequireUserPermission(GuildPermission.ManageMessages)]
-        public async Task Clear()
-        {
-            var items = await Context.Channel.GetMessagesAsync().Flatten();
-            await Context.Channel.DeleteMessagesAsync(items);
-        }
 
         private static IUser ThisIsMe;
         [Command("dm")]
