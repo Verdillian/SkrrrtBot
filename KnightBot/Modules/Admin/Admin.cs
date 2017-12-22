@@ -30,6 +30,13 @@ namespace KnightBot.Modules.Admin
             else
             {
                 config.Prefix = prefix;
+                config.Token = BotConfig.Load().Token;
+                config.NewMemberRank = BotConfig.Load().NewMemberRank;
+                config.AcceptedMemberRole = BotConfig.Load().AcceptedMemberRole;
+                config.MoneyRole = BotConfig.Load().MoneyRole;
+                config.MoneyRole1 = BotConfig.Load().MoneyRole1;
+                config.MoneyRole2 = BotConfig.Load().MoneyRole2;
+                config.NSFWRole = BotConfig.Load().NSFWRole;
                 config.Save();
 
                 var embed = new EmbedBuilder() { Color = Colours.adminCol };

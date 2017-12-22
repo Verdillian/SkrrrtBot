@@ -12,8 +12,6 @@ namespace KnightBot
 {
     public class Program
     {
-
-
         public static List<ulong> modRoleID = new List<ulong>();
         public static ulong[] modRoleIDs;
         public static void Main(string[] args) => new Program().Start().GetAwaiter().GetResult();
