@@ -18,7 +18,6 @@ namespace KnightBot.Modules.Admin
 {
     public class Admin : ModuleBase<SocketCommandContext>
     {
-        
         [Command("setprefix")]
         [RequireBotPermission(GuildPermission.Administrator)]
         [RequireUserPermission(GuildPermission.Administrator)]

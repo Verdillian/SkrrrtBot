@@ -502,21 +502,35 @@ namespace KnightBot.Modules.Public
                 var balance = Database.GetUserMoney(Context.User).FirstOrDefault().Money;
                 if (amt <= balance)
                 {
-                    Database.updMoney(Context.User, -amt);
-                    Database.updMoney(user, amt);
+                    if (user != null)
+                    {
+                        if (amt > 0 && amt < int.MaxValue)
+                        {
+                            Database.updMoney(Context.User, -amt);
+                            Database.updMoney(user, amt);
 
-                    balance = Database.GetUserMoney(Context.User).FirstOrDefault().Money;
-                    var balance1 = Database.GetUserMoney(user).FirstOrDefault().Money;
-                    var embed = new EmbedBuilder() { Color = Colours.moneyCol };
-                    var fromField = new EmbedFieldBuilder() { Name = Context.User.Username + "'s new balance:", Value = "$" + balance };
-                    var toField = new EmbedFieldBuilder() { Name = user.Username + "'s new balance:", Value = "$" + balance1 };
+                            balance = Database.GetUserMoney(Context.User).FirstOrDefault().Money;
+                            var balance1 = Database.GetUserMoney(user).FirstOrDefault().Money;
+                            var embed = new EmbedBuilder() { Color = Colours.moneyCol };
+                            var fromField = new EmbedFieldBuilder() { Name = Context.User.Username + "'s new balance:", Value = "$" + balance };
+                            var toField = new EmbedFieldBuilder() { Name = user.Username + "'s new balance:", Value = "$" + balance1 };
 
-                    embed.Title = ("Bank Transfer");
-                    embed.Description = ("Successfully transferred money!");
-                    embed.AddField(fromField);
-                    embed.AddField(toField);
+                            embed.Title = ("Bank Transfer");
+                            embed.Description = ("Successfully transferred money!");
+                            embed.AddField(fromField);
+                            embed.AddField(toField);
 
-                    await Context.Channel.SendMessageAsync("", false, embed);
+                            await Context.Channel.SendMessageAsync("", false, embed);
+                        }
+                        else
+                        {
+                            await errors.sendError(chan, "You need to enter an amount higher than 0 but lower than " + int.MaxValue + "!", Colours.moneyCol);
+                        }
+                    }
+                    else
+                    {
+                        await errors.sendError(chan, "Erm, who are you trying to transfer money to?", Colours.moneyCol);
+                    }
                 }
                 else
                 {
