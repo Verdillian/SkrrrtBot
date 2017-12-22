@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KnightBot.Modules.Public
 {
-    public class FightModule : ModuleBase
+    public class FightModule : ModuleBase<SocketCommandContext>
     {
         static string player1;
         static string player2;
