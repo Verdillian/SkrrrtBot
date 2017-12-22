@@ -16,6 +16,8 @@ namespace KnightBot.Modules.Public
 {
     public class PublicModule : ModuleBase
     {
+        Errors errors = new Errors();
+
         private ImageSharp.Image image = null;
         private string randomString = "";
         
@@ -43,7 +45,6 @@ namespace KnightBot.Modules.Public
         [Command("bank")]
         public async Task Bank(string type = null, IGuildUser user = null, int amt = 0)
         {
-            Errors errors = new Errors();
             var chan = Context.Channel;
             if (type.Equals("open"))
             {
@@ -240,7 +241,6 @@ namespace KnightBot.Modules.Public
 
             await Context.Message.DeleteAsync();
         }
-
         // End Music Bot
 
 
@@ -484,21 +484,31 @@ namespace KnightBot.Modules.Public
         [Command("accept")]
         public async Task Accept()
         {
-            // Should require the new member role
-            var user = Context.User;
+            var chan = Context.Channel;
+            var userName = Context.User as SocketGuildUser;
+            var newMemberRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().NewMemberRank);
 
-            var config = new BotConfig();
-            var role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().AcceptedMemberRole);
+            if (newMemberRole != null)
+            {
+                if (userName.Roles.Contains(newMemberRole))
+                {
+                    var user = Context.User;
 
-            var remrole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().NewMemberRank);
+                    var config = new BotConfig();
+                    var role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().AcceptedMemberRole);
 
-            await (user as IGuildUser).AddRoleAsync(role);
-            await (user as IGuildUser).RemoveRoleAsync(remrole);
+                    var remrole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().NewMemberRank);
 
-            var message = await ReplyAsync("You Have Accepted The Rules! Enjoy Being A Full Member!");
-            await DelayDeleteMessage(message, 10);
+                    await (user as IGuildUser).AddRoleAsync(role);
+                    await (user as IGuildUser).RemoveRoleAsync(remrole);
 
-            await Context.Message.DeleteAsync();
+                    var message = await ReplyAsync("You Have Accepted The Rules! Enjoy Being A Full Member!");
+                    await DelayDeleteMessage(message, 10);
+
+                    await Context.Message.DeleteAsync();
+                }
+            }
+            else await errors.sendError(chan, "The new members role is not set up correctly in the config!", Colours.generalCol);
         }
     }
 }
