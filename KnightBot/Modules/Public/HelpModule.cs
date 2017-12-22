@@ -10,6 +10,8 @@ namespace KnightBot.Modules.Public
 {
     public class HelpModule : ModuleBase
     {
+        Errors errors = new Errors();
+        
         [Command("help")]
         public async Task Help(string type = null)
         {
@@ -146,7 +148,6 @@ namespace KnightBot.Modules.Public
                 embed.AddField(gifField);
                 await Context.Channel.SendMessageAsync("", false, embed);
             }
-
         }
     }
 }

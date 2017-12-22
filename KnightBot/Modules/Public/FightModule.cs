@@ -10,6 +10,8 @@ namespace KnightBot.Modules.Public
 {
     public class FightModule : ModuleBase<SocketCommandContext>
     {
+        Errors errors = new Errors();
+
         static string player1;
         static string player2;
         static string whosTurn;
@@ -240,7 +242,6 @@ namespace KnightBot.Modules.Public
         public async Task Points()
         {
             var points = Database.GetUserPoints(Context.User).FirstOrDefault().Points;
-            Errors errors = new Errors();
             if (points >= 0)
             {
                 var embed = new EmbedBuilder() { Color = Colours.fightCol };

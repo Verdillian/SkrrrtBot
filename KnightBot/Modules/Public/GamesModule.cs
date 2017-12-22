@@ -9,6 +9,8 @@ namespace KnightBot.Modules.Public
 {
     public class GamesModule : ModuleBase
     {
+        Errors errors = new Errors();
+
         string[] predictionTexts = new string[]
         {
             "It Is Very Unlikely.",

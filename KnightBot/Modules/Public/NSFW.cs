@@ -13,12 +13,12 @@ namespace KnightBot.Modules.Public
 {
     public class NSFW : ModuleBase<SocketCommandContext>
     {
+        Errors errors = new Errors();
         string placeholderGif = "https://gfycat.com/DecimalCheeryCornsnake";
 
         [Command("nsfw")]
         public async Task Nsfw(string type = null)
         {
-            Errors errors = new Errors();
             var chan = Context.Channel;
             var userName = Context.User as SocketGuildUser;
 
