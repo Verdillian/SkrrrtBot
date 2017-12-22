@@ -9,9 +9,9 @@ using KnightBot.Config;
 using System.Linq;
 using KnightBot.util;
 
-namespace KnightBot.Modules.Public
+namespace KnightBot.Modules.Nsfw
 {
-    public class NSFW : ModuleBase<SocketCommandContext>
+    public class NsfwModule : ModuleBase<SocketCommandContext>
     {
         Errors errors = new Errors();
         string placeholderGif = "https://gfycat.com/DecimalCheeryCornsnake";

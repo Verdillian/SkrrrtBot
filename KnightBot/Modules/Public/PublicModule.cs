@@ -19,6 +19,7 @@ namespace KnightBot.Modules.Public
         private ImageSharp.Image image = null;
         private string randomString = "";
 
+        // DM Command - Sends a message directly to knight.
         private static IUser ThisIsMe;
         [Command("dm")]
         [Remarks("Dm's the owner.")]
@@ -56,7 +57,7 @@ namespace KnightBot.Modules.Public
 
             await Context.Message.DeleteAsync();
         }
-
+        
         [Command("doggo")]
         [Summary("Posts random doggo pictures!")]
         public async Task Dog()
@@ -122,6 +123,7 @@ namespace KnightBot.Modules.Public
             await Context.Message.DeleteAsync();
         }
 
+        // Accept Command - Used to accept the rules and get the members role.
         [Command("accept")]
         public async Task Accept()
         {
