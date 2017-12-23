@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using KnightBot.Config;
 using System.IO;
 using System.Collections.Generic;
-using KnightBot.Nsfw;
 
 namespace KnightBot
 {
@@ -18,8 +17,6 @@ namespace KnightBot
         public static void Main(string[] args) => new Program().Start().GetAwaiter().GetResult();
         private DiscordSocketClient client;
         private CommandHandler handler;
-
-        private Images images;
         
         public async Task Start()
         {
@@ -40,10 +37,6 @@ namespace KnightBot
 
             //Block this program untill it is closed
             await Task.Delay(-1);
-
-            //Initialize nsfw images
-            images = new Images();
-            images.Initialize();
         }
         private static Task Logger(LogMessage lmsg)
         {

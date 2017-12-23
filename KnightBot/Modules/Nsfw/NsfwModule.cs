@@ -8,6 +8,7 @@ using Discord.Commands;
 using KnightBot.Config;
 using System.Linq;
 using KnightBot.util;
+using KnightBot.Nsfw;
 
 namespace KnightBot.Modules.Nsfw
 {
@@ -90,6 +91,42 @@ namespace KnightBot.Modules.Nsfw
                     await Context.Message.DeleteAsync();
                 }
             }
+        }
+
+        [Command("nsfw add")]
+        [RequireNsfw]
+        public async Task NsfwAdd(string name = null, string directory = null, string type = null)
+        {
+            var chan = Context.Channel;
+
+            if (name != null)
+            {
+                if (directory != null)
+                {
+                    if (type != null)
+                    {
+                        if (type.ToLower().Equals("boobs"))
+                        {
+                            NsfwImage image = new NsfwImage(name, directory, ImageType.boobs);
+                            await errors.sendError(chan, "Created the image object, but Knight needs to do the db part! (boobs)", Colours.nsfwCol);
+                        }
+                        else if (type.ToLower().Equals("butt"))
+                        {
+                            NsfwImage image = new NsfwImage(name, directory, ImageType.butt);
+                            await errors.sendError(chan, "Created the image object, but Knight needs to do the db part! (butt)", Colours.nsfwCol);
+                        }
+                        else if (type.ToLower().Equals("gif"))
+                        {
+                            NsfwImage image = new NsfwImage(name, directory, ImageType.gif);
+                            await errors.sendError(chan, "Created the image object, but Knight needs to do the db part! (gif)", Colours.nsfwCol);
+                        }
+                        else await errors.sendError(chan, "Types of images are as follows: boobs | butt | gif", Colours.nsfwCol);
+                    }
+                    else await errors.sendError(chan, "You must enter the type of image!\n" + BotConfig.Load().Prefix + "nsfw add <name> <link> <type>", Colours.nsfwCol);
+                }
+                else await errors.sendError(chan, "You must enter a link to the image!\n" + BotConfig.Load().Prefix + "nsfw add <name> <link> <type>", Colours.nsfwCol);
+            }
+            else await errors.sendError(chan, "You must enter a name of the image!\n" + BotConfig.Load().Prefix + "nsfw add <name> <link> <type>", Colours.nsfwCol);
         }
     }
 }
