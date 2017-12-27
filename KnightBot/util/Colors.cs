@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KnightBot.util
 {
-    class Colours
+    class Colors
     {
         public static Color generalCol = new Color(179, 223, 227);
         public static Color moneyCol = new Color(6, 74, 15);

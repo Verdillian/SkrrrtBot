@@ -37,7 +37,7 @@ namespace KnightBot.Modules.Public
             //
             else if (type.Equals("general") || type.Equals("gen"))
             {
-                var embed = new EmbedBuilder() { Color = Colours.generalCol };
+                var embed = new EmbedBuilder() { Color = Colors.generalCol };
                 var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
                 var helpField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "help", Value = "Help for using KnightBot." };
                 var doggoField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "doggo", Value = "Displays a random image of a dog." };
@@ -56,7 +56,7 @@ namespace KnightBot.Modules.Public
             //
             else if (type.Equals("music") || type.Equals("songs"))
             {
-                var embed = new EmbedBuilder() { Color = Colours.musicCol };
+                var embed = new EmbedBuilder() { Color = Colors.musicCol };
                 var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
                 var playField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "play <link to song on youtube (or pornhub)>", Value = "Plays the song in your voice channel." };
                 var stopField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "stop", Value = "Stops the song that is currently playing." };
@@ -72,7 +72,7 @@ namespace KnightBot.Modules.Public
             //
             else if (type.Equals("bank") || type.Equals("money"))
             {
-                var embed = new EmbedBuilder() { Color = Colours.moneyCol };
+                var embed = new EmbedBuilder() { Color = Colors.moneyCol };
                 var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
                 var bankField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bank open", Value = "Opens a bank account in your name." };
                 var moneyField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bank balance", Value = "Displays your bank balance." };
@@ -91,7 +91,7 @@ namespace KnightBot.Modules.Public
             //
             else if (type.Equals("auction") || type.Equals("bids"))
             {
-                var embed = new EmbedBuilder() { Color = Colours.moneyCol };
+                var embed = new EmbedBuilder() { Color = Colors.moneyCol };
                 var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
                 var auctionField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "auction <amount> <quantity> <item>", Value = "Starts a new auction." };
                 var auctionEndField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "auctionend", Value = "Ends the current auction." };
@@ -112,7 +112,7 @@ namespace KnightBot.Modules.Public
             //
             else if (type.Equals("admin") || type.Equals("administrative"))
             {
-                var embed = new EmbedBuilder() { Color = Colours.adminCol };
+                var embed = new EmbedBuilder() { Color = Colors.adminCol };
                 var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
                 var kickField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "kick <user> <reason>", Value = "Kicks the user specified." };
                 var banField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "ban <user> <reason>", Value = "Bans the user specified." };
@@ -129,7 +129,7 @@ namespace KnightBot.Modules.Public
             //
             else if (type.Equals("nsfw") || type.Equals("18"))
             {
-                var embed = new EmbedBuilder() { Color = Colours.nsfwCol };
+                var embed = new EmbedBuilder() { Color = Colors.nsfwCol };
                 var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
                 var joinField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "nsfw join", Value = "Adds the nsfw role to you." };
                 var leaveField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "nsfw leave", Value = "Removes the nsfw role from you." };

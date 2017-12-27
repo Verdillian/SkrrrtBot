@@ -68,7 +68,7 @@ namespace KnightBot.Modules.Public
         {
             var embed = new EmbedBuilder()
             {
-                Color = Colours.musicCol
+                Color = Colors.musicCol
             };
             embed.Description = (Context.User.Mention + ", Has decided to listen to music!");
 

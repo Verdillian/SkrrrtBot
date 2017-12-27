@@ -36,7 +36,7 @@ namespace KnightBot.Modules.Public
                     var embed = new EmbedBuilder()
 
                     {
-                        Color = Colours.moneyCol,
+                        Color = Colors.moneyCol,
                         Author = auth
                     };
 
@@ -45,7 +45,7 @@ namespace KnightBot.Modules.Public
                     embed.Description = $"\n:money_with_wings: **Welcome To The Bank!** :\n\n:moneybag: **Bank : 100DollaBill**\n";
                     await ReplyAsync("", false, embed.Build());
                 }
-                else await errors.sendError(chan, "User already has a bank account", Colours.moneyCol);
+                else await errors.sendError(chan, "User already has a bank account", Colors.moneyCol);
             }
             else if (type.Equals("balance"))
             {
@@ -56,7 +56,7 @@ namespace KnightBot.Modules.Public
 
                 var embed = new EmbedBuilder()
                 {
-                    Color = Colours.moneyCol,
+                    Color = Colors.moneyCol,
                     Author = auth
                 };
 
@@ -78,7 +78,7 @@ namespace KnightBot.Modules.Public
 
                             balance = Database.GetUserMoney(Context.User).FirstOrDefault().Money;
                             var balance1 = Database.GetUserMoney(user).FirstOrDefault().Money;
-                            var embed = new EmbedBuilder() { Color = Colours.moneyCol };
+                            var embed = new EmbedBuilder() { Color = Colors.moneyCol };
                             var fromField = new EmbedFieldBuilder() { Name = Context.User.Username + "'s new balance:", Value = "$" + balance };
                             var toField = new EmbedFieldBuilder() { Name = user.Username + "'s new balance:", Value = "$" + balance1 };
 
@@ -91,22 +91,22 @@ namespace KnightBot.Modules.Public
                         }
                         else
                         {
-                            await errors.sendError(chan, "You need to enter an amount higher than 0 but lower than " + int.MaxValue + "!", Colours.moneyCol);
+                            await errors.sendError(chan, "You need to enter an amount higher than 0 but lower than " + int.MaxValue + "!", Colors.moneyCol);
                         }
                     }
                     else
                     {
-                        await errors.sendError(chan, "Erm, who are you trying to transfer money to?", Colours.moneyCol);
+                        await errors.sendError(chan, "Erm, who are you trying to transfer money to?", Colors.moneyCol);
                     }
                 }
                 else
                 {
-                    await errors.sendError(chan, "You do not have enough money to do this.", Colours.moneyCol);
+                    await errors.sendError(chan, "You do not have enough money to do this.", Colors.moneyCol);
                 }
             }
             else
             {
-                await errors.sendError(chan, "This bank command doesn't exist.", Colours.moneyCol);
+                await errors.sendError(chan, "This bank command doesn't exist.", Colors.moneyCol);
             }
         }
     }

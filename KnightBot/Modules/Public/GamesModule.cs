@@ -31,7 +31,7 @@ namespace KnightBot.Modules.Public
 
             var embed = new EmbedBuilder()
             {
-                Color = Colours.ballCol
+                Color = Colors.ballCol
             };
 
             embed.Title = "**╋━━━━━━◥◣ Magic 8 Ball ◢◤━━━━━━╋**";
@@ -51,7 +51,7 @@ namespace KnightBot.Modules.Public
             {
                 var embed = new EmbedBuilder()
                 {
-                    Color = Colours.moneyCol
+                    Color = Colors.moneyCol
                 };
                 embed.Description = (Context.User.Mention + ", you do not have enough money to roll the dice!");
                 await ReplyAsync("", false, embed.Build());
@@ -73,7 +73,7 @@ namespace KnightBot.Modules.Public
 
                     var embed = new EmbedBuilder()
                     {
-                        Color = Colours.moneyCol,
+                        Color = Colors.moneyCol,
                     };
 
                     embed.Title = $"Congrats {Context.User.Username}!";
@@ -89,7 +89,7 @@ namespace KnightBot.Modules.Public
 
                     var embed = new EmbedBuilder()
                     {
-                        Color = Colours.moneyCol,
+                        Color = Colors.moneyCol,
                     };
 
                     embed.Title = $"Sorry **{Context.User.Username}**!";

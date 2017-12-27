@@ -53,14 +53,7 @@ namespace KnightBot
             {
                 Database.updMoney(user, randAmt);
             }
-            
-            if (msg.Content.ToLower().Contains("eva"))
-            {
-                var embed = new EmbedBuilder() { Color = Colours.moneyCol };
-                embed.Title = "Eww!";
-                embed.Description = "Ewwwwww!";
-                await msg.Channel.SendMessageAsync("", false, embed);
-            }
+           
         }
 
 
@@ -83,7 +76,7 @@ namespace KnightBot
 
         public async Task SetGame()
         {
-            await bot.SetGameAsync("KnightBot.xyz");
+            await bot.SetGameAsync("KnightBot.xyz   -   " + BotConfig.Load().Prefix + "help");
         }
 
 

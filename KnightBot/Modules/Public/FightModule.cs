@@ -24,7 +24,7 @@ namespace KnightBot.Modules.Public
         static string SwitchCaseString = "nofight";
 
         [Command("fight")]
-        [Remarks("Starts a fight with the @mention user (example: !fight @Knight#1234")]
+        [Remarks("Starts a fight with the @mention user (example: !fight @Knight#0141")]
         public async Task Fight(IUser user)
         {
             if (Context.User.Mention != user.Mention && SwitchCaseString == "nofight")
@@ -56,7 +56,7 @@ namespace KnightBot.Modules.Public
 
                 var embed = new EmbedBuilder()
                 {
-                    Color = Colours.fightCol
+                    Color = Colors.fightCol
                 };
                 embed.Description = ("Fight started between " + Context.User.Mention + " and " + user.Mention + "!\n\n" + player1 + " you have " + health1 + " health!\n" + player2 + " you have " + health2 + " health!\n\n" + text + " your turn!");
                 await ReplyAsync("", false, embed.Build());
@@ -67,7 +67,7 @@ namespace KnightBot.Modules.Public
 
                 var embed = new EmbedBuilder()
                 {
-                    Color = Colours.fightCol
+                    Color = Colors.fightCol
                 };
                 embed.Description = (Context.User.Mention + " Sorry but there is already a fight going on, or  you simply tried to fight yourself.");
                 await ReplyAsync("", false, embed.Build());
@@ -84,7 +84,7 @@ namespace KnightBot.Modules.Public
             {
                 var embed = new EmbedBuilder()
                 {
-                    Color = Colours.fightCol
+                    Color = Colors.fightCol
                 };
                 embed.Description = ("The Fight Has Stopped!");
                 await ReplyAsync("", false, embed.Build());
@@ -97,7 +97,7 @@ namespace KnightBot.Modules.Public
             {
                 var embed = new EmbedBuilder()
                 {
-                    Color = Colours.fightCol
+                    Color = Colors.fightCol
                 };
                 embed.Description = (Context.User.Mention + ", There is no fight to stop.");
                 await ReplyAsync("", false, embed.Build());
@@ -135,7 +135,7 @@ namespace KnightBot.Modules.Public
 
                                 var embed = new EmbedBuilder()
                                 {
-                                    Color = Colours.fightCol
+                                    Color = Colors.fightCol
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " has " + health1 + " health left!\n" + player2 + " has " + health2 + " health left!\n" + whosTurn + " its your turn!");
                                 await ReplyAsync("", false, embed.Build());
@@ -146,7 +146,7 @@ namespace KnightBot.Modules.Public
 
                                 var embed = new EmbedBuilder()
                                 {
-                                    Color = Colours.fightCol
+                                    Color = Colors.fightCol
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " died. " + player2 + " won!");
                                 Database.updPoints(Context.User, 3);
@@ -169,7 +169,7 @@ namespace KnightBot.Modules.Public
 
                                 var embed = new EmbedBuilder()
                                 {
-                                    Color = Colours.fightCol
+                                    Color = Colors.fightCol
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " has " + health1 + " health left!\n" + player2 + " has " + health2 + " health left!\n" + whosTurn + " its your turn!");
                                 await ReplyAsync("", false, embed.Build());
@@ -179,7 +179,7 @@ namespace KnightBot.Modules.Public
 
                                 var embed = new EmbedBuilder()
                                 {
-                                    Color = Colours.fightCol
+                                    Color = Colors.fightCol
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player2 + " died. " + player1 + " won!");
                                 Database.updPoints(Context.User, 3);
@@ -195,7 +195,7 @@ namespace KnightBot.Modules.Public
                         {
                             var embed = new EmbedBuilder()
                             {
-                                Color = Colours.fightCol
+                                Color = Colors.fightCol
                             };
                             embed.Description = ("Sorry it seems like something went wrong! Please type " + BotConfig.Load().Prefix + "giveup");
                             await ReplyAsync("", false, embed.Build());
@@ -210,7 +210,7 @@ namespace KnightBot.Modules.Public
 
                         var embed = new EmbedBuilder()
                         {
-                            Color = Colours.fightCol
+                            Color = Colors.fightCol
                         };
                         embed.Description = (Context.User.Mention + ", sorry you missed!\n" + whosTurn + " your turn!");
                         await ReplyAsync("", false, embed.Build());
@@ -220,7 +220,7 @@ namespace KnightBot.Modules.Public
                 {
                     var embed = new EmbedBuilder()
                     {
-                        Color = Colours.fightCol
+                        Color = Colors.fightCol
                     };
                     embed.Description = (Context.User.Mention + ", It Is Not Your Turn!");
                     await ReplyAsync("", false, embed.Build());
@@ -230,7 +230,7 @@ namespace KnightBot.Modules.Public
             {
                 var embed = new EmbedBuilder()
                 {
-                    Color = Colours.fightCol
+                    Color = Colors.fightCol
                 };
                 embed.Description = (Context.User.Mention + ", There is no fight at the moment. Sorry :/");
                 await ReplyAsync("", false, embed.Build());
@@ -244,13 +244,13 @@ namespace KnightBot.Modules.Public
             var points = Database.GetUserPoints(Context.User).FirstOrDefault().Points;
             if (points >= 0)
             {
-                var embed = new EmbedBuilder() { Color = Colours.fightCol };
+                var embed = new EmbedBuilder() { Color = Colors.fightCol };
 
                 embed.Title = $"{Context.User.Username}'s Points";
                 embed.Description = $"You have " + points + " points from your fights!";
                 await ReplyAsync("", false, embed.Build());
             }
-            else await errors.sendError(Context.Channel, "You appear to have negative points, contact a developer.", Colours.fightCol);
+            else await errors.sendError(Context.Channel, "You appear to have negative points, contact a developer.", Colors.fightCol);
         }
     }
 }

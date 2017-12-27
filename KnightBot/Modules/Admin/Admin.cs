@@ -47,7 +47,7 @@ namespace KnightBot.Modules.Admin
         [RequireUserPermission(GuildPermission.Administrator)]
         public async Task AddRole(string prefix)
         {
-            if (prefix.Equals(null)) await errors.sendError(Context.Channel, "You need to enter the prefix you want to use!", Colours.adminCol);
+            if (prefix.Equals(null)) await errors.sendError(Context.Channel, "You need to enter the prefix you want to use!", Colors.adminCol);
             else
             {
                 config.Prefix = prefix;
@@ -60,7 +60,7 @@ namespace KnightBot.Modules.Admin
                 config.NSFWRole = BotConfig.Load().NSFWRole;
                 config.Save();
 
-                var embed = new EmbedBuilder() { Color = Colours.adminCol };
+                var embed = new EmbedBuilder() { Color = Colors.adminCol };
                 embed.Title = ("Set Prefix");
                 embed.Description = ("Prefix has been set to " + prefix + " successfully!");
                 await ReplyAsync("", false, embed.Build());
@@ -73,13 +73,13 @@ namespace KnightBot.Modules.Admin
         [RequireUserPermission(GuildPermission.BanMembers)]
         public async Task Ban(SocketGuildUser user = null, [Remainder] string reason = null)
         {
-            if (user == null) await errors.sendError(Context.Channel, "You must enter a user!", Colours.adminCol);
-            if (string.IsNullOrWhiteSpace(reason)) await errors.sendError(Context.Channel, "You must enter a reason!", Colours.adminCol);
+            if (user == null) await errors.sendError(Context.Channel, "You must enter a user!", Colors.adminCol);
+            if (string.IsNullOrWhiteSpace(reason)) await errors.sendError(Context.Channel, "You must enter a reason!", Colors.adminCol);
 
             var gld = Context.Guild as SocketGuild;
             var embed = new EmbedBuilder()
             {
-                Color = Colours.adminCol
+                Color = Colors.adminCol
             };
 
             embed.Title = $"**{user.Username}** has been banned!";
@@ -96,11 +96,11 @@ namespace KnightBot.Modules.Admin
         [RequireUserPermission(GuildPermission.KickMembers)]
         public async Task Kick(SocketGuildUser user = null, [Remainder] string reason = null)
         {
-            if (user == null) await errors.sendError(Context.Channel, "You must enter the user!", Colours.adminCol);
-            if (string.IsNullOrWhiteSpace(reason)) await errors.sendError(Context.Channel, "You must enter a reason!", Colours.adminCol);
+            if (user == null) await errors.sendError(Context.Channel, "You must enter the user!", Colors.adminCol);
+            if (string.IsNullOrWhiteSpace(reason)) await errors.sendError(Context.Channel, "You must enter a reason!", Colors.adminCol);
 
             var gld = Context.Guild as SocketGuild;
-            var embed = new EmbedBuilder() { Color = Colours.adminCol };
+            var embed = new EmbedBuilder() { Color = Colors.adminCol };
 
             embed.Title = $"**{user.Username}** has been kicked from **{user.Guild.Name}**!";
             embed.Description = $"**Username: **{user.Username}\n**Guild name: **{user.Guild.Name}\n**Kicked By: **{Context.User.Mention}\n**Reason: **{reason}";
@@ -116,15 +116,15 @@ namespace KnightBot.Modules.Admin
         [RequireUserPermission(GuildPermission.ManageRoles)]
         public async Task AddRole(IGuildUser user, [Remainder] string roleToBe)
         {
-            if (user.Equals(null)) await errors.sendError(Context.Channel, "You must enter the user!", Colours.adminCol);
-            if (string.IsNullOrWhiteSpace(roleToBe)) await errors.sendError(Context.Channel, "You must enter a role!", Colours.adminCol);
+            if (user.Equals(null)) await errors.sendError(Context.Channel, "You must enter the user!", Colors.adminCol);
+            if (string.IsNullOrWhiteSpace(roleToBe)) await errors.sendError(Context.Channel, "You must enter a role!", Colors.adminCol);
 
             var role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == roleToBe);
             await (user as IGuildUser).AddRoleAsync(role);
 
             var embed = new EmbedBuilder()
             {
-                Color = Colours.adminCol
+                Color = Colors.adminCol
             };
             embed.Description = (Context.User.Mention + ", had " + roleToBe + " added!");
             await ReplyAsync("", false, embed.Build());
@@ -138,15 +138,15 @@ namespace KnightBot.Modules.Admin
         [RequireUserPermission(GuildPermission.ManageRoles)]
         public async Task RemoveRole(IGuildUser user, [Remainder] string roleToRemove)
         {
-            if (user.Equals(null)) await errors.sendError(Context.Channel, "You must enter the user!", Colours.adminCol);
-            if (string.IsNullOrWhiteSpace(roleToRemove)) await errors.sendError(Context.Channel, "You must enter a role!", Colours.adminCol);
+            if (user.Equals(null)) await errors.sendError(Context.Channel, "You must enter the user!", Colors.adminCol);
+            if (string.IsNullOrWhiteSpace(roleToRemove)) await errors.sendError(Context.Channel, "You must enter a role!", Colors.adminCol);
 
             var role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == roleToRemove);
             await (user as IGuildUser).RemoveRoleAsync(role);
 
             var embed = new EmbedBuilder()
             {
-                Color = Colours.adminCol
+                Color = Colors.adminCol
             };
             embed.Description = (Context.User.Mention + ", had " + roleToRemove + " removed!");
             await ReplyAsync("", false, embed.Build());
@@ -170,14 +170,14 @@ namespace KnightBot.Modules.Admin
                     Database.updMoney(user, money);
                     var embed = new EmbedBuilder()
                     {
-                        Color = Colours.adminCol
+                        Color = Colors.adminCol
                     };
                     embed.Description = (Context.User.Mention + ", Has Gotton :moneybag: " + money + " Coins!");
                     await ReplyAsync("", false, embed.Build());
                 }
-                else await errors.sendError(Context.Channel, "You do not have permission to give people dosh!", Colours.adminCol);
+                else await errors.sendError(Context.Channel, "You do not have permission to give people dosh!", Colors.adminCol);
             }
-            else await errors.sendError(Context.Channel, "Appears money roles are not set up correctly, they are returning null!", Colours.adminCol);
+            else await errors.sendError(Context.Channel, "Appears money roles are not set up correctly, they are returning null!", Colors.adminCol);
         }
 
         [Command("rulenew")]
@@ -188,7 +188,7 @@ namespace KnightBot.Modules.Admin
 
             var embed = new EmbedBuilder()
             {
-                Color = Colours.adminCol
+                Color = Colors.adminCol
             };
             embed.Description = ("**Rules: **\n\n**1. **No Racial Slurs!\n**2. **Do Not Be Rude To Others!\n**3. **Do Not Spam Random Links / Messages!\n**4. **Don't Be An Asshat!\n\n**" + BotConfig.Load().Prefix + "accept** To Accept The Rules!");
             await ReplyAsync("", false, embed.Build());

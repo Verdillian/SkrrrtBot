@@ -43,7 +43,7 @@ namespace KnightBot.Modules.Public
  
             var embed = new EmbedBuilder()
             {
-                Color = Colours.adminCol
+                Color = Colors.adminCol
             };
 
             embed.Description = $"{dm}";
@@ -85,7 +85,7 @@ namespace KnightBot.Modules.Public
                     await Context.Message.DeleteAsync();
                 }
             }
-            else await errors.sendError(chan, "The new members role is not set up correctly in the config!", Colours.generalCol);
+            else await errors.sendError(chan, "The new members role is not set up correctly in the config!", Colors.generalCol);
         }
     }
 }
