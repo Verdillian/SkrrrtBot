@@ -58,7 +58,7 @@ namespace KnightBot.Modules.Public
             {
                 var embed = new EmbedBuilder() { Color = Colors.musicCol };
                 var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
-                var playField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "play <link to song on youtube (or pornhub)>", Value = "Plays the song in your voice channel." };
+                var playField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "play <link to song on youtube>", Value = "Plays the song in your voice channel." };
                 var stopField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "stop", Value = "Stops the song that is currently playing." };
 
                 embed.Title = $"Music Help";
@@ -116,6 +116,7 @@ namespace KnightBot.Modules.Public
                 var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
                 var kickField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "kick <user> <reason>", Value = "Kicks the user specified." };
                 var banField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "ban <user> <reason>", Value = "Bans the user specified." };
+                var clearField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "clear <Amount>", Value = "Clear 1-100 Messages." };
 
                 embed.Title = $"Admin Help";
                 embed.Description = "All of the admin commands.";
@@ -123,6 +124,7 @@ namespace KnightBot.Modules.Public
                 embed.WithCurrentTimestamp();
                 embed.AddField(kickField);
                 embed.AddField(banField);
+                embed.AddField(clearField);
 
                 await Context.Channel.SendMessageAsync("", false, embed);
             }

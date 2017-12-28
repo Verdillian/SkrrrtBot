@@ -32,8 +32,7 @@ namespace KnightBot.Modules.Admin
             await Context.Message.DeleteAsync();
         }
 
-        [Command("clear")]
-        [Alias("c")]
+        [Command("c")]
         [Remarks("Clears all messages in a channel")]
         [RequireUserPermission(GuildPermission.ManageMessages)]
         public async Task Clear()
@@ -41,6 +40,36 @@ namespace KnightBot.Modules.Admin
             var items = await Context.Channel.GetMessagesAsync().Flatten();
             await Context.Channel.DeleteMessagesAsync(items);
         }
+
+        [Command("clear")]
+        [RequireUserPermission(GuildPermission.ManageMessages)]
+        public async Task Cl([Remainder] int x = 0)
+        {
+
+            if (x <= 0)
+            {
+                var embed = new EmbedBuilder() { Color = Colors.adminCol };
+                embed.Title = ("**Clear Messages**");
+                embed.Description = ($"**{Context.User.Mention}**, You Cannot Delete **0** Messages!");
+                await ReplyAsync("", false, embed.Build());
+            } else if (x <= 100)
+            {
+                var messagesToDelete = await Context.Channel.GetMessagesAsync(x + 1).Flatten();
+                await Context.Channel.DeleteMessagesAsync(messagesToDelete);
+
+                var embed = new EmbedBuilder() { Color = Colors.adminCol };
+                embed.Title = ("**Clear Messages**");
+                embed.Description = ($"**{Context.User.Mention}** Deleted **{x}** Messages.");
+                await ReplyAsync("", false, embed.Build());
+            } else if (x > 100)
+            {
+                var embed = new EmbedBuilder() { Color = Colors.adminCol };
+                embed.Title = ("**Clear Messages**");
+                embed.Description = ("**{Context.User.Mention}**, You Cannot Delete More Than 100 Messages!");
+                await ReplyAsync("", false, embed.Build());
+            }
+        }
+
 
         [Command("setprefix")]
         [RequireBotPermission(GuildPermission.Administrator)]
