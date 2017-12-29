@@ -16,7 +16,6 @@ namespace KnightBot.Modules.Public
     {
         Errors errors = new Errors();
 
-        private string randomString = "";
 
         // DM Command - Sends a message directly to knight.
         private static IUser ThisIsMe;

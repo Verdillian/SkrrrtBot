@@ -11,12 +11,17 @@ using KnightBot.util;
 using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.Collections.Concurrent;
+using System.IO;
 
 namespace KnightBot.Modules.Public
 {
     public class MusicModule : ModuleBase
     {
         Errors errors = new Errors();
+
+
 
         private Process CreateStream(string url)
         {
@@ -35,13 +40,17 @@ namespace KnightBot.Modules.Public
             return currentsong;
         }
 
+        private IVoiceChannel channel;
+        private IAudioClient client;
+
+
 
 
         public async Task SendLinkAsync(IGuild guild, string url)
         {
 
-            IVoiceChannel channel = (Context.User as IVoiceState).VoiceChannel;
-            IAudioClient client = await channel.ConnectAsync();
+            channel = (Context.User as IVoiceState).VoiceChannel;
+            client = await channel.ConnectAsync();
 
             var output = CreateStream(url).StandardOutput.BaseStream;
             var stream = client.CreatePCMStream(AudioApplication.Music, 128 * 1024);
@@ -54,28 +63,31 @@ namespace KnightBot.Modules.Public
 
         public async Task StopAudio(IGuild guild)
         {
-            IVoiceChannel channel = (Context.User as IVoiceState).VoiceChannel;
-            IAudioClient client = await channel.ConnectAsync();
+            channel = (Context.User as IVoiceState).VoiceChannel;
+            client = await channel.ConnectAsync();
 
             await client.StopAsync();
             return;
         }
 
 
-
         [Command("play", RunMode = RunMode.Async)]
         public async Task play(string url)
         {
+            IVoiceChannel channel = (Context.User as IVoiceState).VoiceChannel;
+            IAudioClient client = await channel.ConnectAsync();
+
+            var output = CreateStream(url).StandardOutput.BaseStream;
+            var stream = client.CreatePCMStream(AudioApplication.Music, 128 * 1024);
+            await output.CopyToAsync(stream);
+            await stream.FlushAsync().ConfigureAwait(false);
+
             var embed = new EmbedBuilder()
             {
                 Color = Colors.musicCol
             };
             embed.Description = (Context.User.Mention + ", Has decided to listen to music!");
-
             await Context.Channel.SendMessageAsync("", false, embed);
-
-            await SendLinkAsync(Context.Guild, url);
-
             await Context.Message.DeleteAsync();
         }
 

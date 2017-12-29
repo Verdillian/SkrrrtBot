@@ -42,7 +42,7 @@ namespace KnightBot.Modules.Public
 
 
                     embed.Title = $"{Context.User.Username} Has Opened A Bank Account!";
-                    embed.Description = $"\n:money_with_wings: **Welcome To The Bank!** :\n\n:moneybag: **Bank : 100DollaBill**\n";
+                    embed.Description = $"\n:money_with_wings: **Welcome To The Bank!** :\n\n:moneybag: **Bank : OneDollaBill**\n";
                     await ReplyAsync("", false, embed.Build());
                 }
                 else await errors.sendError(chan, "User already has a bank account", Colors.moneyCol);
