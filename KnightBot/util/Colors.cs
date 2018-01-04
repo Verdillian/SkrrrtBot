@@ -15,5 +15,6 @@ namespace KnightBot.util
         public static Color ballCol = new Color(0, 0, 0);
         public static Color fightCol = new Color(94, 36, 10);
         public static Color musicCol = new Color(18, 196, 30);
+        public static Color helpCol = new Color(227, 179, 223);
     }
 }

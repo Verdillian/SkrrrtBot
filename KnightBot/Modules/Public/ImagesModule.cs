@@ -22,7 +22,7 @@ namespace KnightBot.Modules.Public
         [Summary("Posts random doggo pictures!")]
         public async Task Dog()
         {
-            Console.WriteLine("Making API Call...");
+            await Program.Logger(new LogMessage(LogSeverity.Debug, "[API]", "The Dog API Is Loading!"));
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
                 string websiteurl = "https://random.dog/woof.json";
@@ -68,7 +68,7 @@ namespace KnightBot.Modules.Public
         [Summary("Posts random cat pictures!")]
         public async Task Cat()
         {
-            Console.WriteLine("Making API Call...");
+            await Program.Logger(new LogMessage(LogSeverity.Debug, "[API]", "The Cat API Is Loading!"));
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
                 string websiteurl = "http://random.cat/meow";
@@ -82,5 +82,7 @@ namespace KnightBot.Modules.Public
             }
             await Context.Message.DeleteAsync();
         }
+
+
     }
 }

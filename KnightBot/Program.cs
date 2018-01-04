@@ -38,7 +38,7 @@ namespace KnightBot
             //Block this program untill it is closed
             await Task.Delay(-1);
         }
-        private static Task Logger(LogMessage lmsg)
+        public static Task Logger(LogMessage lmsg)
         {
             var cc = Console.ForegroundColor;
             switch (lmsg.Severity)
@@ -54,6 +54,8 @@ namespace KnightBot
                     Console.ForegroundColor = ConsoleColor.White;
                     break;
                 case LogSeverity.Verbose:
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    break;
                 case LogSeverity.Debug:
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     break;
@@ -82,19 +84,19 @@ namespace KnightBot
                 Console.Write("Bot Prefix: ");
                 config.Prefix = Console.ReadLine();              // Read the bot prefix from console.
 
-                Console.WriteLine("New Member Role: ");
+                Console.Write("New Member Role: ");
                 config.NewMemberRank = Console.ReadLine();
 
-                Console.WriteLine("Money Role: ");
+                Console.Write("Money Role: ");
                 config.MoneyRole = Console.ReadLine();
 
-                Console.WriteLine("Second Money Role: ");
+                Console.Write("Second Money Role: ");
                 config.MoneyRole1 = Console.ReadLine();
 
-                Console.WriteLine("Third Money Role: ");
+                Console.Write("Third Money Role: ");
                 config.MoneyRole2 = Console.ReadLine();
 
-                Console.WriteLine("NSFW Role: ");
+                Console.Write("NSFW Role: ");
                 config.NSFWRole = Console.ReadLine();
 
                 config.Save();                                  // Save the new configuration object to file.

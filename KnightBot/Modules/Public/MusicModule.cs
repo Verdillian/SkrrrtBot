@@ -19,57 +19,27 @@ namespace KnightBot.Modules.Public
 {
     public class MusicModule : ModuleBase
     {
-        Errors errors = new Errors();
 
-
+        IVoiceChannel channel;
+        IAudioClient client;
 
         private Process CreateStream(string url)
         {
-            Process currentsong = new Process();
-
-            currentsong.StartInfo = new ProcessStartInfo
+            Process currentsong = new Process
             {
-                FileName = "cmd.exe",
-                Arguments = $"/C youtube-dl.exe -o - {url} | ffmpeg -i pipe:0 -ac 2 -f s16le -ar 48000 pipe:1",
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                CreateNoWindow = true
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "cmd.exe",
+                    Arguments = $"/C youtube-dl.exe -o - {url} | ffmpeg -i pipe:0 -ac 2 -f s16le -ar 48000 pipe:1",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                }
             };
 
             currentsong.Start();
             return currentsong;
         }
-
-        private IVoiceChannel channel;
-        private IAudioClient client;
-
-
-
-
-        public async Task SendLinkAsync(IGuild guild, string url)
-        {
-
-            channel = (Context.User as IVoiceState).VoiceChannel;
-            client = await channel.ConnectAsync();
-
-            var output = CreateStream(url).StandardOutput.BaseStream;
-            var stream = client.CreatePCMStream(AudioApplication.Music, 128 * 1024);
-            await output.CopyToAsync(stream);
-            await stream.FlushAsync().ConfigureAwait(false);
-        }
-
-
-
-
-        public async Task StopAudio(IGuild guild)
-        {
-            channel = (Context.User as IVoiceState).VoiceChannel;
-            client = await channel.ConnectAsync();
-
-            await client.StopAsync();
-            return;
-        }
-
 
         [Command("play", RunMode = RunMode.Async)]
         public async Task play(string url)
@@ -82,13 +52,19 @@ namespace KnightBot.Modules.Public
             await output.CopyToAsync(stream);
             await stream.FlushAsync().ConfigureAwait(false);
 
-            var embed = new EmbedBuilder()
-            {
-                Color = Colors.musicCol
-            };
-            embed.Description = (Context.User.Mention + ", Has decided to listen to music!");
-            await Context.Channel.SendMessageAsync("", false, embed);
-            await Context.Message.DeleteAsync();
+            var messageToDel = await ReplyAsync(Context.User.Mention + "Has Decided To Listen To" + url);
+            await Delete.DelayDeleteMessage(Context.Message, 10);
+            await Delete.DelayDeleteMessage(messageToDel, 10);
+        }
+
+
+        private async Task StopAudio(IGuild guild)
+        {
+            channel = (Context.User as IVoiceState).VoiceChannel;
+            client = await channel.ConnectAsync();
+
+            await client.StopAsync();
+
         }
 
         [Command("stop", RunMode = RunMode.Async)]
@@ -98,5 +74,7 @@ namespace KnightBot.Modules.Public
 
             await Context.Message.DeleteAsync();
         }
+
+
     }
 }
