@@ -53,7 +53,6 @@ namespace KnightBot.Modules.Public
             await stream.FlushAsync().ConfigureAwait(false);
 
             var messageToDel = await ReplyAsync(Context.User.Mention + "Has Decided To Listen To" + url);
-            await Delete.DelayDeleteMessage(Context.Message, 10);
             await Delete.DelayDeleteMessage(messageToDel, 10);
         }
 

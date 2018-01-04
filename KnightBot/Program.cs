@@ -54,10 +54,10 @@ namespace KnightBot
                     Console.ForegroundColor = ConsoleColor.White;
                     break;
                 case LogSeverity.Verbose:
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.ForegroundColor = ConsoleColor.Gray;
                     break;
                 case LogSeverity.Debug:
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.ForegroundColor = ConsoleColor.Gray;
                     break;
             }
             Console.WriteLine($"{DateTime.Now} [{lmsg.Severity,8}] {lmsg.Source}: {lmsg.Message}");
