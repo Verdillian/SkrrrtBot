@@ -76,7 +76,7 @@ namespace KnightBot
 
         public async Task SetGame()
         {
-            await bot.SetGameAsync("KnightBot.xyz   -   " + BotConfig.Load().Prefix + "help");
+            await bot.SetGameAsync(BotConfig.Load().Prefix + "help" + " | " + "KnightBot.xyz");
         }
 
 
