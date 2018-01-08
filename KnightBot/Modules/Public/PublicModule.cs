@@ -86,5 +86,9 @@ namespace KnightBot.Modules.Public
             }
             else await errors.sendError(chan, "The new members role is not set up correctly in the config!", Colors.generalCol);
         }
+
+
+
+
     }
 }
