@@ -9,6 +9,7 @@ using KnightBot.Config;
 using System.Linq;
 using KnightBot.util;
 using KnightBot.Nsfw;
+using KnightBot.Modules.NewServer;
 
 namespace KnightBot.Modules.Nsfw
 {
@@ -25,7 +26,7 @@ namespace KnightBot.Modules.Nsfw
 
             if (type.Equals("join"))
             {
-                var nsfwRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().NSFWRole);
+                var nsfwRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").NSFWRole);
                 if (nsfwRole != null)
                 {
                     if (!userName.Roles.Contains(nsfwRole))

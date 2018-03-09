@@ -4,6 +4,7 @@ using Discord;
 using Discord.Commands;
 using System.Linq;
 using KnightBot.util;
+using KnightBot.Modules.Economy;
 
 namespace KnightBot.Modules.Public
 {
@@ -42,12 +43,14 @@ namespace KnightBot.Modules.Public
             await Context.Message.DeleteAsync();
         }
 
+        private BankConfig save = new BankConfig();
+
         [Command("roll")]
         public async Task betcmd(int bet)
         {
-            var econ = Database.GetUserMoney(Context.User);
+            var econ = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
 
-            if (econ.FirstOrDefault().Money < bet)
+            if (econ < bet)
             {
                 var embed = new EmbedBuilder()
                 {
@@ -80,7 +83,12 @@ namespace KnightBot.Modules.Public
                     embed.Description = $"You Have Made ${bet}!\n\n {Context.User.Mention} You Rolled **{userRoll}** and I rolled **{rolled}**";
                     await ReplyAsync("", false, embed.Build());
 
-                    Database.updMoney(Context.User, bet);
+
+                    save.currentMoney = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney + bet;
+                    save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+                    save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+                    save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
                 }
                 else
                 {
@@ -96,7 +104,10 @@ namespace KnightBot.Modules.Public
                     embed.Description = $"You Have Lost ${bet}!\n\n {Context.User.Mention} You Rolled **{userRoll}** and I rolled **{rolled}**";
                     await ReplyAsync("", false, embed.Build());
 
-                    Database.updMoney(Context.User, betremove);
+                    save.currentMoney = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney - bet;
+                    save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+                    save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+                    save.Save("bank/" + Context.User.Id.ToString() + ".json");
                 }
             }
         }

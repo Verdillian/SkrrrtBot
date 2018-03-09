@@ -20,6 +20,9 @@ namespace KnightBot.Modules.Public
     public class MusicModule : ModuleBase
     {
 
+        // Broken Not Sure Why Not Looking Into It.
+
+
         IVoiceChannel channel;
         IAudioClient client;
 

@@ -1,5 +1,7 @@
 # KnightBot
 
+Website: Https://KnightBot.xyz/
+
 This discord bot is going to include some cool things.
 
 [prefix] means the defined prefix when you first start the bot.
