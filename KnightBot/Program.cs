@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using KnightBot.Config;
 using System.IO;
 using System.Collections.Generic;
+using KnightBot.Modules.NewServer;
 
 namespace KnightBot
 {
@@ -75,6 +76,8 @@ namespace KnightBot
             if (!File.Exists(loc))                              // Check if the configuration file exists.
             {
                 var config = new BotConfig();               // Create a new configuration object.
+
+                var newserv = new ServerConfig();
 
                 Console.WriteLine("Please enter the following information to save into your configuration/config.json file");
 

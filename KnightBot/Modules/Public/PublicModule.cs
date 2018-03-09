@@ -9,6 +9,7 @@ using KnightBot.util;
 using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using KnightBot.Modules.NewServer;
 
 namespace KnightBot.Modules.Public
 {
@@ -86,9 +87,6 @@ namespace KnightBot.Modules.Public
             }
             else await errors.sendError(chan, "The new members role is not set up correctly in the config!", Colors.generalCol);
         }
-
-
-
 
     }
 }

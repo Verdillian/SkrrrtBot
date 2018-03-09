@@ -183,6 +183,8 @@ namespace KnightBot.Modules.Admin
             await Context.Message.DeleteAsync();
         }
         
+
+        /**
         [Command("addmoney")]
         public async Task Addmoney(IGuildUser user, [Remainder] int money)
         {
@@ -208,7 +210,7 @@ namespace KnightBot.Modules.Admin
             }
             else await errors.sendError(Context.Channel, "Appears money roles are not set up correctly, they are returning null!", Colors.adminCol);
         }
-
+    **/
         [Command("rulenew")]
         [RequireUserPermission(GuildPermission.Administrator)]
         public async Task ruleNew()

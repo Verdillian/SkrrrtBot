@@ -12,6 +12,8 @@ namespace KnightBot.Modules.Public
     {
         Errors errors = new Errors();
 
+        //Doesnt actually do anything? Legit just announces shit.
+
         static string auctionCheck = "";
         static ulong currentAuction = 0;
         static int hightBid;
