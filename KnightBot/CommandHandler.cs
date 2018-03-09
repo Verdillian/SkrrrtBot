@@ -104,7 +104,29 @@ namespace KnightBot
 
 
 
+<<<<<<< HEAD
             if (message.HasStringPrefix(BotConfig.Load().Prefix, ref argPos))
+=======
+            if (!message.HasStringPrefix(ServerConfig.Load("servers/" + context.Guild.Id.ToString() + ".json").serverPrefix, ref argPos))
+            {
+                if (message.HasStringPrefix(BotConfig.Load().Prefix, ref argPos))
+                {
+
+
+
+                    if (message.Author.IsBot)
+                        return;
+                    //Execute the command, store the result
+                    var result = await commands.ExecuteAsync(context, argPos, map);
+
+                    //If the command failed, notify the user
+                    if (!result.IsSuccess && result.ErrorReason != "Unknown command.")
+
+                        await message.Channel.SendMessageAsync($"**Error:** {result.ErrorReason}");
+                }
+            }
+            else if (message.HasStringPrefix(ServerConfig.Load("servers/" + context.Guild.Id.ToString() + ".json").serverPrefix, ref argPos))
+>>>>>>> aedbafb90e09002dfb831b32836c6344cea62197
             {
 
 
