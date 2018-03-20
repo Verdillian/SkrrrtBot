@@ -13,12 +13,15 @@ namespace KnightBot.Modules.Public
     {
         Errors errors = new Errors();
 
+<<<<<<< HEAD
 
         private int total;
 
         private BankConfig save = new BankConfig();
 
 
+=======
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         //Doesnt actually do anything? Legit just announces shit.
 
         static string auctionCheck = "";

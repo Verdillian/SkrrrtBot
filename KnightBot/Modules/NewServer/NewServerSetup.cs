@@ -4,7 +4,10 @@ using Discord.Commands;
 using System.IO;
 using Newtonsoft.Json;
 using Discord;
+<<<<<<< HEAD
 using KnightBot.util;
+=======
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
 
 namespace KnightBot.Modules.NewServer
 {
@@ -28,6 +31,7 @@ namespace KnightBot.Modules.NewServer
                 save.NSFWRole = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").NSFWRole;
                 save.serverPrefix = prefix;
                 save.Save("servers/" + save.serverID + ".json");
+<<<<<<< HEAD
 
 
                 var message = await ReplyAsync("Prefix Has Been Set! Continue With Setup by Doing --newmemrole (role you want)");
@@ -37,6 +41,9 @@ namespace KnightBot.Modules.NewServer
 
             await Context.Message.DeleteAsync();
 
+=======
+            }
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         }
 
         [Command("newmemrole")]
@@ -53,6 +60,7 @@ namespace KnightBot.Modules.NewServer
                 save.NSFWRole = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").NSFWRole;
                 
                 save.Save("servers/" + Context.Guild.Id.ToString() + ".json");
+<<<<<<< HEAD
 
                 var message = await ReplyAsync("New Member Role Has Been Set! Continue With Setup by Setting the Accepted Member Role --accmemrole (role you want)");
                 await Delete.DelayDeleteMessage(message, 10);
@@ -63,6 +71,9 @@ namespace KnightBot.Modules.NewServer
             await Context.Message.DeleteAsync();
 
 
+=======
+            }
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         }
 
         [Command("accmemrole")]
@@ -81,6 +92,7 @@ namespace KnightBot.Modules.NewServer
 
                 save.Save("servers/" + Context.Guild.Id.ToString() + ".json");
 
+<<<<<<< HEAD
 
                 var message = await ReplyAsync("Accepted Member Role Has Been Set! Continue With Setup by Setting the Money Role (admin role that can give money to people) --monrole (role you want)");
                 await Delete.DelayDeleteMessage(message, 10);
@@ -90,6 +102,9 @@ namespace KnightBot.Modules.NewServer
 
             await Context.Message.DeleteAsync();
 
+=======
+            }
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         }
 
         [Command("monrole")]
@@ -106,6 +121,7 @@ namespace KnightBot.Modules.NewServer
                 save.NSFWRole = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").NSFWRole;
 
                 save.Save("servers/" + Context.Guild.Id.ToString() + ".json");
+<<<<<<< HEAD
 
 
                 var message = await ReplyAsync("Money Role Has Been Set! Continue With Setup by Setting the NSFW Role --nsfwrole (role you want)");
@@ -117,6 +133,9 @@ namespace KnightBot.Modules.NewServer
 
             await Context.Message.DeleteAsync();
 
+=======
+            }
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         }
 
         [Command("nsfwrole")]
@@ -133,6 +152,7 @@ namespace KnightBot.Modules.NewServer
                 save.NSFWRole = nsfwrole;
 
                 save.Save("servers/" + Context.Guild.Id.ToString() + ".json");
+<<<<<<< HEAD
 
                 var message = await ReplyAsync("NSFW Role Has Been Set! You Have Completed Setup And Can Now Use The Prefix You Have Defined Previously. If You Somehow Forget The Prefix Feel Free To Use --dm and DM the creator of the bot!");
                 await Delete.DelayDeleteMessage(message, 10);
@@ -141,13 +161,23 @@ namespace KnightBot.Modules.NewServer
 
             await Context.Message.DeleteAsync();
 
+=======
+            }
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         }
 
         public static readonly string appdir = AppContext.BaseDirectory;
 
+<<<<<<< HEAD
         // attempted create thing -- WORKS!!!!!!
 
         [Command("create")]
+=======
+        // attempted create thing
+
+        [Command("create")]
+        [RequireUserPermission(GuildPermission.Administrator)]
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         public async Task createServer()
         {
             if (!File.Exists(appdir + "servers/" + Context.Guild.Id.ToString() + ".json"))
@@ -175,11 +205,14 @@ namespace KnightBot.Modules.NewServer
 
             save.Save("servers/" + Context.Guild.Id.ToString() + ".json");
 
+<<<<<<< HEAD
             var message = await ReplyAsync("File Has Been Created! Continue With Setup by Doing --prefix (prefix you want)");
             await Delete.DelayDeleteMessage(message, 10);
 
             await Context.Message.DeleteAsync();
 
+=======
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         }
 
 

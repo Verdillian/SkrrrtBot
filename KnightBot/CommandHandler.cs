@@ -11,7 +11,10 @@ using KnightBot.Modules.Public;
 using KnightBot.util;
 using KnightBot.Modules.NewServer;
 using System.IO;
+<<<<<<< HEAD
 using KnightBot.Modules.Economy;
+=======
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
 
 namespace KnightBot
 {
@@ -38,7 +41,7 @@ namespace KnightBot
             //Send user message to get handled
             bot.MessageReceived += HandleCommand;
             commands = map.GetService<CommandService>();
-            bot.MessageReceived += addMoney;
+           // bot.MessageReceived += addMoney;
         }
 
         /*
@@ -64,6 +67,7 @@ namespace KnightBot
             {
                 Database.updMoney(user, randAmt);
             }
+<<<<<<< HEAD
 
         }
         */
@@ -83,6 +87,11 @@ namespace KnightBot
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
 
         }
+=======
+
+        }
+        */
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
 
 
         public async Task AnnounceLeftUser(SocketGuildUser user) { }
@@ -93,6 +102,15 @@ namespace KnightBot
 
             var role = user.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == newmemrole);
             await (user as IGuildUser).AddRoleAsync(role);
+<<<<<<< HEAD
+=======
+
+            //var result = Database.CheckExistingUser(user);
+            //if(result.Count() <= 0)
+            //{
+            //    Database.EnterUser(user);
+            //}
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         }
 
         public async Task SetGame()
@@ -124,6 +142,9 @@ namespace KnightBot
 
             if (message.HasStringPrefix(BotConfig.Load().Prefix, ref argPos))
             {
+
+
+
                 if (message.Author.IsBot)
                     return;
                 //Execute the command, store the result
@@ -146,6 +167,21 @@ namespace KnightBot
 
                     await message.Channel.SendMessageAsync($"**Error:** {result.ErrorReason}");
             }
+<<<<<<< HEAD
+            else if (message.HasStringPrefix(ServerConfig.Load("servers/" + context.Guild.Id.ToString() + ".json").serverPrefix, ref argPos))
+            {
+                if (message.Author.IsBot)
+                    return;
+                //Execute the command, store the result
+                var result = await commands.ExecuteAsync(context, argPos, map);
+
+                //If the command failed, notify the user
+                if (!result.IsSuccess && result.ErrorReason != "Unknown command.")
+
+                    await message.Channel.SendMessageAsync($"**Error:** {result.ErrorReason}");
+            }
+=======
+>>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
 
 
 
