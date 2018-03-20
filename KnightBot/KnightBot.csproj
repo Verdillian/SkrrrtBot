@@ -16,7 +16,7 @@
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="6.10.5" />
     <PackageReference Include="RestSharp" Version="106.1.0" />
     <PackageReference Include="RevStackCore-ImageSharp" Version="0.9.0" />
-    <PackageReference Include="TwitchLib" Version="1.5.4" />
+    <PackageReference Include="TwitchLib" Version="1.6.1" />
   </ItemGroup>
 
   <ItemGroup>

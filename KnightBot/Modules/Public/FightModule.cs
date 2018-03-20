@@ -5,12 +5,23 @@ using System.Linq;
 using KnightBot.Config;
 using KnightBot.util;
 using System.Threading.Tasks;
+using KnightBot.Modules.Economy;
 
 namespace KnightBot.Modules.Public
 {
     public class FightModule : ModuleBase<SocketCommandContext>
     {
         Errors errors = new Errors();
+
+        private BankConfig save = new BankConfig();
+
+
+        private int total;
+
+
+
+        //NOTE: Fights are a little broken.. Give a erroe 403 FORBIDDEN. Not sure why.. Not super important. might find out another day but not right now.
+
 
         static string player1;
         static string player2;
@@ -73,6 +84,20 @@ namespace KnightBot.Modules.Public
                 await ReplyAsync("", false, embed.Build());
             }
             await Context.Message.DeleteAsync();
+
+
+            var result = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+
+            int bal = 10;
+
+            total = result + bal;
+
+            save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+            save.currentMoney = total;
+            save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+            save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+
         }
 
         [Command("giveup")]
@@ -103,6 +128,20 @@ namespace KnightBot.Modules.Public
                 await ReplyAsync("", false, embed.Build());
             }
             await Context.Message.DeleteAsync();
+
+
+            var result = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+
+            int bal = 10;
+
+            total = result + bal;
+
+            save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+            save.currentMoney = total;
+            save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+            save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+
         }
 
         [Command("slash")]
@@ -143,13 +182,19 @@ namespace KnightBot.Modules.Public
                             }
                             else
                             {
+                                
 
                                 var embed = new EmbedBuilder()
                                 {
                                     Color = Colors.fightCol
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player1 + " died. " + player2 + " won!");
-                                Database.updPoints(Context.User, 3);
+                                //Database.updPoints(Context.User, 3);
+                                save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints + 3;
+                                save.currentMoney = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+                                save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+                                save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
                                 await ReplyAsync("", false, embed.Build());
 
                                 SwitchCaseString = "nofight;";
@@ -182,7 +227,13 @@ namespace KnightBot.Modules.Public
                                     Color = Colors.fightCol
                                 };
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player2 + " died. " + player1 + " won!");
-                                Database.updPoints(Context.User, 3);
+                                //Database.updPoints(Context.User, 3);
+
+                                save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints + 3;
+                                save.currentMoney = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+                                save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+                                save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
                                 await ReplyAsync("", false, embed.Build());
 
 
@@ -236,12 +287,26 @@ namespace KnightBot.Modules.Public
                 await ReplyAsync("", false, embed.Build());
             }
             await Context.Message.DeleteAsync();
+
+
+            var result = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+
+            int bal = 10;
+
+            total = result + bal;
+
+            save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+            save.currentMoney = total;
+            save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+            save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+
         }
 
         [Command("points")]
         public async Task Points()
         {
-            var points = Database.GetUserPoints(Context.User).FirstOrDefault().Points;
+            var points = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             if (points >= 0)
             {
                 var embed = new EmbedBuilder() { Color = Colors.fightCol };
@@ -251,6 +316,18 @@ namespace KnightBot.Modules.Public
                 await ReplyAsync("", false, embed.Build());
             }
             else await errors.sendError(Context.Channel, "You appear to have negative points, contact a developer.", Colors.fightCol);
+
+            var result = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+
+            int bal = 10;
+
+            total = result + bal;
+
+            save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+            save.currentMoney = total;
+            save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+            save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
         }
     }
 }

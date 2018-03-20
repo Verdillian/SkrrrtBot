@@ -5,12 +5,21 @@ using Discord.WebSocket;
 using Discord.Commands;
 using System.Linq;
 using KnightBot.util;
+using KnightBot.Modules.Economy;
 
 namespace KnightBot.Modules.Public
 {
     public class AuctionModule : ModuleBase
     {
         Errors errors = new Errors();
+
+
+        private int total;
+
+        private BankConfig save = new BankConfig();
+
+
+        //Doesnt actually do anything? Legit just announces shit.
 
         static string auctionCheck = "";
         static ulong currentAuction = 0;
@@ -49,6 +58,20 @@ namespace KnightBot.Modules.Public
 
                 currentAuction = message.Id;
             }
+
+
+            var result = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+
+            int bal = 10;
+
+            total = result + bal;
+
+            save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+            save.currentMoney = total;
+            save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+            save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+
         }
 
         [Command("auctionend")]
@@ -85,6 +108,20 @@ namespace KnightBot.Modules.Public
                 currentAuction = 0;
                 await Context.Channel.SendMessageAsync("", false, embed);
             }
+
+
+            var result = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+
+            int bal = 10;
+
+            total = result + bal;
+
+            save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+            save.currentMoney = total;
+            save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+            save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+
         }
 
         [Command("auctioncheck")]
@@ -103,6 +140,20 @@ namespace KnightBot.Modules.Public
             var embed = auctionStatus.Result.Embeds.FirstOrDefault() as Embed;
             await DM.SendMessageAsync("", false, embed);
             await Delete.DelayDeleteMessage(Context.Message, 10);
+
+
+            var result = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+
+            int bal = 10;
+
+            total = result + bal;
+
+            save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+            save.currentMoney = total;
+            save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+            save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+
         }
 
         [Command("bid")]
@@ -145,6 +196,20 @@ namespace KnightBot.Modules.Public
                 var message2 = await ReplyAsync($"The current highest bidder is {highBidder.Mention} with a bid of {hightBid} :moneybag: ");
 
             }
+
+
+            var result = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+
+            int bal = 10;
+
+            total = result + bal;
+
+            save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+            save.currentMoney = total;
+            save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+            save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+
         }
 
         private async Task UpDateHighBidder(SocketUserMessage messageDetails, int bid)
@@ -166,6 +231,20 @@ namespace KnightBot.Modules.Public
                 x.IsInline = false;
                 x.Value = $"{currentItem} highest bid is {bid} by {highBidder}.";
             });
+
+
+            var result = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+
+            int bal = 10;
+
+            total = result + bal;
+
+            save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+            save.currentMoney = total;
+            save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+            save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+
         }
     }
 }

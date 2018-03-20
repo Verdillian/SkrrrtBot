@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using KnightBot.Config;
 using KnightBot;
 using KnightBot.util;
+using KnightBot.Modules.NewServer;
 
 namespace KnightBot.Modules.Admin
 {
@@ -26,19 +27,11 @@ namespace KnightBot.Modules.Admin
         [RequireUserPermission(GuildPermission.Administrator)]
         public async Task Setgame()
         {
-            await (Context.Client as DiscordSocketClient).SetGameAsync("KnightBot.xyz");
+
+            await (Context.Client as DiscordSocketClient).SetGameAsync(ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "help" + " | " + "KnightBot.xyz");
 
 
             await Context.Message.DeleteAsync();
-        }
-
-        [Command("c")]
-        [Remarks("Clears all messages in a channel")]
-        [RequireUserPermission(GuildPermission.ManageMessages)]
-        public async Task Clear()
-        {
-            var items = await Context.Channel.GetMessagesAsync().Flatten();
-            await Context.Channel.DeleteMessagesAsync(items);
         }
 
         [Command("clear")]
@@ -66,32 +59,6 @@ namespace KnightBot.Modules.Admin
                 var embed = new EmbedBuilder() { Color = Colors.adminCol };
                 embed.Title = ("**Clear Messages**");
                 embed.Description = ("**{Context.User.Mention}**, You Cannot Delete More Than 100 Messages!");
-                await ReplyAsync("", false, embed.Build());
-            }
-        }
-
-
-        [Command("setprefix")]
-        [RequireBotPermission(GuildPermission.Administrator)]
-        [RequireUserPermission(GuildPermission.Administrator)]
-        public async Task AddRole(string prefix)
-        {
-            if (prefix.Equals(null)) await errors.sendError(Context.Channel, "You need to enter the prefix you want to use!", Colors.adminCol);
-            else
-            {
-                config.Prefix = prefix;
-                config.Token = BotConfig.Load().Token;
-                config.NewMemberRank = BotConfig.Load().NewMemberRank;
-                config.AcceptedMemberRole = BotConfig.Load().AcceptedMemberRole;
-                config.MoneyRole = BotConfig.Load().MoneyRole;
-                config.MoneyRole1 = BotConfig.Load().MoneyRole1;
-                config.MoneyRole2 = BotConfig.Load().MoneyRole2;
-                config.NSFWRole = BotConfig.Load().NSFWRole;
-                config.Save();
-
-                var embed = new EmbedBuilder() { Color = Colors.adminCol };
-                embed.Title = ("Set Prefix");
-                embed.Description = ("Prefix has been set to " + prefix + " successfully!");
                 await ReplyAsync("", false, embed.Build());
             }
         }
@@ -183,6 +150,8 @@ namespace KnightBot.Modules.Admin
             await Context.Message.DeleteAsync();
         }
         
+
+        /**
         [Command("addmoney")]
         public async Task Addmoney(IGuildUser user, [Remainder] int money)
         {
@@ -208,7 +177,7 @@ namespace KnightBot.Modules.Admin
             }
             else await errors.sendError(Context.Channel, "Appears money roles are not set up correctly, they are returning null!", Colors.adminCol);
         }
-
+    **/
         [Command("rulenew")]
         [RequireUserPermission(GuildPermission.Administrator)]
         public async Task ruleNew()

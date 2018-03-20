@@ -9,6 +9,7 @@ using KnightBot.util;
 using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using KnightBot.Modules.NewServer;
 
 namespace KnightBot.Modules.Public
 {
@@ -54,6 +55,8 @@ namespace KnightBot.Modules.Public
             await Context.Channel.SendMessageAsync("", false, embed);
 
             await Context.Message.DeleteAsync();
+
+            
         }
 
         // Accept Command - Used to accept the rules and get the members role.
@@ -62,7 +65,7 @@ namespace KnightBot.Modules.Public
         {
             var chan = Context.Channel;
             var userName = Context.User as SocketGuildUser;
-            var newMemberRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().NewMemberRank);
+            var newMemberRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").newMemRole);
 
             if (newMemberRole != null)
             {
@@ -71,9 +74,9 @@ namespace KnightBot.Modules.Public
                     var user = Context.User;
 
                     var config = new BotConfig();
-                    var role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().AcceptedMemberRole);
+                    var role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").accMemRole);
 
-                    var remrole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().NewMemberRank);
+                    var remrole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").newMemRole);
 
                     await (user as IGuildUser).AddRoleAsync(role);
                     await (user as IGuildUser).RemoveRoleAsync(remrole);
@@ -85,10 +88,10 @@ namespace KnightBot.Modules.Public
                 }
             }
             else await errors.sendError(chan, "The new members role is not set up correctly in the config!", Colors.generalCol);
+
+            await Context.Message.DeleteAsync();
+
         }
-
-
-
 
     }
 }
