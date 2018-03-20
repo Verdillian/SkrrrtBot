@@ -498,11 +498,7 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-<<<<<<< HEAD
       "Newtonsoft.Json/10.0.3": {
-=======
-      "Newtonsoft.Json/10.0.2": {
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -737,7 +733,6 @@
           }
         }
       },
-<<<<<<< HEAD
       "SuperSocket.ClientEngine.Core/0.8.0.13": {
         "type": "package",
         "dependencies": {
@@ -757,8 +752,6 @@
           "lib/netstandard1.3/SuperSocket.ClientEngine.dll": {}
         }
       },
-=======
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
       "System.Buffers/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -845,11 +838,7 @@
           "System.Threading": "4.3.0"
         },
         "compile": {
-<<<<<<< HEAD
           "ref/netstandard1.3/System.Collections.Specialized.dll": {}
-=======
-          "ref/netstandard1.3/_._": {}
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         },
         "runtime": {
           "lib/netstandard1.3/System.Collections.Specialized.dll": {}
@@ -1185,11 +1174,7 @@
           "runtime.native.System": "4.3.0"
         },
         "compile": {
-<<<<<<< HEAD
           "ref/netstandard1.3/System.Net.NameResolution.dll": {}
-=======
-          "ref/netstandard1.3/_._": {}
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netstandard1.3/System.Net.NameResolution.dll": {
@@ -1247,11 +1232,7 @@
           "runtime.native.System.Security.Cryptography.OpenSsl": "4.3.0"
         },
         "compile": {
-<<<<<<< HEAD
           "ref/netstandard1.3/System.Net.Security.dll": {}
-=======
-          "ref/netstandard1.3/_._": {}
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netstandard1.6/System.Net.Security.dll": {
@@ -1275,11 +1256,7 @@
           "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
-<<<<<<< HEAD
           "ref/netstandard1.3/System.Net.Sockets.dll": {}
-=======
-          "ref/netstandard1.3/_._": {}
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         }
       },
       "System.Net.WebHeaderCollection/4.3.0": {
@@ -1546,11 +1523,7 @@
           "System.Runtime.Handles": "4.3.0"
         },
         "compile": {
-<<<<<<< HEAD
           "ref/netcoreapp1.1/System.Runtime.InteropServices.dll": {}
-=======
-          "ref/netcoreapp1.1/_._": {}
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -1888,11 +1861,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-<<<<<<< HEAD
           "ref/netstandard1.0/System.Security.Principal.dll": {}
-=======
-          "ref/netstandard1.0/_._": {}
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         },
         "runtime": {
           "lib/netstandard1.0/System.Security.Principal.dll": {}
@@ -1979,11 +1948,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-<<<<<<< HEAD
           "ref/netcoreapp1.1/System.Text.RegularExpressions.dll": {}
-=======
-          "ref/netcoreapp1.1/_._": {}
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         },
         "runtime": {
           "lib/netstandard1.6/System.Text.RegularExpressions.dll": {}
@@ -2067,11 +2032,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-<<<<<<< HEAD
           "ref/netstandard1.2/System.Threading.Timer.dll": {}
-=======
-          "ref/netstandard1.2/_._": {}
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         }
       },
       "System.Xml.ReaderWriter/4.3.0": {
@@ -2121,7 +2082,6 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
-<<<<<<< HEAD
       "TwitchLib/1.6.1": {
         "type": "package",
         "dependencies": {
@@ -2151,28 +2111,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/WebSocket4Net.dll": {}
-=======
-      "TwitchLib/1.5.4": {
-        "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "7.0.1",
-          "WebSocketSharp-NonPreRelease": "1.0.0"
-        },
-        "compile": {
-          "lib/net45/TwitchLib.dll": {}
-        },
-        "runtime": {
-          "lib/net45/TwitchLib.dll": {}
-        }
-      },
-      "WebSocketSharp-NonPreRelease/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net35/websocket-sharp.dll": {}
-        },
-        "runtime": {
-          "lib/net35/websocket-sharp.dll": {}
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         }
       }
     }
@@ -3057,17 +2995,10 @@
         "netstandard.library.nuspec"
       ]
     },
-<<<<<<< HEAD
     "Newtonsoft.Json/10.0.3": {
       "sha512": "hSXaFmh7hNCuEoC4XNY5DrRkLDzYHqPx/Ik23R4J86Z7PE/Y6YidhG602dFVdLBRSdG6xp9NabH3dXpcoxWvww==",
       "type": "package",
       "path": "newtonsoft.json/10.0.3",
-=======
-    "Newtonsoft.Json/10.0.2": {
-      "sha512": "iwElSU2IXmwGvytJsezyDML2ZWDkG2JzTYzlU/BNlmzMdlmRvbnwITsGGY74gwVEpDli1UdOLkMT7/3jxWvXzA==",
-      "type": "package",
-      "path": "newtonsoft.json/10.0.2",
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
       "files": [
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
@@ -3082,19 +3013,11 @@
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
-<<<<<<< HEAD
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "newtonsoft.json.10.0.3.nupkg.sha512",
-=======
-        "lib/portable-net40+sl5+win8+wpa81+wp8/Newtonsoft.Json.dll",
-        "lib/portable-net40+sl5+win8+wpa81+wp8/Newtonsoft.Json.xml",
-        "lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.dll",
-        "lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.xml",
-        "newtonsoft.json.10.0.2.nupkg.sha512",
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         "newtonsoft.json.nuspec",
         "tools/install.ps1"
       ]
@@ -3332,7 +3255,6 @@
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
     },
-<<<<<<< HEAD
     "SuperSocket.ClientEngine.Core/0.8.0.13": {
       "sha512": "FATcQa1QXsb1aUpXyD323FYqA5UGZZcylVXQK3j2Y6rJpKoi9AYmkckLHnoGp2HYs1jqXcm+7W7jBb8yA6QdmQ==",
       "type": "package",
@@ -3348,8 +3270,6 @@
         "supersocket.clientengine.core.nuspec"
       ]
     },
-=======
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
     "System.Buffers/4.3.0": {
       "sha512": "ratu44uTIHgeBeI0dE8DWvmXVBSo4u7ozRZZHOMmK/JPpYyo0dAfgSiHlpiObMQ5lEtEyIXA40sKRYg5J6A8uQ==",
       "type": "package",
@@ -6953,7 +6873,6 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
-<<<<<<< HEAD
     "TwitchLib/1.6.1": {
       "sha512": "sFhe2wHtrEvmwBMdZik0FhbW551jn7+Gb/gFYdiSw9zo9OlejWjD8NLJETnhyRR4CGYwig1bYrDcv+IL3W4V7w==",
       "type": "package",
@@ -6978,28 +6897,6 @@
         "lib/sl50/WebSocket4Net.dll",
         "websocket4net.0.15.0.nupkg.sha512",
         "websocket4net.nuspec"
-=======
-    "TwitchLib/1.5.4": {
-      "sha512": "rfP7F00UduJsXC4D+yo5XdS2qqUJyyuP/gee8I023w93f5suvE29Yt5vj40APJDV1zPL3bWSYyw7B95C959O7Q==",
-      "type": "package",
-      "path": "twitchlib/1.5.4",
-      "files": [
-        "TwitchLib.XML",
-        "lib/net45/TwitchLib.XML",
-        "lib/net45/TwitchLib.dll",
-        "twitchlib.1.5.4.nupkg.sha512",
-        "twitchlib.nuspec"
-      ]
-    },
-    "WebSocketSharp-NonPreRelease/1.0.0": {
-      "sha512": "O1TLFp8hwgVFEI0bjAGLAdsGwtT+yggdRYAlOSw+ZCtwHVc5LmUBU52H+KgG37med9e11lsxmlNzzlF6/hW+Bg==",
-      "type": "package",
-      "path": "websocketsharp-nonprerelease/1.0.0",
-      "files": [
-        "lib/net35/websocket-sharp.dll",
-        "websocketsharp-nonprerelease.1.0.0.nupkg.sha512",
-        "websocketsharp-nonprerelease.nuspec"
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
       ]
     }
   },
@@ -7016,11 +6913,7 @@
       "MySql.Data.EntityFrameworkCore >= 6.10.5",
       "RestSharp >= 106.1.0",
       "RevStackCore-ImageSharp >= 0.9.0",
-<<<<<<< HEAD
       "TwitchLib >= 1.6.1"
-=======
-      "TwitchLib >= 1.5.4"
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
     ]
   },
   "packageFolders": {
@@ -7114,11 +7007,7 @@
           },
           "TwitchLib": {
             "target": "Package",
-<<<<<<< HEAD
             "version": "[1.6.1, )"
-=======
-            "version": "[1.5.4, )"
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
           }
         },
         "imports": [
@@ -7127,31 +7016,6 @@
         "assetTargetFallback": true,
         "warn": true
       }
-<<<<<<< HEAD
-=======
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'TwitchLib 1.5.4' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "TwitchLib",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'WebSocketSharp-NonPreRelease 1.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "WebSocketSharp-NonPreRelease",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
-    }
-  ]
+  }
 }

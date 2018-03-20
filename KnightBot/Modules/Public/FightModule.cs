@@ -15,14 +15,11 @@ namespace KnightBot.Modules.Public
 
         private BankConfig save = new BankConfig();
 
-<<<<<<< HEAD
 
         private int total;
 
 
 
-=======
->>>>>>> f471b1e6743540cd62157ddda9aca8489fdcf295
         //NOTE: Fights are a little broken.. Give a erroe 403 FORBIDDEN. Not sure why.. Not super important. might find out another day but not right now.
 
 
