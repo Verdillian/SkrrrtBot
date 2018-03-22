@@ -6926,11 +6926,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\blckn\\Desktop\\KnightBot\\KnightBot\\KnightBot.csproj",
+      "projectUniqueName": "C:\\Users\\blckn\\Documents\\GitHub\\KnightBot\\KnightBot\\KnightBot.csproj",
       "projectName": "KnightBot",
-      "projectPath": "C:\\Users\\blckn\\Desktop\\KnightBot\\KnightBot\\KnightBot.csproj",
+      "projectPath": "C:\\Users\\blckn\\Documents\\GitHub\\KnightBot\\KnightBot\\KnightBot.csproj",
       "packagesPath": "C:\\Users\\blckn\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\blckn\\Desktop\\KnightBot\\KnightBot\\obj\\",
+      "outputPath": "C:\\Users\\blckn\\Documents\\GitHub\\KnightBot\\KnightBot\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
