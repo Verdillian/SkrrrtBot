@@ -17,6 +17,7 @@ namespace KnightBot.Config
         public string MoneyRole1 { get; set; }
         public string MoneyRole2 { get; set; }
         public string NSFWRole { get; set; }
+        public string[] streamers { get; set; }
         public BotConfig()
         {
             Prefix = "--";
@@ -27,6 +28,7 @@ namespace KnightBot.Config
             MoneyRole1 = "";
             MoneyRole2 = "";
             NSFWRole = "";
+            streamers = new string[20];
         }
 
         public void Save(string dir = "configuration/config.json")

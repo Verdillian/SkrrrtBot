@@ -89,10 +89,17 @@ namespace KnightBot
 
         public async Task AnnounceUserJoined(SocketGuildUser user)
         {
-            var newmemrole = BotConfig.Load().NewMemberRank;
+            /*
+            var newmemrole = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").newMemRole;
 
-            var role = user.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == newmemrole);
+            var role = user.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == );
             await (user as IGuildUser).AddRoleAsync(role);
+            */
+
+            var user2 = Context.User;
+            var role = Context.Guild.Roles.FirstOrDefault(x => x.Name == ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").newMemRole);
+            await (user2 as IGuildUser).AddRoleAsync(role);
+
         }
 
         public async Task SetGame()

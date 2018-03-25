@@ -58,7 +58,7 @@ namespace KnightBot
                     Console.ForegroundColor = ConsoleColor.Gray;
                     break;
                 case LogSeverity.Debug:
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     break;
             }
             Console.WriteLine($"{DateTime.Now} [{lmsg.Severity,8}] {lmsg.Source}: {lmsg.Message}");
