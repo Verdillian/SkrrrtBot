@@ -41,33 +41,6 @@ namespace KnightBot
             bot.MessageReceived += addMoney;
         }
 
-        /*
-        public async Task addMoney(SocketMessage msg)
-        {
-            Errors errors = new Errors();
-
-            var user = msg.Author;
-            var result = Database.CheckExistingUser(user);
-            if (result.Count <= 0 && user.IsBot != true)
-            {
-                Database.EnterUser(user);
-            }
-
-            Random rand = new Random();
-            int maxChance = 10, maxAmt = 5;
-
-            int randNumber = rand.Next(1, maxChance);
-            int randChance = rand.Next(1, maxChance);
-            int randAmt = rand.Next(1, maxAmt);
-
-            if (randChance == randNumber)
-            {
-                Database.updMoney(user, randAmt);
-            }
-
-        }
-        */
-
 
         public async Task addMoney(SocketMessage msg)
         {

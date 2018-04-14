@@ -112,7 +112,7 @@ namespace KnightBot.Modules.Admin
                 Color = Colors.adminCol
             };
             embed.Description = (Context.User.Mention + ", had " + roleToBe + " added!");
-            await ReplyAsync("", false, embed.Build());
+            await Context.Guild.GetTextChannel(434728317208494094).SendMessageAsync("", false, embed);
 
 
             await Context.Message.DeleteAsync();
@@ -134,7 +134,7 @@ namespace KnightBot.Modules.Admin
                 Color = Colors.adminCol
             };
             embed.Description = (Context.User.Mention + ", had " + roleToRemove + " removed!");
-            await ReplyAsync("", false, embed.Build());
+            await Context.Guild.GetTextChannel(434728317208494094).SendMessageAsync("", false, embed);
 
             await Context.Message.DeleteAsync();
         }

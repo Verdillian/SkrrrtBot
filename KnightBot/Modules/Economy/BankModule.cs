@@ -16,7 +16,7 @@ using System.IO;
 namespace KnightBot.Modules.Economy
 {
 
-    [Group("b")]
+    [Group("bank")]
     public class BankModule : ModuleBase
     {
 
