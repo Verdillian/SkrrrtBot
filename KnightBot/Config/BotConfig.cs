@@ -16,15 +16,17 @@ namespace KnightBot.Config
         public string AcceptedMemberRole { get; set; }
         public string MoneyRole { get; set; }
         public string NSFWRole { get; set; }
+        public ulong LogChannel { get; set; }
         public BotConfig()
         {
             serverId = 0;
-            Prefix = "--";
+            Prefix = "!";
             Token = "";
             NewMemberRank = "";
             AcceptedMemberRole = "";
             MoneyRole = "";
             NSFWRole = "";
+            LogChannel = 437977945680773130;
         }
 
         public void Save(string dir = "configuration/config.json")

@@ -51,13 +51,12 @@ namespace KnightBot.Modules.Music
             IAudioClient client = await channel.ConnectAsync();
 
             var output = CreateStream(url).StandardOutput.BaseStream;
-            var stream = client.CreatePCMStream(AudioApplication.Music, 128 * 1024);
+            var stream = client.CreatePCMStream(AudioApplication.Music/*, 128 * 1024*/);
             await output.CopyToAsync(stream);
             await stream.FlushAsync().ConfigureAwait(false);
 
             var messageToDel = await ReplyAsync(Context.User.Mention + "Has Decided To Listen To" + url);
             await Delete.DelayDeleteMessage(messageToDel, 10);
-            await Context.Message.DeleteAsync();
         }
 
 
@@ -70,7 +69,7 @@ namespace KnightBot.Modules.Music
 
         }
 
-        [Command("stop")]
+        [Command("stop", RunMode = RunMode.Async)]
         public async Task StopCmd()
         {
             await StopAudio(Context.Guild);

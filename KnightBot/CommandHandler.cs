@@ -42,11 +42,65 @@ namespace KnightBot
             bot.MessageReceived += HandleCommand;
             commands = map.GetService<CommandService>();
             bot.MessageReceived += addMoney;
+            // Start Logs Lmao
             bot.ChannelCreated += ChannelCreatedAsync;
             bot.ChannelDestroyed += ChannelDeletedAsync;
             bot.RoleCreated += RoleCreatedAsync;
             bot.RoleDeleted += RoleDeletedAsync;
             bot.RoleUpdated += RoleUpdatedAsync;
+            bot.UserBanned += BannedUserAsync;
+            bot.UserUnbanned += UnBannedUserAsync;
+            bot.GuildUpdated += GuildUpdatedAsync;
+            bot.CurrentUserUpdated += BotUpdatedAsync;
+            // End Logs Lmao
+        }
+
+        public async Task BotUpdatedAsync(SocketSelfUser usr, SocketSelfUser user)
+        {
+            var embed = new EmbedBuilder() { Color = Colors.adminCol };
+            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+            embed.Title = ("**The Bot Has Been Updated**");
+            embed.Description = ("Bot Name: " + usr.Username + "\nBot Id: " + usr.Id + "\nBot Game: " + usr.Game + "\nTime: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute);
+            embed.WithFooter(footer);
+
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
+            await logchannel.SendMessageAsync("", false, embed);
+        }
+
+        public async Task GuildUpdatedAsync(SocketGuild gld, SocketGuild guld)
+        {
+            var embed = new EmbedBuilder() { Color = Colors.adminCol };
+            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+            embed.Title = ("**The Guild Has Been Updated**");
+            embed.Description = ("Guild Name: " + gld.Name + "\nGuild Id: " + gld.Id + "\nMember Amount: " + gld.MemberCount + "\nGuild Owner: " + gld.Owner + "\nTime: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute);
+            embed.WithFooter(footer);
+
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
+            await logchannel.SendMessageAsync("", false, embed);
+        }
+
+        public async Task BannedUserAsync(SocketUser usr, SocketGuild gld)
+        {
+            var embed = new EmbedBuilder() { Color = Colors.adminCol };
+            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+            embed.Title = ("**User Has Been Banned From The Server**");
+            embed.Description = ("Username: " + usr + "\nUser Id: " + usr.Id + "\nTime: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute);
+            embed.WithFooter(footer);
+
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
+            await logchannel.SendMessageAsync("", false, embed);
+        }
+
+        public async Task UnBannedUserAsync(SocketUser usr, SocketGuild gld)
+        {
+            var embed = new EmbedBuilder() { Color = Colors.adminCol };
+            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+            embed.Title = ("**User Has Been UnBanned From The Server**");
+            embed.Description = ("Username: " + usr + "\nUser Id: " + usr.Id + "\nTime: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute);
+            embed.WithFooter(footer);
+
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
+            await logchannel.SendMessageAsync("", false, embed);
         }
 
         public async Task RoleCreatedAsync(SocketRole role)
@@ -57,7 +111,7 @@ namespace KnightBot
             embed.Description = ("Role Name: " + role.Name + "\nRole Id: " + role.Id + "\nTime: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute);
             embed.WithFooter(footer);
 
-            var logchannel = bot.GetChannel(437977945680773130) as SocketTextChannel;
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
             await logchannel.SendMessageAsync("", false, embed);
         }
 
@@ -69,12 +123,13 @@ namespace KnightBot
             embed.Description = ("Role Name: " + role.Name + "\nRole Id: " + role.Id + "\nTime: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute);
             embed.WithFooter(footer);
 
-            var logchannel = bot.GetChannel(437977945680773130) as SocketTextChannel;
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
             await logchannel.SendMessageAsync("", false, embed);
         }
 
         public async Task RoleUpdatedAsync(SocketRole role, SocketRole role2)
         {
+
             var embed = new EmbedBuilder() { Color = Colors.adminCol };
             var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
 
@@ -133,7 +188,7 @@ namespace KnightBot
             embed.AddField(blank);
 
 
-            var logchannel = bot.GetChannel(437977945680773130) as SocketTextChannel;
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
             await logchannel.SendMessageAsync("", false, embed);
         }
 
@@ -145,7 +200,7 @@ namespace KnightBot
             embed.Description = ("\nChannel Name: " + chnl + "\nTime: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute);
             embed.WithFooter(footer);
 
-            var logchannel = bot.GetChannel(437977945680773130) as SocketTextChannel;
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
             await logchannel.SendMessageAsync("", false, embed);
         }
 
@@ -157,7 +212,7 @@ namespace KnightBot
             embed.Description = ("\nChannel Name: " + chnl + "\nTime: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute);
             embed.WithFooter(footer);
 
-            var logchannel = bot.GetChannel(437977945680773130) as SocketTextChannel;
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
             await logchannel.SendMessageAsync("", false, embed);
         }
 
@@ -187,7 +242,7 @@ namespace KnightBot
             embed.Description = ("Username: " + user.Username + "\nTime: " + DateTime.Now.TimeOfDay + "\nTotal Members: " + bot.GetGuild(BotConfig.Load().serverId).MemberCount.ToString());
             embed.WithFooter(footer);
 
-            var logchannel = bot.GetChannel(437977945680773130) as SocketTextChannel;
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
             await logchannel.SendMessageAsync("", false, embed);
 
         }
@@ -206,7 +261,7 @@ namespace KnightBot
             embed.WithFooter(footer);
             
 
-            var logchannel = bot.GetChannel(437977945680773130) as SocketTextChannel;
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
             await logchannel.SendMessageAsync("", false, embed);
 
         }
