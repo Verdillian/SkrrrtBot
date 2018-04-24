@@ -106,37 +106,5 @@ namespace KnightBot.Modules.Public
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
 
         }
-
-
-        [Command("meme")]
-        [Summary("Posts random meme pictures!")]
-        public async Task Meme()
-        {
-            await Program.Logger(new LogMessage(LogSeverity.Debug, "[API]", "The Meme API Is Loading!"));
-            using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
-            {
-                string websiteurl = "https://api.imgflip.com/get_memes";
-                client.BaseAddress = new Uri(websiteurl);
-                HttpResponseMessage response = client.GetAsync("").Result;
-                response.EnsureSuccessStatusCode();
-                string result = await response.Content.ReadAsStringAsync();
-                var json = JObject.Parse(result);
-                string DogImage = json["url"].FirstOrDefault().ToString();
-
-
-                var embed = new EmbedBuilder()
-                {
-                    Color = Colors.generalCol
-                };
-
-                embed.WithImageUrl(DogImage);
-                await Context.Channel.SendMessageAsync("", false, embed);
-
-
-            }
-            await Context.Message.DeleteAsync();
-        }
-
-
     }
 }

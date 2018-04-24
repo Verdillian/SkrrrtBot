@@ -1,14 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Discord;
-using Discord.WebSocket;
 using Discord.Commands;
-using System.Linq;
-using KnightBot.Config;
 using KnightBot.util;
-using System.Net.Http;
-using System.Net;
-using Newtonsoft.Json.Linq;
 
 namespace KnightBot.Modules.Public
 {
@@ -57,41 +50,5 @@ namespace KnightBot.Modules.Public
 
             
         }
-
-        /* Accept Command - Used to accept the rules and get the members role.
-        [Command("accept")]
-        public async Task Accept()
-        {
-            var chan = Context.Channel;
-            var userName = Context.User as SocketGuildUser;
-            var newMemberRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").newMemRole);
-
-            if (newMemberRole != null)
-            {
-                if (userName.Roles.Contains(newMemberRole))
-                {
-                    var user = Context.User;
-
-                    var config = new BotConfig();
-                    var role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").accMemRole);
-
-                    var remrole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").newMemRole);
-
-                    await (user as IGuildUser).AddRoleAsync(role);
-                    await (user as IGuildUser).RemoveRoleAsync(remrole);
-
-                    var message = await ReplyAsync("You Have Accepted The Rules! Enjoy Being A Full Member!");
-                    await Delete.DelayDeleteMessage(message, 10);
-
-                    await Context.Message.DeleteAsync();
-                }
-            }
-            else await errors.sendError(chan, "The new members role is not set up correctly in the config!", Colors.generalCol);
-
-            await Context.Message.DeleteAsync();
-
-        }*/
-
-
     }
 }

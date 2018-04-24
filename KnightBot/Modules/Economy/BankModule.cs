@@ -1,22 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Discord;
-using Discord.WebSocket;
 using Discord.Commands;
-using Discord.Audio;
-using System.Diagnostics;
-using System.Linq;
-using KnightBot.Config;
 using KnightBot.util;
-using System.Net.Http;
-using System.Net;
-using Newtonsoft.Json.Linq;
 using System.IO;
 
 namespace KnightBot.Modules.Economy
 {
 
-    [Group("b")]
+    [Group("bank")]
     public class BankModule : ModuleBase
     {
 
@@ -141,11 +133,6 @@ namespace KnightBot.Modules.Economy
 
                 await Context.Channel.SendMessageAsync("", false, embed);
             }
-            
-
-
         }
-
-
     }
 }
