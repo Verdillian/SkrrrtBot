@@ -13,7 +13,6 @@ using Newtonsoft.Json;
 using KnightBot.Config;
 using KnightBot;
 using KnightBot.util;
-using KnightBot.Modules.NewServer;
 
 namespace KnightBot.Modules.Admin
 {
@@ -28,7 +27,7 @@ namespace KnightBot.Modules.Admin
         public async Task Setgame()
         {
 
-            await (Context.Client as DiscordSocketClient).SetGameAsync(ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "help" + " | " + "KnightBot.xyz");
+            await (Context.Client as DiscordSocketClient).SetGameAsync(BotConfig.Load().Prefix + "help" + " | " + "KnightBot.xyz");
 
 
             await Context.Message.DeleteAsync();
@@ -77,14 +76,20 @@ namespace KnightBot.Modules.Admin
             {
                 Color = Colors.adminCol
             };
+            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Today + DateTime.Now };
 
+            embed.WithFooter(footer);
             embed.Title = $"**{user.Username}** has been banned!";
             embed.Description = $"**Username: **{user.Username}\n**Guild Name: **{user.Guild.Name}\n**Banned By: **{Context.User.Mention}!\n**Reason: **{reason}";
 
             await gld.AddBanAsync(user);
-            await Context.Channel.SendMessageAsync("", false, embed);
 
             await Context.Message.DeleteAsync();
+
+            var logchannel = Context.Guild.GetChannel(437977945680773130) as SocketTextChannel;
+            await logchannel.SendMessageAsync("", false, embed);
+
+
         }
 
         [Command("kick")]
@@ -97,14 +102,18 @@ namespace KnightBot.Modules.Admin
 
             var gld = Context.Guild as SocketGuild;
             var embed = new EmbedBuilder() { Color = Colors.adminCol };
+            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Today + DateTime.Now };
 
+            embed.WithFooter(footer);
             embed.Title = $"**{user.Username}** has been kicked from **{user.Guild.Name}**!";
             embed.Description = $"**Username: **{user.Username}\n**Guild name: **{user.Guild.Name}\n**Kicked By: **{Context.User.Mention}\n**Reason: **{reason}";
 
             await user.KickAsync();
-            await Context.Channel.SendMessageAsync("", false, embed);
 
             await Context.Message.DeleteAsync();
+
+            var logchannel = Context.Guild.GetChannel(437977945680773130) as SocketTextChannel;
+            await logchannel.SendMessageAsync("", false, embed);
         }
 
         [Command("setrole")]
@@ -145,50 +154,6 @@ namespace KnightBot.Modules.Admin
                 Color = Colors.adminCol
             };
             embed.Description = (Context.User.Mention + ", had " + roleToRemove + " removed!");
-            await ReplyAsync("", false, embed.Build());
-
-            await Context.Message.DeleteAsync();
-        }
-        
-
-        /**
-        [Command("addmoney")]
-        public async Task Addmoney(IGuildUser user, [Remainder] int money)
-        {
-            var config = new BotConfig();
-            var userName = Context.User as SocketGuildUser;
-            var moneyrole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().MoneyRole);
-            var moneyrole1 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().MoneyRole1);
-            var moneyrole2 = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == BotConfig.Load().MoneyRole2);
-
-            if (moneyrole != null && moneyrole1 != null && moneyrole2 != null)
-            {
-                if (userName.Roles.Contains(moneyrole) || userName.Roles.Contains(moneyrole1) || userName.Roles.Contains(moneyrole2))
-                {
-                    Database.updMoney(user, money);
-                    var embed = new EmbedBuilder()
-                    {
-                        Color = Colors.adminCol
-                    };
-                    embed.Description = (Context.User.Mention + ", Has Gotton :moneybag: " + money + " Coins!");
-                    await ReplyAsync("", false, embed.Build());
-                }
-                else await errors.sendError(Context.Channel, "You do not have permission to give people dosh!", Colors.adminCol);
-            }
-            else await errors.sendError(Context.Channel, "Appears money roles are not set up correctly, they are returning null!", Colors.adminCol);
-        }
-    **/
-        [Command("rulenew")]
-        [RequireUserPermission(GuildPermission.Administrator)]
-        public async Task ruleNew()
-        {
-            var config = new BotConfig();
-
-            var embed = new EmbedBuilder()
-            {
-                Color = Colors.adminCol
-            };
-            embed.Description = ("**Rules: **\n\n**1. **No Racial Slurs!\n**2. **Do Not Be Rude To Others!\n**3. **Do Not Spam Random Links / Messages!\n**4. **Don't Be An Asshat!\n\n**" + BotConfig.Load().Prefix + "accept** To Accept The Rules!");
             await ReplyAsync("", false, embed.Build());
 
             await Context.Message.DeleteAsync();

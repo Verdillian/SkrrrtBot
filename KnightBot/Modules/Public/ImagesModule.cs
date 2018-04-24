@@ -12,7 +12,6 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using Newtonsoft.Json;
-using TwitchLib;
 using KnightBot.Modules.Economy;
 
 namespace KnightBot.Modules.Public

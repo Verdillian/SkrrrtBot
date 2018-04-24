@@ -5,7 +5,6 @@ using Discord.WebSocket;
 using Discord.Commands;
 using KnightBot.Config;
 using KnightBot.util;
-using KnightBot.Modules.NewServer;
 using KnightBot.Modules.Economy;
 
 namespace KnightBot.Modules.Public
@@ -28,14 +27,14 @@ namespace KnightBot.Modules.Public
         {
             var embed = new EmbedBuilder() { Color = Colors.helpCol };
             var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
-            var generalField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "help general", Value = "Displays General Commands." };
-            var musicField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "help music", Value = "Displays Music Commands." };
-            var bankField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "help bank", Value = "Displays Bank Commands." };
-            var aucField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "help auction", Value = "Displays Auction Commands." };
-            var nsfwField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "help nsfw", Value = "Displays NSFW Commands." };
-            var adminField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "help admin", Value = "Displays Admin Commands." };
+            var generalField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "help general", Value = "Displays General Commands." };
+            var musicField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "help music", Value = "Displays Music Commands." };
+            var bankField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "help bank", Value = "Displays Bank Commands." };
+            var aucField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "help auction", Value = "Displays Auction Commands." };
+            var nsfwField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "help nsfw", Value = "Displays NSFW Commands." };
+            var adminField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "help admin", Value = "Displays Admin Commands." };
 
-            embed.Title = $"╋━━━━━━◥◣ KnightBot Help ◢◤━━━━━━╋";
+            embed.Title = $"**KnightBot Help**";
             embed.Description = "More Commands Will Be Added Soon!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -60,7 +59,7 @@ namespace KnightBot.Modules.Public
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
 
-
+            await Context.Message.DeleteAsync();
         }
 
         [Command("general")]
@@ -69,11 +68,11 @@ namespace KnightBot.Modules.Public
         {
             var embed = new EmbedBuilder() { Color = Colors.helpCol };
             var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
-            var helpField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "help", Value = "Displays The Commands The KnightBot Can Do." };
-            var dogField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "doggo", Value = "Displays A Random Dog Image!" };
-            var catField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "cat", Value = "Displays A Random Cat Image!" };
+            var helpField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "help", Value = "Displays The Commands The KnightBot Can Do." };
+            var dogField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "doggo", Value = "Displays A Random Dog Image!" };
+            var catField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "cat", Value = "Displays A Random Cat Image!" };
 
-            embed.Title = $"╋━━━━━━◥◣ KnightBot General Help ◢◤━━━━━━╋";
+            embed.Title = $"**KnightBot Help**";
             embed.Description = "More Commands Will Be Added Soon!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -93,7 +92,7 @@ namespace KnightBot.Modules.Public
             save.currentMoney = total;
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
-
+            await Context.Message.DeleteAsync();
         }
 
         [Command("music")]
@@ -102,10 +101,10 @@ namespace KnightBot.Modules.Public
         {
             var embed = new EmbedBuilder() { Color = Colors.musicCol };
             var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
-            var playField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "play <link directly to song on youtube>", Value = "Plays The Song In Your Voice Channel!" };
-            var stopField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "stop", Value = "Stops The Songs That Is Currently Playing!" };
+            var playField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "play <link directly to song on youtube>", Value = "Plays The Song In Your Voice Channel!" };
+            var stopField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "stop", Value = "Stops The Songs That Is Currently Playing!" };
 
-            embed.Title = $"╋━━━━━━◥◣ KnightBot Music Help ◢◤━━━━━━╋";
+            embed.Title = $"**KnightBot Help**";
             embed.Description = "Here Are All Of The Music Commands!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -125,7 +124,7 @@ namespace KnightBot.Modules.Public
             save.currentMoney = total;
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
-
+            await Context.Message.DeleteAsync();
         }
 
         [Command("bank")]
@@ -134,11 +133,11 @@ namespace KnightBot.Modules.Public
         {
             var embed = new EmbedBuilder() { Color = Colors.moneyCol };
             var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
-            var bankField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "bank open", Value = "Opens A Bank Account In Your Name!" };
-            var moneyField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "bank balance", Value = "Displays Your Current Balance!" };
-            var transferField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "bank transfer <user> <amount>", Value = "Transfer Money To Another Player." };
+            var bankField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bank open", Value = "Opens A Bank Account In Your Name!" };
+            var moneyField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bank balance", Value = "Displays Your Current Balance!" };
+            var transferField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bank transfer <user> <amount>", Value = "Transfer Money To Another Player." };
 
-            embed.Title = $"╋━━━━━━◥◣ KnightBot Bank Help ◢◤━━━━━━╋";
+            embed.Title = $"**KnightBot Help**";
             embed.Description = "Here Are All Of The Bank Commands!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -159,7 +158,7 @@ namespace KnightBot.Modules.Public
             save.currentMoney = total;
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
-
+            await Context.Message.DeleteAsync();
         }
 
         [Command("auction")]
@@ -168,12 +167,12 @@ namespace KnightBot.Modules.Public
         {
             var embed = new EmbedBuilder() { Color = Colors.moneyCol };
             var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
-            var auctionField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "auction <amount> <quantity> <item>", Value = "Starts A New Auction." };
-            var auctionEndField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "auctionend", Value = "Ends The Current Auction." };
-            var auctionCheckField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "auctioncheck", Value = "Checks If There Is A Current Auction." };
-            var bidField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "bid <amount>", Value = "Bid On The Current Auction." };
+            var auctionField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "auction <amount> <quantity> <item>", Value = "Starts A New Auction." };
+            var auctionEndField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "auctionend", Value = "Ends The Current Auction." };
+            var auctionCheckField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "auctioncheck", Value = "Checks If There Is A Current Auction." };
+            var bidField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bid <amount>", Value = "Bid On The Current Auction." };
 
-            embed.Title = $"╋━━━━━━◥◣ KnightBot Auction Help ◢◤━━━━━━╋";
+            embed.Title = $"**KnightBot Help**";
             embed.Description = "Here Are All Of The Bank Commands!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -194,20 +193,21 @@ namespace KnightBot.Modules.Public
             save.currentMoney = total;
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
-
+            await Context.Message.DeleteAsync();
         }
 
         [Command("admin")]
         [Alias("Admin", "administrator")]
         private async Task AdminHelp()
         {
+
             var embed = new EmbedBuilder() { Color = Colors.adminCol };
             var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
-            var kickField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "kick <user> <reason>", Value = "Kicks The Specified User." };
-            var banField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "ban <user> <reason>", Value = "Bans The Specified User." };
-            var clearField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "clear <Amount>", Value = "Clears 1-100 Messages." };
+            var kickField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "kick <user> <reason>", Value = "Kicks The Specified User." };
+            var banField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "ban <user> <reason>", Value = "Bans The Specified User." };
+            var clearField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "clear <Amount>", Value = "Clears 1-100 Messages." };
 
-            embed.Title = $"╋━━━━━━◥◣ KnightBot Admin Help ◢◤━━━━━━╋";
+            embed.Title = $"**KnightBot Help**";
             embed.Description = "Here Are All Of The Bank Commands!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -227,7 +227,7 @@ namespace KnightBot.Modules.Public
             save.currentMoney = total;
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
-
+            await Context.Message.DeleteAsync();
         }
 
         [Command("nsfw")]
@@ -236,13 +236,13 @@ namespace KnightBot.Modules.Public
         {
             var embed = new EmbedBuilder() { Color = Colors.nsfwCol };
             var footer = new EmbedFooterBuilder() { Text = "Requested by " + Context.User.Username };
-            var joinField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "nsfw join", Value = "Adds The NSFW Role To You." };
-            var leaveField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "nsfw leave", Value = "Removes The NSFW Role From You." };
-            var buttField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "nsfw butt", Value = "Perfect For Any Butt Lovers." };
-            var boobsField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "nsfw boobs", Value = "Perfect For Any Boobs Lovers." };
-            var gifField = new EmbedFieldBuilder() { Name = ServerConfig.Load("servers/" + Context.Guild.Id.ToString() + ".json").serverPrefix + "nsfw gif", Value = "Sends A Random Gif ;)" };
+            var joinField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "nsfw join", Value = "Adds The NSFW Role To You." };
+            var leaveField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "nsfw leave", Value = "Removes The NSFW Role From You." };
+            var buttField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "nsfw butt", Value = "Perfect For Any Butt Lovers." };
+            var boobsField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "nsfw boobs", Value = "Perfect For Any Boobs Lovers." };
+            var gifField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "nsfw gif", Value = "Sends A Random Gif ;)" };
 
-            embed.Title = $"╋━━━━━━◥◣ KnightBot NSFW Help ◢◤━━━━━━╋";
+            embed.Title = $"**KnightBot Help**";
             embed.Description = "Here Are All Of The NSFW Commands!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -263,7 +263,7 @@ namespace KnightBot.Modules.Public
             save.currentMoney = total;
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
-
+            await Context.Message.DeleteAsync();
         }
 
     }

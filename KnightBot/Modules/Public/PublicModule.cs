@@ -9,7 +9,6 @@ using KnightBot.util;
 using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json.Linq;
-using KnightBot.Modules.NewServer;
 
 namespace KnightBot.Modules.Public
 {
@@ -59,7 +58,7 @@ namespace KnightBot.Modules.Public
             
         }
 
-        // Accept Command - Used to accept the rules and get the members role.
+        /* Accept Command - Used to accept the rules and get the members role.
         [Command("accept")]
         public async Task Accept()
         {
@@ -91,7 +90,7 @@ namespace KnightBot.Modules.Public
 
             await Context.Message.DeleteAsync();
 
-        }
+        }*/
 
 
     }

@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using KnightBot.Config;
 using System.IO;
 using System.Collections.Generic;
-using KnightBot.Modules.NewServer;
 
 namespace KnightBot
 {
@@ -77,7 +76,6 @@ namespace KnightBot
             {
                 var config = new BotConfig();               // Create a new configuration object.
 
-                var newserv = new ServerConfig();
 
                 Console.WriteLine("Please enter the following information to save into your configuration/config.json file");
 
@@ -92,12 +90,6 @@ namespace KnightBot
 
                 Console.Write("Money Role: ");
                 config.MoneyRole = Console.ReadLine();
-
-                Console.Write("Second Money Role: ");
-                config.MoneyRole1 = Console.ReadLine();
-
-                Console.Write("Third Money Role: ");
-                config.MoneyRole2 = Console.ReadLine();
 
                 Console.Write("NSFW Role: ");
                 config.NSFWRole = Console.ReadLine();

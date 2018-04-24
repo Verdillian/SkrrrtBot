@@ -9,26 +9,22 @@ namespace KnightBot.Config
         [JsonIgnore]
         public static readonly string appdir = AppContext.BaseDirectory;
 
+        public ulong serverId { get; set; }
         public string Prefix { get; set; }
         public string Token { get; set; }
         public string NewMemberRank { get; set; }
         public string AcceptedMemberRole { get; set; }
         public string MoneyRole { get; set; }
-        public string MoneyRole1 { get; set; }
-        public string MoneyRole2 { get; set; }
         public string NSFWRole { get; set; }
-        public string[] streamers { get; set; }
         public BotConfig()
         {
+            serverId = 0;
             Prefix = "--";
             Token = "";
             NewMemberRank = "";
             AcceptedMemberRole = "";
             MoneyRole = "";
-            MoneyRole1 = "";
-            MoneyRole2 = "";
             NSFWRole = "";
-            streamers = new string[20];
         }
 
         public void Save(string dir = "configuration/config.json")
