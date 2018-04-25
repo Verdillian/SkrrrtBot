@@ -19,13 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="cats\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="cats\cat1.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Folder Include="Modules\Games\" />
   </ItemGroup>
 
 </Project>

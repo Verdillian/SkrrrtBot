@@ -23,7 +23,8 @@ namespace KnightBot
         private CommandService commands;
         public DiscordSocketClient bot;
         private IServiceProvider map;
-        private SocketGuildUser user;
+        
+
 
         private int total;
 
@@ -41,7 +42,7 @@ namespace KnightBot
             //Send user message to get handled
             bot.MessageReceived += HandleCommand;
             commands = map.GetService<CommandService>();
-            bot.MessageReceived += addMoney;
+            //bot.MessageReceived += addMoney;
             // Start Logs Lmao
             bot.ChannelCreated += ChannelCreatedAsync;
             bot.ChannelDestroyed += ChannelDeletedAsync;
@@ -52,8 +53,85 @@ namespace KnightBot
             bot.UserUnbanned += UnBannedUserAsync;
             bot.GuildUpdated += GuildUpdatedAsync;
             bot.CurrentUserUpdated += BotUpdatedAsync;
+            bot.MessageUpdated += MessageUpdatedAsync;
+            
             // End Logs Lmao
         }
+
+        public async Task MessageUpdatedAsync(Cacheable<IMessage, ulong> msgid, SocketMessage msg, ISocketMessageChannel chnl)
+        {
+
+            var aftermsg = await msgid.GetOrDownloadAsync();
+
+            var embed = new EmbedBuilder() { Color = Colors.adminCol };
+            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+            embed.Title = ("**User Edited A Message**");
+            embed.Description = ("Username: " + msg.Author + "\nNew Message: " + aftermsg + "\nTime: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute);
+            embed.WithFooter(footer);
+
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
+            await logchannel.SendMessageAsync("", false, embed);
+        }
+
+
+        /*public async Task ReactionAddedAsync(Cacheable<IUserMessage, ulong> msgid, ISocketMessageChannel chnl, SocketReaction reac)
+        {
+
+            if (msgid.Id.Equals(438455262513463297))
+            {
+                Console.WriteLine("IT GOT THE WELCOME MESSAGE");
+
+                if (chnl.Id.Equals(437976820738949120))
+                {
+                    Console.WriteLine("IT GOT THE WELCOME CHANNEL");
+
+                    if (reac.Emote.Name.Equals("pubg"))
+                    {
+                        Console.WriteLine("IT GOT THE EMOTE PUBG");
+
+                        var server = bot.Guilds.FirstOrDefault(x => x.Id == BotConfig.Load().serverId);
+                        var guild = server as IGuild;
+                        await user.AddRoleAsync(guild.Roles.FirstOrDefault(x => x.Name == "PUBG"));
+
+                        var embed = new EmbedBuilder() { Color = Colors.adminCol };
+                        var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                        embed.Title = ("**User Was Added To A Role**");
+                        embed.Description = ("Username: " + chnl + "\nTime: " + DateTime.Now.TimeOfDay + "\nTotal Members: " + bot.GetGuild(BotConfig.Load().serverId).MemberCount.ToString());
+                        embed.WithFooter(footer);
+
+                        var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
+                        await logchannel.SendMessageAsync("", false, embed);
+
+                    }
+
+                }
+
+            } 
+
+            if ()
+            {
+                var server = bot.Guilds.FirstOrDefault(x => x.Id == BotConfig.Load().serverId);
+                var guild = server as IGuild;
+                await user.AddRoleAsync(guild.Roles.FirstOrDefault(x => x.Name == "PUBG"));
+
+                var embed = new EmbedBuilder() { Color = Colors.adminCol };
+                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                embed.Title = ("**User Was Added TO A Role**");
+                embed.Description = ("Username: " + user.Username + "\nTime: " + DateTime.Now.TimeOfDay + "\nTotal Members: " + bot.GetGuild(BotConfig.Load().serverId).MemberCount.ToString());
+                embed.WithFooter(footer);
+
+                var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
+                await logchannel.SendMessageAsync("", false, embed);
+
+            } else
+            {
+                Console.WriteLine("It Doesn't Work Bitch");
+            }
+
+
+            
+
+        }*/
 
         public async Task BotUpdatedAsync(SocketSelfUser usr, SocketSelfUser user)
         {
@@ -217,7 +295,7 @@ namespace KnightBot
         }
 
         
-
+        /*
         public async Task addMoney(SocketMessage msg)
         {
             var result = BankConfig.Load("bank/" + user.Id.ToString() + ".json").currentMoney;
@@ -231,7 +309,7 @@ namespace KnightBot
             save.currentPoints = BankConfig.Load("bank/" + user.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + user.Id.ToString() + ".json");
         }
-
+        */
 
         public async Task AnnounceLeftUser(SocketGuildUser user)
         {
