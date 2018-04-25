@@ -18,8 +18,4 @@
     <PackageReference Include="RevStackCore-ImageSharp" Version="0.9.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Modules\Games\" />
-  </ItemGroup>
-
 </Project>
