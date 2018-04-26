@@ -382,8 +382,8 @@ namespace KnightBot.Modules.Public
             var websiteField = new EmbedFieldBuilder() { Name = "Website", Value = "Https://www.KnightDev.xyz/", IsInline = true };
             var githubField = new EmbedFieldBuilder() { Name = "Github", Value = "https://github.com/Knight-Dev", IsInline = true };
 
-            embed.Title = ("**User Updated A Role**");
-            embed.Description = ("Info For The Recently Updated Role");
+            embed.Title = ("**Developer Information**");
+            embed.Description = ("Info For The Developer");
             embed.WithThumbnailUrl("https://www.knightdev.xyz/forums/gifimages/Logo2.png");
             embed.WithFooter(footer);
             embed.AddField(devField);
