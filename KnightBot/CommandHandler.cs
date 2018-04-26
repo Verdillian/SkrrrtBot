@@ -50,7 +50,20 @@ namespace KnightBot
             bot.GuildUpdated += GuildUpdatedAsync;
             bot.CurrentUserUpdated += BotUpdatedAsync;
             bot.MessageUpdated += MessageUpdatedAsync;
+            bot.UserUpdated += UserUpdatedAsync;
             // End Logs Lmao
+        }
+
+        public async Task UserUpdatedAsync(SocketUser user, SocketUser usr)
+        {
+            var embed = new EmbedBuilder() { Color = Colors.adminCol };
+            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+            embed.Title = ("**A User Has Been Updated**");
+            embed.Description = ("Username: " + user.Username + "\nUser Id: " + user.Id + "\nTime: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute);
+            embed.WithFooter(footer);
+
+            var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
+            await logchannel.SendMessageAsync("", false, embed);
         }
 
         public async Task MessageUpdatedAsync(Cacheable<IMessage, ulong> msgid, SocketMessage msg, ISocketMessageChannel chnl)
