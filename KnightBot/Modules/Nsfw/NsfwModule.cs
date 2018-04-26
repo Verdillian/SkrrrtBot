@@ -18,6 +18,7 @@ namespace KnightBot.Modules.Nsfw
         Errors errors = new Errors();
         string placeholderGif = "https://gfycat.com/DecimalCheeryCornsnake";
 
+        [Command]
         public async Task joinNSFW()
         {
             var chan = Context.Channel;

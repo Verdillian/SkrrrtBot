@@ -8,6 +8,11 @@ using System.IO;
 namespace KnightBot.Modules.Economy
 {
 
+
+    // Max int32: 2147483647
+
+
+
     [Group("bank")]
     public class BankModule : ModuleBase
     {
@@ -53,6 +58,10 @@ namespace KnightBot.Modules.Economy
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
 
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
+            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+
         }
 
         [Command("balance")]
@@ -66,6 +75,10 @@ namespace KnightBot.Modules.Economy
             embed.Title = $"{Context.User.Username}'s Balance";
             embed.Description = $"\n:money_with_wings: **Balance** :\n\n:moneybag: **{BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney}**\n";
             await ReplyAsync("", false, embed.Build());
+
+            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
+            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+
         }
 
         [Command("transfer")]
@@ -133,6 +146,10 @@ namespace KnightBot.Modules.Economy
 
                 await Context.Channel.SendMessageAsync("", false, embed);
             }
+
+            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
+            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+
         }
     }
 }

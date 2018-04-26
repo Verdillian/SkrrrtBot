@@ -17,6 +17,8 @@ namespace KnightBot.Config
         public string MoneyRole { get; set; }
         public string NSFWRole { get; set; }
         public ulong LogChannel { get; set; }
+        public int Filters { get; set; }
+        public string[] FilteredWords { get; set; }
         public BotConfig()
         {
             serverId = 0;
@@ -27,6 +29,8 @@ namespace KnightBot.Config
             MoneyRole = "";
             NSFWRole = "";
             LogChannel = 437977945680773130;
+            Filters = 4;
+            FilteredWords = new string[20];
         }
 
         public void Save(string dir = "configuration/config.json")

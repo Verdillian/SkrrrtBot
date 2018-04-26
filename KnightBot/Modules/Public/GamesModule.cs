@@ -93,7 +93,6 @@ namespace KnightBot.Modules.Public
                 await ReplyAsync("", false, embed.Build());
 
             }
-            else await errors.sendError(Context.Channel, "User already has a bank account", Colors.moneyCol);
 
             //save the users file
             save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;

@@ -60,6 +60,10 @@ namespace KnightBot.Modules.Admin
                 embed.Description = ("**{Context.User.Mention}**, You Cannot Delete More Than 100 Messages!");
                 await ReplyAsync("", false, embed.Build());
             }
+
+            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
+            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+
         }
     
 
@@ -76,7 +80,7 @@ namespace KnightBot.Modules.Admin
             {
                 Color = Colors.adminCol
             };
-            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Today + DateTime.Now };
+            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute };
 
             embed.WithFooter(footer);
             embed.Title = $"**{user.Username}** has been banned!";
@@ -90,6 +94,8 @@ namespace KnightBot.Modules.Admin
             await logchannel.SendMessageAsync("", false, embed);
 
 
+            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
+            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("kick")]
@@ -102,7 +108,7 @@ namespace KnightBot.Modules.Admin
 
             var gld = Context.Guild as SocketGuild;
             var embed = new EmbedBuilder() { Color = Colors.adminCol };
-            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Today + DateTime.Now };
+            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute };
 
             embed.WithFooter(footer);
             embed.Title = $"**{user.Username}** has been kicked from **{user.Guild.Name}**!";
@@ -114,6 +120,9 @@ namespace KnightBot.Modules.Admin
 
             var logchannel = Context.Guild.GetChannel(437977945680773130) as SocketTextChannel;
             await logchannel.SendMessageAsync("", false, embed);
+
+            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
+            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("setrole")]
@@ -136,6 +145,9 @@ namespace KnightBot.Modules.Admin
 
 
             await Context.Message.DeleteAsync();
+
+            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
+            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("remrole")]
@@ -157,6 +169,9 @@ namespace KnightBot.Modules.Admin
             await ReplyAsync("", false, embed.Build());
 
             await Context.Message.DeleteAsync();
+
+            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
+            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
     }
 }

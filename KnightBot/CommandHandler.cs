@@ -15,13 +15,14 @@ using Discord.Rest;
 using System.Threading;
 using System.Timers;
 using KnightBot.Modules.Admin;
+using KnightBot.Modules.Profanity;
 
 namespace KnightBot
 {
     public class CommandHandler : ModuleBase
     {
         private CommandService commands;
-        public DiscordSocketClient bot;
+        private static DiscordSocketClient bot;
         private IServiceProvider map;
 
         private BankConfig save = new BankConfig();
@@ -48,10 +49,11 @@ namespace KnightBot
             bot.UserBanned += BannedUserAsync;
             bot.UserUnbanned += UnBannedUserAsync;
             bot.GuildUpdated += GuildUpdatedAsync;
-            bot.CurrentUserUpdated += BotUpdatedAsync;
             bot.MessageUpdated += MessageUpdatedAsync;
-            bot.UserUpdated += UserUpdatedAsync;
             // End Logs Lmao
+            //start msg received stuff
+            bot.MessageReceived += ProfanityFilter.ProfanityCheckAsync;
+            //end msg recieved stff
         }
 
         public async Task UserUpdatedAsync(SocketUser user, SocketUser usr)
@@ -307,7 +309,7 @@ namespace KnightBot
 
         public async Task SetGame()
         {
-            await bot.SetGameAsync("Knightdev.xyz");
+            await bot.SetGameAsync(BotConfig.Load().Prefix + "help" + " | " + "KnightBot.xyz");
         }
 
 
@@ -353,5 +355,8 @@ namespace KnightBot
                 }
             }
         }
+
+        public static DiscordSocketClient GetBot() { return bot; }
+
     }
 }
