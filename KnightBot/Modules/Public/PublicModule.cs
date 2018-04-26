@@ -383,7 +383,7 @@ namespace KnightBot.Modules.Public
             var githubField = new EmbedFieldBuilder() { Name = "Github", Value = "https://github.com/Knight-Dev", IsInline = true };
 
             embed.Title = ("**Developer Information**");
-            embed.Description = ("Info For The Developer");
+            embed.Description = ("Info About The Developer");
             embed.WithThumbnailUrl("https://www.knightdev.xyz/forums/gifimages/Logo2.png");
             embed.WithFooter(footer);
             embed.AddField(devField);
