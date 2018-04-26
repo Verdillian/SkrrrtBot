@@ -40,7 +40,7 @@ namespace KnightBot.Modules.Public
             };
 
             embed.Title = "**╋━━━━━━◥◣ Magic 8 Ball ◢◤━━━━━━╋**";
-            embed.Description = Environment.NewLine + Context.User.Mention + ", " + text;
+            embed.Description = Environment.NewLine + Context.User.Mention + ", " + text + Environment.NewLine + "User Question: " + input;
 
             await Context.Channel.SendMessageAsync("", false, embed);
 
@@ -128,19 +128,6 @@ namespace KnightBot.Modules.Public
                     save.Save("bank/" + Context.User.Id.ToString() + ".json");
                 }
             }
-
-
-            var result = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
-
-            int bal = 10;
-
-            total = result + bal;
-
-            save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
-            save.currentMoney = total;
-            save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
-            save.Save("bank/" + Context.User.Id.ToString() + ".json");
-
 
         }
     }

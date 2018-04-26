@@ -41,7 +41,7 @@ namespace KnightBot.Modules.Economy
 
 
                 embed.Title = $"{Context.User.Username} Has Opened A Bank Account!";
-                embed.Description = $"\n:money_with_wings: **Welcome To The Bank!** :\n\n:moneybag: **Bank : OneDollaBill**\n";
+                embed.Description = $"\n:money_with_wings: **Welcome To The Bank!** :\n\n:moneybag: **Bank Name: ThisIsNotABank**\n";
                 await ReplyAsync("", false, embed.Build());
 
             }

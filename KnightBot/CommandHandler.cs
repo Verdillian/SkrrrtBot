@@ -23,10 +23,6 @@ namespace KnightBot
         private CommandService commands;
         public DiscordSocketClient bot;
         private IServiceProvider map;
-        
-
-
-        private int total;
 
         private BankConfig save = new BankConfig();
 
@@ -48,7 +44,7 @@ namespace KnightBot
             bot.ChannelDestroyed += ChannelDeletedAsync;
             bot.RoleCreated += RoleCreatedAsync;
             bot.RoleDeleted += RoleDeletedAsync;
-            bot.RoleUpdated += RoleUpdatedAsync;
+            //bot.RoleUpdated += RoleUpdatedAsync;
             bot.UserBanned += BannedUserAsync;
             bot.UserUnbanned += UnBannedUserAsync;
             bot.GuildUpdated += GuildUpdatedAsync;
@@ -144,7 +140,7 @@ namespace KnightBot
             await logchannel.SendMessageAsync("", false, embed);
         }
 
-        public async Task RoleUpdatedAsync(SocketRole role, SocketRole role2)
+        /*public async Task RoleUpdatedAsync(SocketRole role, SocketRole role2)
         {
 
             var embed = new EmbedBuilder() { Color = Colors.adminCol };
@@ -207,7 +203,7 @@ namespace KnightBot
 
             var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
             await logchannel.SendMessageAsync("", false, embed);
-        }
+        }*/
 
         public async Task ChannelCreatedAsync(SocketChannel chnl)
         {
@@ -256,7 +252,7 @@ namespace KnightBot
             var embed = new EmbedBuilder() { Color = Colors.adminCol };
             var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
             embed.Title = ("**User Left The Discord**");
-            embed.Description = ("Username: " + user.Username + "\nTime: " + DateTime.Now.TimeOfDay + "\nTotal Members: " + bot.GetGuild(BotConfig.Load().serverId).MemberCount.ToString());
+            embed.Description = ("Username: " + user.Username + "\nTime: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + "\nTotal Members: " + bot.GetGuild(BotConfig.Load().serverId).MemberCount.ToString());
             embed.WithFooter(footer);
 
             var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
@@ -274,12 +270,25 @@ namespace KnightBot
             var embed = new EmbedBuilder() { Color = Colors.adminCol };
             var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
             embed.Title = ("**User Joined The Discord**");
-            embed.Description = ("Username: " + user.Username + "\nTime: " + DateTime.Now.TimeOfDay + "\nTotal Members: " + bot.GetGuild(BotConfig.Load().serverId).MemberCount.ToString());
+            embed.Description = ("Username: " + user.Username + "\nTime: " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + "\nTotal Members: " + bot.GetGuild(BotConfig.Load().serverId).MemberCount.ToString());
             embed.WithFooter(footer);
             
 
             var logchannel = bot.GetChannel(BotConfig.Load().LogChannel) as SocketTextChannel;
             await logchannel.SendMessageAsync("", false, embed);
+
+            if (!File.Exists(appdir + "bank/" + Context.User.Id.ToString() + ".json"))
+            {
+                var newServer = File.Create(Path.Combine(appdir, "bank/" + Context.User.Id.ToString() + ".json"));
+
+                newServer.Close();
+
+                save.userID = Context.User.Id.ToString();
+                save.currentMoney = 100;
+                save.currentPoints = 0;
+                save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+            }
 
         }
 
@@ -325,7 +334,7 @@ namespace KnightBot
                     var embed = new EmbedBuilder() { Color = Colors.errorcol };
                     var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Today + DateTime.Now };
                     embed.Title = ("**Error**");
-                    embed.Description = ($"**Error:** {result.ErrorReason}");
+                    embed.Description = ($"{result.ErrorReason}");
                     embed.WithFooter(footer);
                     await message.Channel.SendMessageAsync("", false, embed);
                 }

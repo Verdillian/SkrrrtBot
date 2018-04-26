@@ -233,5 +233,169 @@ namespace KnightBot.Modules.Public
             }
         }
 
+        [Command("csgo")]
+        public async Task AddcsgoRoleAsync()
+        {
+            var chan = Context.Channel;
+            var userName = Context.User as SocketGuildUser;
+            var r6Role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == "CS:GO");
+
+            if (!userName.Roles.Contains(r6Role))
+            {
+                var user = Context.User;
+
+                await (user as IGuildUser).AddRoleAsync(r6Role);
+
+                var embed = new EmbedBuilder() { Color = Colors.generalCol };
+                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                embed.Title = ("**" + user.Username + " Was Added To The CS:GO Role**");
+                embed.WithFooter(footer);
+
+                var messageToDel = await Context.Channel.SendMessageAsync("", false, embed);
+                await Delete.DelayDeleteMessage(Context.Message, 10);
+                await Delete.DelayDeleteMessage(messageToDel, 10);
+
+                await Context.Message.DeleteAsync();
+
+            }
+            else
+            {
+                var user = Context.User;
+
+                await (user as IGuildUser).RemoveRoleAsync(r6Role);
+
+                var embed = new EmbedBuilder() { Color = Colors.generalCol };
+                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                embed.Title = ("**" + user.Username + " Was Removed From The CS:GO Role**");
+                embed.WithFooter(footer);
+
+                var messageToDel = await Context.Channel.SendMessageAsync("", false, embed);
+                await Delete.DelayDeleteMessage(Context.Message, 10);
+                await Delete.DelayDeleteMessage(messageToDel, 10);
+
+                await Context.Message.DeleteAsync();
+
+            }
+        }
+
+        [Command("rktlgue")]
+        [Alias("rocketleague")]
+        public async Task AddRocketRoleAsync()
+        {
+            var chan = Context.Channel;
+            var userName = Context.User as SocketGuildUser;
+            var r6Role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == "Rocket League");
+
+            if (!userName.Roles.Contains(r6Role))
+            {
+                var user = Context.User;
+
+                await (user as IGuildUser).AddRoleAsync(r6Role);
+
+                var embed = new EmbedBuilder() { Color = Colors.generalCol };
+                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                embed.Title = ("**" + user.Username + " Was Added To The Rocket League Role**");
+                embed.WithFooter(footer);
+
+                var messageToDel = await Context.Channel.SendMessageAsync("", false, embed);
+                await Delete.DelayDeleteMessage(Context.Message, 10);
+                await Delete.DelayDeleteMessage(messageToDel, 10);
+
+                await Context.Message.DeleteAsync();
+
+            }
+            else
+            {
+                var user = Context.User;
+
+                await (user as IGuildUser).RemoveRoleAsync(r6Role);
+
+                var embed = new EmbedBuilder() { Color = Colors.generalCol };
+                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                embed.Title = ("**" + user.Username + " Was Removed From The Rocket League Role**");
+                embed.WithFooter(footer);
+
+                var messageToDel = await Context.Channel.SendMessageAsync("", false, embed);
+                await Delete.DelayDeleteMessage(Context.Message, 10);
+                await Delete.DelayDeleteMessage(messageToDel, 10);
+
+                await Context.Message.DeleteAsync();
+
+            }
+        }
+
+        [Command("movie")]
+        public async Task AddMovieRoleAsync()
+        {
+            var chan = Context.Channel;
+            var userName = Context.User as SocketGuildUser;
+            var r6Role = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToString() == "Movies");
+
+            if (!userName.Roles.Contains(r6Role))
+            {
+                var user = Context.User;
+
+                await (user as IGuildUser).AddRoleAsync(r6Role);
+
+                var embed = new EmbedBuilder() { Color = Colors.generalCol };
+                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                embed.Title = ("**" + user.Username + " Was Added To The Movies Role**");
+                embed.WithFooter(footer);
+
+                var messageToDel = await Context.Channel.SendMessageAsync("", false, embed);
+                await Delete.DelayDeleteMessage(Context.Message, 10);
+                await Delete.DelayDeleteMessage(messageToDel, 10);
+
+                await Context.Message.DeleteAsync();
+
+            }
+            else
+            {
+                var user = Context.User;
+
+                await (user as IGuildUser).RemoveRoleAsync(r6Role);
+
+                var embed = new EmbedBuilder() { Color = Colors.generalCol };
+                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                embed.Title = ("**" + user.Username + " Was Removed From The Movies Role**");
+                embed.WithFooter(footer);
+
+                var messageToDel = await Context.Channel.SendMessageAsync("", false, embed);
+                await Delete.DelayDeleteMessage(Context.Message, 10);
+                await Delete.DelayDeleteMessage(messageToDel, 10);
+
+                await Context.Message.DeleteAsync();
+
+            }
+        }
+
+        [Command("developer")]
+        [Alias("dev")]
+        public async Task DeveloperEmbed()
+        {
+            var embed = new EmbedBuilder() { Color = Colors.generalCol };
+            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+
+            var blank = new EmbedFieldBuilder() { Name = "\u200b", Value = "\u200b" };
+            var devField = new EmbedFieldBuilder() { Name = "Developer", Value = "Knight", IsInline = true };
+            var botInfoField = new EmbedFieldBuilder() { Name = "Bot Info", Value = "This is a simple moderation/fun bot for my discord server. If you are interested in having one made for you feel free to contact me via my website below.", IsInline = true };
+            var websiteField = new EmbedFieldBuilder() { Name = "Website", Value = "Https://www.KnightDev.xyz/", IsInline = true };
+            var githubField = new EmbedFieldBuilder() { Name = "Github", Value = "https://github.com/Knight-Dev", IsInline = true };
+
+            embed.Title = ("**User Updated A Role**");
+            embed.Description = ("Info For The Recently Updated Role");
+            embed.WithThumbnailUrl("https://www.knightdev.xyz/forums/gifimages/Logo2.png");
+            embed.WithFooter(footer);
+            embed.AddField(devField);
+            embed.AddField(botInfoField);
+            embed.AddField(blank);
+            embed.AddField(websiteField);
+            embed.AddField(githubField);
+
+            await Context.Channel.SendMessageAsync("", false, embed);
+        }
+
+
+
     }
 }
