@@ -5,6 +5,7 @@ using Discord.Commands;
 using System.Linq;
 using KnightBot.util;
 using KnightBot.Modules.Economy;
+using System.IO;
 
 namespace KnightBot.Modules.Public
 {
@@ -66,6 +67,43 @@ namespace KnightBot.Modules.Public
         [Command("roll")]
         public async Task betcmd(int bet)
         {
+
+
+            if (!File.Exists(BankModule.appdir + "bank/" + Context.User.Id.ToString() + ".json"))
+            {
+                var newServer = File.Create(Path.Combine(BankModule.appdir, "bank/" + Context.User.Id.ToString() + ".json"));
+
+                newServer.Close();
+
+                save.userID = Context.User.Id.ToString();
+                save.currentMoney = 100;
+                save.currentPoints = 0;
+                save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+
+                var embed = new EmbedBuilder()
+
+                {
+                    Color = Colors.moneyCol,
+                };
+
+
+                embed.Title = $"{Context.User.Username} Has Opened A Bank Account!";
+                embed.Description = $"\n:money_with_wings: **Welcome To The Bank!** :\n\n:moneybag: **Bank Name: ThisIsNotABank**\n";
+                await ReplyAsync("", false, embed.Build());
+
+            }
+            else await errors.sendError(Context.Channel, "User already has a bank account", Colors.moneyCol);
+
+            //save the users file
+            save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+            save.currentMoney = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+            save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+
+            save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+
+
             var econ = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
 
             if (econ < bet)
