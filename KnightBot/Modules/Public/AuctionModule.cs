@@ -70,7 +70,7 @@ namespace KnightBot.Modules.Public
             save.currentMoney = total;
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
-
+            await Context.Message.DeleteAsync();
 
         }
 
@@ -120,7 +120,7 @@ namespace KnightBot.Modules.Public
             save.currentMoney = total;
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
-
+            await Context.Message.DeleteAsync();
 
         }
 
@@ -152,7 +152,7 @@ namespace KnightBot.Modules.Public
             save.currentMoney = total;
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
-
+            await Context.Message.DeleteAsync();
 
         }
 
@@ -208,7 +208,7 @@ namespace KnightBot.Modules.Public
             save.currentMoney = total;
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
-
+            await Context.Message.DeleteAsync();
 
         }
 
@@ -244,7 +244,7 @@ namespace KnightBot.Modules.Public
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
 
-
+            await Context.Message.DeleteAsync();
         }
     }
 }

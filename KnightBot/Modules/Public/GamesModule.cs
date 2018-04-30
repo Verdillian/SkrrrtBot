@@ -119,8 +119,8 @@ namespace KnightBot.Modules.Public
                 Random rand = new Random();
                 Random rand2 = new Random();
 
-                int userRoll = rand2.Next(1, 6);
-                int rolled = rand.Next(1, 9);
+                int userRoll = rand2.Next(1, 12);
+                int rolled = rand.Next(1, 15);
 
                 Console.WriteLine("User Rolled : " + userRoll);
                 Console.WriteLine("Bot Rolled : " + rolled);

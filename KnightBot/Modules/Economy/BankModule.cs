@@ -11,8 +11,6 @@ namespace KnightBot.Modules.Economy
 
     // Max int32: 2147483647
 
-
-
     [Group("bank")]
     [Alias("b")]
     public class BankModule : ModuleBase
@@ -34,7 +32,7 @@ namespace KnightBot.Modules.Economy
                 newServer.Close();
 
                 save.userID = Context.User.Id.ToString();
-                save.currentMoney = 100;
+                save.currentMoney = 200;
                 save.currentPoints = 0;
                 save.Save("bank/" + Context.User.Id.ToString() + ".json");
 
@@ -63,6 +61,8 @@ namespace KnightBot.Modules.Economy
             KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
             KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
 
+            await Context.Message.DeleteAsync();
+
         }
 
         [Command("balance")]
@@ -80,7 +80,7 @@ namespace KnightBot.Modules.Economy
 
             KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
             KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
-
+            await Context.Message.DeleteAsync();
         }
 
         [Command("transfer")]
@@ -164,6 +164,8 @@ namespace KnightBot.Modules.Economy
             }
             KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
             KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+
+            await Context.Message.DeleteAsync();
 
         }
     }
