@@ -347,7 +347,7 @@ namespace KnightBot
                 if (!result.IsSuccess && result.ErrorReason != "Unknown command.")
                 {
                     var embed = new EmbedBuilder() { Color = Colors.errorcol };
-                    var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Today + DateTime.Now };
+                    var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + " | " + DateTime.Now.Minute };
                     embed.Title = ("**Error**");
                     embed.Description = ($"{result.ErrorReason}");
                     embed.WithFooter(footer);

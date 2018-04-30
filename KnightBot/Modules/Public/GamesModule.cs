@@ -105,7 +105,7 @@ namespace KnightBot.Modules.Public
 
             var econ = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
 
-            if (econ < bet)
+            if (bet.ToString().StartsWith("-"))
             {
                 var embed = new EmbedBuilder()
                 {
@@ -113,57 +113,70 @@ namespace KnightBot.Modules.Public
                 };
                 embed.Description = (Context.User.Mention + ", you do not have enough money to roll the dice!");
                 await ReplyAsync("", false, embed.Build());
-            }
-            else
+            } else
             {
-                Random rand = new Random();
-                Random rand2 = new Random();
-
-                int userRoll = rand2.Next(1, 12);
-                int rolled = rand.Next(1, 15);
-
-                Console.WriteLine("User Rolled : " + userRoll);
-                Console.WriteLine("Bot Rolled : " + rolled);
-
-                if (userRoll.Equals(rolled))
+                if (econ < bet)
                 {
-
-
                     var embed = new EmbedBuilder()
                     {
-                        Color = Colors.moneyCol,
+                        Color = Colors.moneyCol
                     };
-
-                    embed.Title = $"Congrats {Context.User.Username}!";
-                    embed.Description = $"You Have Made ${bet}!\n\n {Context.User.Mention} You Rolled **{userRoll}** and I rolled **{rolled}**";
+                    embed.Description = (Context.User.Mention + ", you do not have enough money to roll the dice!");
                     await ReplyAsync("", false, embed.Build());
-
-
-                    save.currentMoney = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney + bet;
-                    save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
-                    save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
-                    save.Save("bank/" + Context.User.Id.ToString() + ".json");
-
                 }
                 else
                 {
+                    Random rand = new Random();
+                    Random rand2 = new Random();
 
-                    int betremove = -bet;
+                    int userRoll = rand2.Next(1, 12);
+                    int rolled = rand.Next(1, 15);
 
-                    var embed = new EmbedBuilder()
+                    Console.WriteLine("User Rolled : " + userRoll);
+                    Console.WriteLine("Bot Rolled : " + rolled);
+
+                    if (userRoll.Equals(rolled))
                     {
-                        Color = Colors.moneyCol,
-                    };
 
-                    embed.Title = $"Sorry **{Context.User.Username}**!";
-                    embed.Description = $"You Have Lost ${bet}!\n\n {Context.User.Mention} You Rolled **{userRoll}** and I rolled **{rolled}**";
-                    await ReplyAsync("", false, embed.Build());
 
-                    save.currentMoney = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney - bet;
-                    save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
-                    save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
-                    save.Save("bank/" + Context.User.Id.ToString() + ".json");
+                        var embed = new EmbedBuilder()
+                        {
+                            Color = Colors.moneyCol,
+                        };
+
+                        embed.Title = $"Congrats {Context.User.Username}!";
+                        embed.Description = $"You Have Made ${bet}!\n\n {Context.User.Mention} You Rolled **{userRoll}** and I rolled **{rolled}**";
+                        await ReplyAsync("", false, embed.Build());
+
+
+                        save.currentMoney = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney + bet;
+                        save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+                        save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+                        save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+                    }
+                    else
+                    {
+
+                        int betremove = -bet;
+
+                        var embed = new EmbedBuilder()
+                        {
+                            Color = Colors.moneyCol,
+                        };
+
+                        embed.Title = $"Sorry **{Context.User.Username}**!";
+                        embed.Description = $"You Have Lost ${bet}!\n\n {Context.User.Mention} You Rolled **{userRoll}** and I rolled **{rolled}**";
+                        await ReplyAsync("", false, embed.Build());
+
+                        save.currentMoney = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney - bet;
+                        save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+                        save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+                        save.Save("bank/" + Context.User.Id.ToString() + ".json");
+                    }
                 }
+
+            
             }
 
         }

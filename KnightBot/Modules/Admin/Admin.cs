@@ -43,7 +43,10 @@ namespace KnightBot.Modules.Admin
                 var embed = new EmbedBuilder() { Color = Colors.adminCol };
                 embed.Title = ("**Clear Messages**");
                 embed.Description = ($"**{Context.User.Mention}**, You Cannot Delete **0** Messages!");
-                await ReplyAsync("", false, embed.Build());
+                var messageToDel = await Context.Channel.SendMessageAsync("", false, embed);
+                await Delete.DelayDeleteMessage(Context.Message, 10);
+                await Delete.DelayDeleteMessage(messageToDel, 10);
+
             } else if (x <= 100)
             {
                 var messagesToDelete = await Context.Channel.GetMessagesAsync(x + 1).Flatten();
@@ -52,13 +55,18 @@ namespace KnightBot.Modules.Admin
                 var embed = new EmbedBuilder() { Color = Colors.adminCol };
                 embed.Title = ("**Clear Messages**");
                 embed.Description = ($"**{Context.User.Mention}** Deleted **{x}** Messages.");
-                await ReplyAsync("", false, embed.Build());
+                var messageToDel = await Context.Channel.SendMessageAsync("", false, embed);
+                await Delete.DelayDeleteMessage(Context.Message, 10);
+                await Delete.DelayDeleteMessage(messageToDel, 10);
             } else if (x > 100)
             {
                 var embed = new EmbedBuilder() { Color = Colors.adminCol };
                 embed.Title = ("**Clear Messages**");
                 embed.Description = ("**{Context.User.Mention}**, You Cannot Delete More Than 100 Messages!");
-                await ReplyAsync("", false, embed.Build());
+                var messageToDel = await Context.Channel.SendMessageAsync("", false, embed);
+                await Delete.DelayDeleteMessage(Context.Message, 10);
+                await Delete.DelayDeleteMessage(messageToDel, 10);
+
             }
 
             KnightBot.Modules.Statistics.Statistics.AddCommandRequests();

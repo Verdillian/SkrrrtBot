@@ -6,6 +6,7 @@ using KnightBot.Config;
 using KnightBot.util;
 using System.Threading.Tasks;
 using KnightBot.Modules.Economy;
+using System.IO;
 
 namespace KnightBot.Modules.Public
 {
@@ -38,6 +39,31 @@ namespace KnightBot.Modules.Public
         [Remarks("Starts a fight with the @mention user (example: !fight @Knight#0141")]
         public async Task Fight(IUser user)
         {
+
+            if (!File.Exists(BankModule.appdir + "bank/" + Context.User.Id.ToString() + ".json"))
+            {
+                var newServer = File.Create(Path.Combine(BankModule.appdir, "bank/" + Context.User.Id.ToString() + ".json"));
+
+                newServer.Close();
+
+                save.userID = Context.User.Id.ToString();
+                save.currentMoney = 200;
+                save.currentPoints = 0;
+                save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+
+                var embed = new EmbedBuilder()
+
+                {
+                    Color = Colors.moneyCol,
+                };
+
+
+                embed.Title = $"{Context.User.Username} Has Opened A Bank Account!";
+                embed.Description = $"\n:money_with_wings: **Welcome To The Bank!** :\n\n:moneybag: **Bank Name: ThisIsNotABank**\n";
+                await ReplyAsync("", false, embed.Build());
+
+            }
             if (Context.User.Mention != user.Mention && SwitchCaseString == "nofight")
             {
                 SwitchCaseString = "fight_p1";
@@ -83,19 +109,28 @@ namespace KnightBot.Modules.Public
                 embed.Description = (Context.User.Mention + " Sorry but there is already a fight going on, or  you simply tried to fight yourself.");
                 await ReplyAsync("", false, embed.Build());
             }
-            await Context.Message.DeleteAsync();
+                await Context.Message.DeleteAsync();
 
+                var result = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
 
-            var result = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
+                int bal = 10;
 
-            int bal = 10;
+                total = result + bal;
 
-            total = result + bal;
+                save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
+                save.currentMoney = total;
+                save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+                save.Save("bank/" + Context.User.Id.ToString() + ".json");
+            
 
+            //save the users file
             save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
-            save.currentMoney = total;
+            save.currentMoney = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
             save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
+
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
+
+            
 
 
         }
