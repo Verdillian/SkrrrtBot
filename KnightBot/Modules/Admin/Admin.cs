@@ -27,7 +27,7 @@ namespace KnightBot.Modules.Admin
         public async Task Setgame()
         {
 
-            await (Context.Client as DiscordSocketClient).SetGameAsync(BotConfig.Load().Prefix + "help" + " | " + "KnightBot.xyz");
+            await (Context.Client as DiscordSocketClient).SetGameAsync(BotConfig.Load().Prefix + "help" + " | " + "KnightDev.xyz");
 
 
             await Context.Message.DeleteAsync();

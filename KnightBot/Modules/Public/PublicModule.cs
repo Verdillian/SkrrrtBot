@@ -429,10 +429,46 @@ namespace KnightBot.Modules.Public
 
             KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
             KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
-
+            await Context.Message.DeleteAsync();
         }
 
+        [Command("statistics")]
+        [Alias("stats")]
+        public async Task StatsEmbed()
+        {
+            var embed = new EmbedBuilder() { Color = Colors.adminCol };
+            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
 
+            var blank = new EmbedFieldBuilder() { Name = "\u200b", Value = "\u200b" };
+            var devField = new EmbedFieldBuilder() { Name = "Developer:", Value = "Knight", IsInline = true };
+            var websiteField = new EmbedFieldBuilder() { Name = "Website:", Value = "Https://www.KnightDev.xyz/", IsInline = true };
+            var IncomField = new EmbedFieldBuilder() { Name = "Incoming Messages:", Value = Statistics.Statistics.GetIncomingMessages(), IsInline = true };
+            var OutgoField = new EmbedFieldBuilder() { Name = "Outgoing Messages:", Value = Statistics.Statistics.GetOutgoingMessages(), IsInline = true };
+            var CommField = new EmbedFieldBuilder() { Name = "Commands Executed:", Value = Statistics.Statistics.GetCommandRequests(), IsInline = true };
+            var ErrorField = new EmbedFieldBuilder() { Name = "Errors Found:", Value = Statistics.Statistics.GetErrorsDetected(), IsInline = true };
+            var ProfanField = new EmbedFieldBuilder() { Name = "Profanity:", Value = Statistics.Statistics.GetProfanityDetected(), IsInline = true };
+
+            embed.Title = ("**Statistics**");
+            embed.Description = ("Current Bot Statistics");
+            embed.WithThumbnailUrl("https://www.knightdev.xyz/forums/gifimages/Logo2.png");
+            embed.WithFooter(footer);
+            embed.AddField(devField);
+            embed.AddField(websiteField);
+            embed.AddField(blank);
+            embed.AddField(IncomField);
+            embed.AddField(OutgoField);
+            embed.AddField(blank);
+            embed.AddField(CommField);
+            embed.AddField(ProfanField);
+            embed.AddField(blank);
+            embed.AddField(ErrorField);
+
+            await Context.Channel.SendMessageAsync("", false, embed);
+
+            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
+            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            await Context.Message.DeleteAsync();
+        }
 
     }
 }

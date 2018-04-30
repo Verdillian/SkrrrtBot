@@ -14,6 +14,7 @@ namespace KnightBot.Modules.Economy
 
 
     [Group("bank")]
+    [Alias("b")]
     public class BankModule : ModuleBase
     {
 
@@ -23,7 +24,7 @@ namespace KnightBot.Modules.Economy
 
         public static readonly string appdir = AppContext.BaseDirectory;
 
-        [Command("open")]
+        [Command]
         public async Task bankOpen()
         {
             if (!File.Exists(appdir + "bank/" + Context.User.Id.ToString() + ".json"))
@@ -65,6 +66,7 @@ namespace KnightBot.Modules.Economy
         }
 
         [Command("balance")]
+        [Alias("bal", "b", "blance")]
         public async Task bankBalance()
         {
             var embed = new EmbedBuilder()
@@ -82,13 +84,25 @@ namespace KnightBot.Modules.Economy
         }
 
         [Command("transfer")]
+        [Alias("trans", "tran", "t")]
         public async Task bankTransfer(IGuildUser user, int moneytotransfer)
         {
             int bal1 = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
 
             int bal2 = BankConfig.Load("bank/" + user.Id.ToString() + ".json").currentMoney;
 
-            if (BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney >= moneytotransfer)
+            if (moneytotransfer.ToString().StartsWith("-"))
+            {
+
+                var embed = new EmbedBuilder() { Color = Colors.moneyCol };
+                embed.Title = ("Bank");
+                embed.Description = ("You Cannot Do That!");
+
+                await Context.Channel.SendMessageAsync("", false, embed);
+
+                return;
+            }
+            else if (BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney >= moneytotransfer)
             {
                 save.currentMoney = bal1 - moneytotransfer;
                 save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints;
@@ -124,7 +138,8 @@ namespace KnightBot.Modules.Economy
                 await Context.Channel.SendMessageAsync("", false, embed);
 
 
-            } else if (BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney < moneytotransfer)
+            }
+            else if (BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney < moneytotransfer)
             {
                 var embed = new EmbedBuilder() { Color = Colors.moneyCol };
 
@@ -135,7 +150,8 @@ namespace KnightBot.Modules.Economy
 
                 await Context.Channel.SendMessageAsync("", false, embed);
 
-            } else if (moneytotransfer > BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney)
+            }
+            else if (moneytotransfer > BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney)
             {
                 var embed = new EmbedBuilder() { Color = Colors.moneyCol };
 
@@ -146,7 +162,6 @@ namespace KnightBot.Modules.Economy
 
                 await Context.Channel.SendMessageAsync("", false, embed);
             }
-
             KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
             KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
 

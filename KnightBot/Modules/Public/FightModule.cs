@@ -229,7 +229,7 @@ namespace KnightBot.Modules.Public
                                 embed.Description = (Context.User.Mention + " you hit and did " + randomIndex2 + " damage!\n\n" + player2 + " died. " + player1 + " won!");
                                 //Database.updPoints(Context.User, 3);
 
-                                save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints + 3;
+                                save.currentPoints = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentPoints + 5;
                                 save.currentMoney = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney;
                                 save.userID = BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").userID;
                                 save.Save("bank/" + Context.User.Id.ToString() + ".json");

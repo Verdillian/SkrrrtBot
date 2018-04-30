@@ -28,6 +28,7 @@ namespace KnightBot.Modules.Profanity
             }
             **/
 
+            KnightBot.Modules.Statistics.Statistics.AddIncomingMessages();
 
             for (int i = 0; i <= BotConfig.Load().Filters - 1; i++)
             {
