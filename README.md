@@ -1,6 +1,6 @@
-# KnightBot
+# SkrrrtBot
 
-Website: Https://KnightBot.xyz/
+Website: Https://skrrrtskrrrtstudios.xyz/
 
 This discord bot is going to include some cool things.
 
