@@ -86,7 +86,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).AddRoleAsync(pubgRole);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Added To The PUBG Role**");
                 embed.WithFooter(footer);
 
@@ -104,7 +104,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).RemoveRoleAsync(pubgRole);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Removed From The PUBG Role**");
                 embed.WithFooter(footer);
 
@@ -133,7 +133,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).AddRoleAsync(gtavRole);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Added To The GTAV Role**");
                 embed.WithFooter(footer);
 
@@ -151,7 +151,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).RemoveRoleAsync(gtavRole);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Removed From The GTAV Role**");
                 embed.WithFooter(footer);
 
@@ -180,7 +180,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).AddRoleAsync(mcRole);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Added To The Minecraft Role**");
                 embed.WithFooter(footer);
 
@@ -198,7 +198,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).RemoveRoleAsync(mcRole);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Removed From The Minecraft Role**");
                 embed.WithFooter(footer);
 
@@ -227,7 +227,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).AddRoleAsync(r6Role);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Added To The Rainbow Six Seige Role**");
                 embed.WithFooter(footer);
 
@@ -245,7 +245,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).RemoveRoleAsync(r6Role);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Removed From The Rainbow Six Seige Role**");
                 embed.WithFooter(footer);
 
@@ -274,7 +274,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).AddRoleAsync(r6Role);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Added To The CS:GO Role**");
                 embed.WithFooter(footer);
 
@@ -292,7 +292,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).RemoveRoleAsync(r6Role);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Removed From The CS:GO Role**");
                 embed.WithFooter(footer);
 
@@ -322,7 +322,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).AddRoleAsync(r6Role);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Added To The Rocket League Role**");
                 embed.WithFooter(footer);
 
@@ -340,7 +340,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).RemoveRoleAsync(r6Role);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Removed From The Rocket League Role**");
                 embed.WithFooter(footer);
 
@@ -369,7 +369,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).AddRoleAsync(r6Role);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Added To The Movies Role**");
                 embed.WithFooter(footer);
 
@@ -387,7 +387,7 @@ namespace SkrrrtBot.Modules.Public
                 await (user as IGuildUser).RemoveRoleAsync(r6Role);
 
                 var embed = new EmbedBuilder() { Color = Colors.generalCol };
-                var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+                var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
                 embed.Title = ("**" + user.Username + " Was Removed From The Movies Role**");
                 embed.WithFooter(footer);
 
@@ -407,17 +407,17 @@ namespace SkrrrtBot.Modules.Public
         public async Task DeveloperEmbed()
         {
             var embed = new EmbedBuilder() { Color = Colors.generalCol };
-            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+            var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
 
             var blank = new EmbedFieldBuilder() { Name = "\u200b", Value = "\u200b" };
             var devField = new EmbedFieldBuilder() { Name = "Developer", Value = "Knight", IsInline = true };
             var botInfoField = new EmbedFieldBuilder() { Name = "Bot Info", Value = "This is a simple moderation/fun bot for my discord server. If you are interested in having one made for you feel free to contact me via my website below.", IsInline = true };
-            var websiteField = new EmbedFieldBuilder() { Name = "Website", Value = "Https://www.KnightDev.xyz/", IsInline = true };
-            var githubField = new EmbedFieldBuilder() { Name = "Github", Value = "https://github.com/Knight-Dev", IsInline = true };
+            var websiteField = new EmbedFieldBuilder() { Name = "Website", Value = "https://www.skrrrtskrrrtstudios.xyz/", IsInline = true };
+            var githubField = new EmbedFieldBuilder() { Name = "Github", Value = "https://github.com/SkrrrtSkrrrtStudios", IsInline = true };
 
             embed.Title = ("**Developer Information**");
             embed.Description = ("Info About The Developer");
-            embed.WithThumbnailUrl("https://www.knightdev.xyz/forums/gifimages/Logo2.png");
+            embed.WithThumbnailUrl("https://www.skrrrtskrrrtstudios.xyz/img/logo2.png");
             embed.WithFooter(footer);
             embed.AddField(devField);
             embed.AddField(botInfoField);
@@ -437,11 +437,11 @@ namespace SkrrrtBot.Modules.Public
         public async Task StatsEmbed()
         {
             var embed = new EmbedBuilder() { Color = Colors.adminCol };
-            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
+            var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + " | " + "KnightDev.xyz" };
 
             var blank = new EmbedFieldBuilder() { Name = "\u200b", Value = "\u200b" };
             var devField = new EmbedFieldBuilder() { Name = "Developer:", Value = "Knight", IsInline = true };
-            var websiteField = new EmbedFieldBuilder() { Name = "Website:", Value = "Https://www.KnightDev.xyz/", IsInline = true };
+            var websiteField = new EmbedFieldBuilder() { Name = "Website:", Value = "https://www.skrrrtskrrrtstudios.xyz/", IsInline = true };
             var IncomField = new EmbedFieldBuilder() { Name = "Incoming Messages:", Value = Statistics.Statistics.GetIncomingMessages(), IsInline = true };
             var OutgoField = new EmbedFieldBuilder() { Name = "Outgoing Messages:", Value = Statistics.Statistics.GetOutgoingMessages(), IsInline = true };
             var CommField = new EmbedFieldBuilder() { Name = "Commands Executed:", Value = Statistics.Statistics.GetCommandRequests(), IsInline = true };
@@ -450,7 +450,7 @@ namespace SkrrrtBot.Modules.Public
 
             embed.Title = ("**Statistics**");
             embed.Description = ("Current Bot Statistics");
-            embed.WithThumbnailUrl("https://www.knightdev.xyz/forums/gifimages/Logo2.png");
+            embed.WithThumbnailUrl("https://www.skrrrtskrrrtstudios.xyz/img/logo2.png");
             embed.WithFooter(footer);
             embed.AddField(devField);
             embed.AddField(websiteField);

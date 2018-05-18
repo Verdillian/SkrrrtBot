@@ -27,7 +27,7 @@ namespace SkrrrtBot.Modules.Admin
         public async Task Setgame()
         {
 
-            await (Context.Client as DiscordSocketClient).SetGameAsync(BotConfig.Load().Prefix + "help" + " | " + "KnightDev.xyz");
+            await (Context.Client as DiscordSocketClient).SetGameAsync(BotConfig.Load().Prefix + "help" + " | " + "SkrrrtSkrrrtStudios.xyz");
 
 
             await Context.Message.DeleteAsync();
@@ -88,7 +88,7 @@ namespace SkrrrtBot.Modules.Admin
             {
                 Color = Colors.adminCol
             };
-            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute };
+            var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute };
 
             embed.WithFooter(footer);
             embed.Title = $"**{user.Username}** has been banned!";
@@ -115,7 +115,7 @@ namespace SkrrrtBot.Modules.Admin
 
             var gld = Context.Guild as SocketGuild;
             var embed = new EmbedBuilder() { Color = Colors.adminCol };
-            var footer = new EmbedFooterBuilder() { Text = "KnightBotV2 By KnightDev" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute };
+            var footer = new EmbedFooterBuilder() { Text = "SkrrrtBot By SkrrrtSkrrrtStudios" + " | " + DateTime.Now.Hour + ":" + DateTime.Now.Minute };
 
             embed.WithFooter(footer);
             embed.Title = $"**{user.Username}** has been kicked from **{user.Guild.Name}**!";

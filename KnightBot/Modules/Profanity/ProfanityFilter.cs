@@ -1,7 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using KnightBot.Config;
+using SkrrrtBot.Config;
 using SkrrrtBot.util;
 using System;
 using System.Collections.Generic;

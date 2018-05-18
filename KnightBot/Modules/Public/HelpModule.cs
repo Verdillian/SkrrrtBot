@@ -34,7 +34,7 @@ namespace SkrrrtBot.Modules.Public
             var nsfwField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "help nsfw", Value = "Displays NSFW Commands." };
             var adminField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "help admin", Value = "Displays Admin Commands." };
 
-            embed.Title = $"**KnightBot Help**";
+            embed.Title = $"**SkrrrtBot Help**";
             embed.Description = "More Commands Will Be Added Soon!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -72,7 +72,7 @@ namespace SkrrrtBot.Modules.Public
             var dogField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "doggo", Value = "Displays A Random Dog Image!" };
             var catField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "cat", Value = "Displays A Random Cat Image!" };
 
-            embed.Title = $"**KnightBot Help**";
+            embed.Title = $"**SkrrrtBot Help**";
             embed.Description = "More Commands Will Be Added Soon!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -104,7 +104,7 @@ namespace SkrrrtBot.Modules.Public
             var playField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "play <link directly to song on youtube>", Value = "Plays The Song In Your Voice Channel!" };
             var stopField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "stop", Value = "Stops The Songs That Is Currently Playing!" };
 
-            embed.Title = $"**KnightBot Help**";
+            embed.Title = $"**SkrrrtBot Help**";
             embed.Description = "Here Are All Of The Music Commands!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -137,7 +137,7 @@ namespace SkrrrtBot.Modules.Public
             var moneyField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bank balance", Value = "Displays Your Current Balance!" };
             var transferField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bank transfer <user> <amount>", Value = "Transfer Money To Another Player." };
 
-            embed.Title = $"**KnightBot Help**";
+            embed.Title = $"**SkrrrtBot Help**";
             embed.Description = "Here Are All Of The Bank Commands!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -172,7 +172,7 @@ namespace SkrrrtBot.Modules.Public
             var auctionCheckField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "auctioncheck", Value = "Checks If There Is A Current Auction." };
             var bidField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "bid <amount>", Value = "Bid On The Current Auction." };
 
-            embed.Title = $"**KnightBot Help**";
+            embed.Title = $"**SkrrrtBot Help**";
             embed.Description = "Here Are All Of The Bank Commands!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -207,7 +207,7 @@ namespace SkrrrtBot.Modules.Public
             var banField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "ban <user> <reason>", Value = "Bans The Specified User." };
             var clearField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "clear <Amount>", Value = "Clears 1-100 Messages." };
 
-            embed.Title = $"**KnightBot Help**";
+            embed.Title = $"**SkrrrtBot Help**";
             embed.Description = "Here Are All Of The Bank Commands!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
@@ -242,7 +242,7 @@ namespace SkrrrtBot.Modules.Public
             var boobsField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "nsfw boobs", Value = "Perfect For Any Boobs Lovers." };
             var gifField = new EmbedFieldBuilder() { Name = BotConfig.Load().Prefix + "nsfw gif", Value = "Sends A Random Gif ;)" };
 
-            embed.Title = $"**KnightBot Help**";
+            embed.Title = $"**SkrrrtBot Help**";
             embed.Description = "Here Are All Of The NSFW Commands!";
             embed.WithFooter(footer);
             embed.WithCurrentTimestamp();
