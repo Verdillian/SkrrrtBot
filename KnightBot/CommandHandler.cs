@@ -6,18 +6,18 @@ using Discord;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
-using KnightBot.Config;
-using KnightBot.Modules.Public;
-using KnightBot.util;
+using SkrrrtBot.Config;
+using SkrrrtBot.Modules.Public;
+using SkrrrtBot.util;
 using System.IO;
 using KnightBot.Modules.Economy;
 using Discord.Rest;
 using System.Threading;
 using System.Timers;
-using KnightBot.Modules.Admin;
-using KnightBot.Modules.Profanity;
+using SkrrrtBot.Modules.Admin;
+using SkrrrtBot.Modules.Profanity;
 
-namespace KnightBot
+namespace SkrrrtBot
 {
     public class CommandHandler : ModuleBase
     {

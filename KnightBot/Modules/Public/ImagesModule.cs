@@ -4,17 +4,17 @@ using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
 using System.Linq;
-using KnightBot.Config;
-using KnightBot.util;
+using SkrrrtBot.Config;
+using SkrrrtBot.util;
 using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using Newtonsoft.Json;
-using KnightBot.Modules.Economy;
+using SkrrrtBot.Modules.Economy;
 
-namespace KnightBot.Modules.Public
+namespace SkrrrtBot.Modules.Public
 {
     public class ImagesModule : ModuleBase
     {

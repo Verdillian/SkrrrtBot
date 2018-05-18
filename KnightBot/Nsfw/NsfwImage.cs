@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KnightBot.Nsfw
+namespace SkrrrtBot.Nsfw
 {
     class NsfwImage
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace KnightBot.Modules.Economy
+namespace SkrrrtBot.Modules.Economy
 {
     class BankConfig
     {

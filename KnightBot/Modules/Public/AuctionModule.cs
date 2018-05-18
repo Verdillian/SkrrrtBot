@@ -4,10 +4,10 @@ using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
 using System.Linq;
-using KnightBot.util;
-using KnightBot.Modules.Economy;
+using SkrrrtBot.util;
+using SkrrrtBot.Modules.Economy;
 
-namespace KnightBot.Modules.Public
+namespace SkrrrtBot.Modules.Public
 {
     public class AuctionModule : ModuleBase
     {

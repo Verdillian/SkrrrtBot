@@ -7,10 +7,10 @@ using Discord.WebSocket;
 using Discord.Commands;
 using KnightBot.Config;
 using System.Linq;
-using KnightBot.util;
-using KnightBot.Nsfw;
+using SkrrrtBot.util;
+using SkrrrtBot.Nsfw;
 
-namespace KnightBot.Modules.Nsfw
+namespace SkrrrtBot.Modules.Nsfw
 {
     [Group("nsfw")]
     public class NsfwModule : ModuleBase<SocketCommandContext>

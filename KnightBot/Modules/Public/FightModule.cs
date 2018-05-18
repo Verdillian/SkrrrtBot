@@ -2,13 +2,13 @@
 using Discord;
 using Discord.Commands;
 using System.Linq;
-using KnightBot.Config;
-using KnightBot.util;
+using SkrrrtBot.Config;
+using SkrrrtBot.util;
 using System.Threading.Tasks;
-using KnightBot.Modules.Economy;
+using SkrrrtBot.Modules.Economy;
 using System.IO;
 
-namespace KnightBot.Modules.Public
+namespace SkrrrtBot.Modules.Public
 {
     public class FightModule : ModuleBase<SocketCommandContext>
     {

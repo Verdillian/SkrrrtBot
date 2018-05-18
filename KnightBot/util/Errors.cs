@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightBot.util
+namespace SkrrrtBot.util
 {
     class Errors : ModuleBase<SocketCommandContext>
     {

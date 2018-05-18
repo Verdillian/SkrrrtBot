@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using System.Linq;
-using KnightBot.util;
-using KnightBot.Modules.Economy;
+using SkrrrtBot.util;
+using SkrrrtBot.Modules.Economy;
 using System.IO;
 
-namespace KnightBot.Modules.Public
+namespace SkrrrtBot.Modules.Public
 {
     public class GamesModule : ModuleBase
     {

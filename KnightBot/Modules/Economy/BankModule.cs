@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
-using KnightBot.util;
+using SkrrrtBot.util;
 using System.IO;
 
-namespace KnightBot.Modules.Economy
+namespace SkrrrtBot.Modules.Economy
 {
 
 
@@ -58,8 +58,8 @@ namespace KnightBot.Modules.Economy
 
             save.Save("bank/" + Context.User.Id.ToString() + ".json");
 
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
 
             await Context.Message.DeleteAsync();
 
@@ -78,8 +78,8 @@ namespace KnightBot.Modules.Economy
             embed.Description = $"\n:money_with_wings: **Balance** :\n\n:moneybag: **{BankConfig.Load("bank/" + Context.User.Id.ToString() + ".json").currentMoney}**\n";
             await ReplyAsync("", false, embed.Build());
 
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
             await Context.Message.DeleteAsync();
         }
 
@@ -162,8 +162,8 @@ namespace KnightBot.Modules.Economy
 
                 await Context.Channel.SendMessageAsync("", false, embed);
             }
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
 
             await Context.Message.DeleteAsync();
 

@@ -2,14 +2,14 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using KnightBot.Config;
-using KnightBot.util;
+using SkrrrtBot.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightBot.Modules.Profanity
+namespace SkrrrtBot.Modules.Profanity
 {
     class ProfanityFilter
     {
@@ -28,7 +28,7 @@ namespace KnightBot.Modules.Profanity
             }
             **/
 
-            KnightBot.Modules.Statistics.Statistics.AddIncomingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddIncomingMessages();
 
             for (int i = 0; i <= BotConfig.Load().Filters - 1; i++)
             {
@@ -38,7 +38,7 @@ namespace KnightBot.Modules.Profanity
                     await ProfanityMessage.LogMessageAsync(CommandHandler.GetBot(), pMsg, BotConfig.Load().FilteredWords[i]);
                     await ProfanityMessage.DMMessageAsync(CommandHandler.GetBot(), pMsg, BotConfig.Load().FilteredWords[i]);
                     await ProfanityBanAsync(CommandHandler.GetBot(), pMsg);
-                    KnightBot.Modules.Statistics.Statistics.AddProfanityDetected();
+                    SkrrrtBot.Modules.Statistics.Statistics.AddProfanityDetected();
                 }
             }
         }

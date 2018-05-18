@@ -1,16 +1,16 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using KnightBot.Config;
-using KnightBot.util;
+using SkrrrtBot.Config;
+using SkrrrtBot.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KnightBot.Modules.Statistics;
+using SkrrrtBot.Modules.Statistics;
 
-namespace KnightBot.Modules.Profanity
+namespace SkrrrtBot.Modules.Profanity
 {
     class ProfanityMessage
     {
@@ -24,7 +24,7 @@ namespace KnightBot.Modules.Profanity
             warningEmbed.Description = user + " | Do not use that profanity, your message has been deleted.";
             var msg = await pMsg.Channel.SendMessageAsync("", false, warningEmbed);
             await Delete.DelayDeleteMessage(msg, 10);
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         public static async Task LogMessageAsync(DiscordSocketClient bot, SocketMessage pMsg, string word)
@@ -52,7 +52,7 @@ namespace KnightBot.Modules.Profanity
             logEmbed.AddField(channelField);
             logEmbed.AddField(wordField);
             await logChannel.SendMessageAsync("", false, logEmbed);
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         public static async Task DMMessageAsync(DiscordSocketClient bot, SocketMessage pMsg, string word)
@@ -65,7 +65,7 @@ namespace KnightBot.Modules.Profanity
             dmMessage.AddField(new EmbedFieldBuilder() { Name = "", Value = "Looks like you got caught using a bad word, now why did you do that?" });
             var iDMChannel = await user.GetOrCreateDMChannelAsync();
             await iDMChannel.SendMessageAsync("", false, dmMessage);
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
     }
 }

@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
-using KnightBot.Config;
-using KnightBot.util;
-using KnightBot.Modules.Economy;
+using SkrrrtBot.Config;
+using SkrrrtBot.util;
+using SkrrrtBot.Modules.Economy;
 
-namespace KnightBot.Modules.Public
+namespace SkrrrtBot.Modules.Public
 {
     [Group("help")]
     [Alias("hlp", "Help")]

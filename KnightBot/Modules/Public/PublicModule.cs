@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using KnightBot.Config;
-using KnightBot.util;
+using SkrrrtBot.Config;
+using SkrrrtBot.util;
 
-namespace KnightBot.Modules.Public
+namespace SkrrrtBot.Modules.Public
 {
     public class PublicModule : ModuleBase
     {
@@ -52,8 +52,8 @@ namespace KnightBot.Modules.Public
 
             await Context.Message.DeleteAsync();
 
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
 
         }
 
@@ -115,8 +115,8 @@ namespace KnightBot.Modules.Public
                 await Context.Message.DeleteAsync();
 
             }
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("gtav")]
@@ -162,8 +162,8 @@ namespace KnightBot.Modules.Public
                 await Context.Message.DeleteAsync();
 
             }
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("minecraft")]
@@ -209,8 +209,8 @@ namespace KnightBot.Modules.Public
                 await Context.Message.DeleteAsync();
 
             }
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("r6")]
@@ -256,8 +256,8 @@ namespace KnightBot.Modules.Public
                 await Context.Message.DeleteAsync();
 
             }
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("csgo")]
@@ -303,8 +303,8 @@ namespace KnightBot.Modules.Public
                 await Context.Message.DeleteAsync();
 
             }
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("rktlgue")]
@@ -351,8 +351,8 @@ namespace KnightBot.Modules.Public
                 await Context.Message.DeleteAsync();
 
             }
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("movie")]
@@ -398,8 +398,8 @@ namespace KnightBot.Modules.Public
                 await Context.Message.DeleteAsync();
 
             }
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("developer")]
@@ -427,8 +427,8 @@ namespace KnightBot.Modules.Public
 
             await Context.Channel.SendMessageAsync("", false, embed);
 
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
             await Context.Message.DeleteAsync();
         }
 
@@ -465,8 +465,8 @@ namespace KnightBot.Modules.Public
 
             await Context.Channel.SendMessageAsync("", false, embed);
 
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
             await Context.Message.DeleteAsync();
         }
 

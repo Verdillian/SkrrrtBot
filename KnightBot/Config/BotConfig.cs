@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace KnightBot.Config
+namespace SkrrrtBot.Config
 {
     public class BotConfig
     {

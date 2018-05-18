@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KnightBot.Modules.Statistics
+namespace SkrrrtBot.Modules.Statistics
 {
     public class Statistics
     {

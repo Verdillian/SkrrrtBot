@@ -10,11 +10,11 @@ using System.Linq;
 using System.IO;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using KnightBot.Config;
-using KnightBot;
-using KnightBot.util;
+using SkrrrtBot.Config;
+using SkrrrtBot;
+using SkrrrtBot.util;
 
-namespace KnightBot.Modules.Admin
+namespace SkrrrtBot.Modules.Admin
 {
     public class Admin : ModuleBase<SocketCommandContext>
     {
@@ -69,8 +69,8 @@ namespace KnightBot.Modules.Admin
 
             }
 
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
 
         }
     
@@ -101,9 +101,8 @@ namespace KnightBot.Modules.Admin
             var logchannel = Context.Guild.GetChannel(437977945680773130) as SocketTextChannel;
             await logchannel.SendMessageAsync("", false, embed);
 
-
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("kick")]
@@ -129,8 +128,8 @@ namespace KnightBot.Modules.Admin
             var logchannel = Context.Guild.GetChannel(437977945680773130) as SocketTextChannel;
             await logchannel.SendMessageAsync("", false, embed);
 
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("setrole")]
@@ -154,8 +153,8 @@ namespace KnightBot.Modules.Admin
 
             await Context.Message.DeleteAsync();
 
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
 
         [Command("remrole")]
@@ -178,8 +177,8 @@ namespace KnightBot.Modules.Admin
 
             await Context.Message.DeleteAsync();
 
-            KnightBot.Modules.Statistics.Statistics.AddCommandRequests();
-            KnightBot.Modules.Statistics.Statistics.AddOutgoingMessages();
+            SkrrrtBot.Modules.Statistics.Statistics.AddCommandRequests();
+            SkrrrtBot.Modules.Statistics.Statistics.AddOutgoingMessages();
         }
     }
 }

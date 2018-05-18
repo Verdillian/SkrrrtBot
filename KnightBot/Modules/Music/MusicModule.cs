@@ -6,8 +6,8 @@ using Discord.Commands;
 using Discord.Audio;
 using System.Diagnostics;
 using System.Linq;
-using KnightBot.Config;
-using KnightBot.util;
+using SkrrrtBot.Config;
+using SkrrrtBot.util;
 using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json.Linq;
@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.IO;
 
-namespace KnightBot.Modules.Music
+namespace SkrrrtBot.Modules.Music
 {
     public class MusicModule : ModuleBase
     {

@@ -6843,9 +6843,9 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\blckn\\Documents\\GitHub\\KnightBotv2\\KnightBot\\KnightBot.csproj",
-      "projectName": "KnightBot",
-      "projectPath": "C:\\Users\\blckn\\Documents\\GitHub\\KnightBotv2\\KnightBot\\KnightBot.csproj",
+      "projectUniqueName": "C:\\Users\\blckn\\Documents\\GitHub\\KnightBotv2\\KnightBot\\SkrrrtBot.csproj",
+      "projectName": "SkrrrtBot",
+      "projectPath": "C:\\Users\\blckn\\Documents\\GitHub\\KnightBotv2\\KnightBot\\SkrrrtBot.csproj",
       "packagesPath": "C:\\Users\\blckn\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\blckn\\Documents\\GitHub\\KnightBotv2\\KnightBot\\obj\\",
       "projectStyle": "PackageReference",

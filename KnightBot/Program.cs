@@ -4,11 +4,11 @@ using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
 using Microsoft.Extensions.DependencyInjection;
-using KnightBot.Config;
+using SkrrrtBot.Config;
 using System.IO;
 using System.Collections.Generic;
 
-namespace KnightBot
+namespace SkrrrtBot
 {
     public class Program
     {
