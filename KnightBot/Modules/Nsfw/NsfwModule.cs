@@ -5,7 +5,7 @@ using System.Text;
 using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
-using KnightBot.Config;
+using SkrrrtBot.Config;
 using System.Linq;
 using SkrrrtBot.util;
 using SkrrrtBot.Nsfw;
